@@ -1,14 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '@pages/Home.jsx';
+import Routes from './router/Routes';
+
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </Router>
-    </>
+    <div className="overflow-x-hidden">
+      <Routes />
+    </div>
   );
 }
 
