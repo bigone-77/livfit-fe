@@ -2,8 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: 'Pretendard-Medium';
+  src: url('./assets/fonts/Pretendard-Medium.woff2') format('woff2'),
+    url('./assets/fonts/Pretendard-Medium.woff') format('woff'),
+    url('./assets/fonts/Pretendard-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ErasBoldITC';
+  src: url('./assets/fonts/ErasBoldITC.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'crimsondestroyersemital';
+  src: url('./assets/fonts/crimsondestroyersemital.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bugfast';
+  src: url('./assets/fonts/Bugfast.ttf') format('truetype');
+}
+
+
+
+@layer utilities {
+  .bg-gradient-triple {
+    background: linear-gradient(to bottom, #b3df5a, #ff9534, #8a2900);
+  }
+  .text-outline-black {
+    color: white;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+      1px 1px 0 black;
+  }
+}
+
+.swiper {
+  padding-bottom: 10% !important;
+}
+
+.swiper-pagination {
+  text-align: center !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: #d9d9d9 !important;
+  width: 6px !important;
+  height: 6px !important;
+  opacity: 1 !important;
+  border-radius: 100% !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff9534 !important;
+  width: 17px !important;
+  height: 6px !important;
+  border-radius: 16px !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-next {
+  background: url('@svgs/next-arrow.svg');
+  width: 10px !important;
+  height: 17px !important;
+  top: 60px !important;
+  right: 30px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  cursor: pointer !important;
+}
+
+/* .swiper-button-prev {
+  background: url('@svgs/prev-arrow.svg');
+  width: 10px !important;
+  height: 17px !important;
+  left: 0px !important;
+  background-size: cover !important;
+  background-position: top !important;
+  cursor: pointer !important;
+} */
+
+/* :root {
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,6 +98,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+
+html {
+  zoom: 100%;
 }
 
 a {
@@ -28,15 +115,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: 'Pretendard-Medium';
+  font-weight: 200;
+  max-width: 500px;
+  height: 100vh;
 }
 
 button {
@@ -58,7 +142,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -69,4 +153,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

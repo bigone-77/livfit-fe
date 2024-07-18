@@ -2,7 +2,7 @@ import Routes from './router/Routes';
 
 function App() {
   return (
-    <div className="overflow-x-hidden">
+    <div className="w-screen overflow-x-hidden">
       <Routes />
     </div>
   );
