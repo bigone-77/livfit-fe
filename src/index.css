@@ -28,7 +28,8 @@
 
 @layer utilities {
   .bg-gradient-triple {
-    background: linear-gradient(to bottom, #b3df5a, #ff9534, #8a2900);
+    background: linear-gradient(to bottom, #8ECAE6
+    , #FFB703, #FB6900);
   }
   .text-outline-black {
     color: white;

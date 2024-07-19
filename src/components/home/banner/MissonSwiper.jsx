@@ -31,38 +31,36 @@ const DUMMY_MISSONS = [
 ];
 
 const MissonSwiper = () => {
-  
   return (
     <>
-  
-    <Swiper
-      modules={[Pagination, Scrollbar, Navigation]}
-      pagination={{ clickable: true }}
-      navigation={true}
-      spaceBetween={30}
-      initialSlide={0}
-      loop
-    >
-      {DUMMY_MISSONS.map((mission, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <section className="flex flex-col gap-2 p-6 border shadow-xl rounded-2xl">
-              <h1 className="text-xs font-light text-orange">오늘의 미션</h1>
-              <span className="flex items-center gap-2 text-2xl font-semibold text-text500">
-                <p className="">{mission.name}</p>
-                <p>{mission.goal}</p>
-                <p>성공하기</p>
-              </span>
-              <img src={progress} alt="dummy-progress" />
-              <span className="flex items-center gap-1 text-5xl font-bold font-English">
-                <p className="text-outline-black">TODAY</p>
-                <p className="text-text500">MISSION</p>
-              </span>
-            </section>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+      <Swiper
+        modules={[Pagination, Scrollbar, Navigation]}
+        pagination={{ clickable: true }}
+        navigation={true}
+        spaceBetween={30}
+        initialSlide={0}
+        loop
+      >
+        {DUMMY_MISSONS.map((mission, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <section className="flex flex-col gap-2 p-6 border shadow-xl rounded-2xl">
+                <h1 className="text-xs font-light text-orange">오늘의 미션</h1>
+                <span className="flex items-center gap-2 text-2xl font-semibold text-text500">
+                  <p className="">{mission.name}</p>
+                  <p>{mission.goal}</p>
+                  <p>성공하기</p>
+                </span>
+                <img src={progress} alt="dummy-progress" />
+                <div className="flex items-center justify-center w-full gap-1 text-4xl font-bold font-English">
+                  <p className="text-outline-black">TODAY</p>
+                  <p className="text-text500">MISSION</p>
+                </div>
+              </section>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </>
   );
 };

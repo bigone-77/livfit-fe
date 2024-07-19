@@ -14,6 +14,7 @@ module.exports = {
         text75: '#F0F2F4',
         text80: '#D5D5D5',
         text100: '#D9D9D9',
+        text150: '#BAB6B7',
         text200: '#797979',
         text300: '#023047',
         text500: '#000000',
@@ -23,6 +24,7 @@ module.exports = {
         ivory: '#FFF3B1',
         ivory2: '#FFF7B4',
         lime: '#B3DF5A',
+        lightblue: '#71A7C0',
       },
       backgroundImage: {
         main: "url('./assets/images/homeBackgroundImage.png')",

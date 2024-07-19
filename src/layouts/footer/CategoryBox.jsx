@@ -8,7 +8,7 @@ export default function CategoryBox({ selected, imageSrc, selectedImageSrc, titl
       onClick={() => navigate(url)}
     >
       <img src={`${selected ? selectedImageSrc : imageSrc}`} alt={imageSrc} />
-      <p className={`${selected ? 'text-orange' : 'text-text80'} text-xs`}>{title}</p>
+      <p className={`${selected ? 'text-orange' : 'text-text80'} text-[10px]`}>{title}</p>
     </section>
   );
 }
