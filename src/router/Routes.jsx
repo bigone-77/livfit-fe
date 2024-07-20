@@ -3,7 +3,7 @@ import { Route, Routes as ReactRouters } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
 import ExercisePage from '@pages/ExercisePage';
 import PlayPage from '@pages/PlayPage';
-
+import LoginPage from '@pages/LoginPage';
 import Footer from '@layouts/footer';
 import Navbar from '@layouts/Navbar';
 
@@ -18,10 +18,12 @@ const Routes = () => {
           <Route index element={<ExercisePage />} />
         </Route>
       </Route>
-      
+
       {/* 실제 운동이 이행될 페이지입니다. */}
       <Route path="/play/:exercise" element={<PlayPage />} />
 
+      {/* 로그인 페이지 */}
+      <Route path="/login" element={<LoginPage />} />
     </ReactRouters>
   );
 };
