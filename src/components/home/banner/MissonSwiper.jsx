@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import progress from '@/assets/images/progress.png';
+import progress from '@images/progress.png';
 
 const DUMMY_MISSONS = [
   {
