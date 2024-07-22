@@ -1,7 +1,7 @@
-import * as mpPose from '@mediapipe/pose'
+// import * as mpPose from '@mediapipe/pose'
 
 const config = () => {
-  const pose = new mpPose.Pose({
+  const pose = new window.Pose({
     locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
   });
 

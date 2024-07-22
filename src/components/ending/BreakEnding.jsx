@@ -22,7 +22,7 @@ const BreakEnding = ({ scoreArr }) => {
       {/* 부수적인 css요소 들어갈 자리입니다. */}
       {/* <div className="absolute w-full h-32 bg-center bg-no-repeat bg-contain top-10 bg-opacity-10 bg-break_effect" /> */}
       <div className="absolute w-full h-32 bg-center bg-no-repeat bg-contain top-10 bg-opacity-10 bg-break_effect" />
-      <EffectText text={50} isBreak={true} />
+      <EffectText text={scoreArr.length} isBreak={true} />
       <p className="absolute text-3xl right-10 top-32 font-GameNumber">1:00</p>
       <RatingCard scoreArr={scoreArr} />
       <div className="mt-8">

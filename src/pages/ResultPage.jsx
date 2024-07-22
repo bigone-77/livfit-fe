@@ -11,7 +11,9 @@ import { parsedPlay } from '@constants/parsedPlay';
 
 const ResultPage = () => {
   const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도
-  const scoreArr = useSelector((state) => state.play.scoreArray || []);
+  const scoreArr = useSelector((state) => state.play.scoreArray || []); // 리덕스 저장된 전역변수 불러오기
+
+  console.log(scoreArr);
 
   return (
     <>

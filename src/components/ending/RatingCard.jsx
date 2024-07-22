@@ -1,18 +1,4 @@
 const RatingCard = ({ scoreArr }) => {
-  scoreArr = [
-    'Perfect',
-    'Good',
-    'Great',
-    'Perfect',
-    'Good',
-    'Great',
-    'Perfect',
-    'Good',
-    'Great',
-    'Perfect',
-    'Good',
-    'Great',
-  ];
 
   const goodCount = scoreArr.filter(score => score === 'Good').length;
   const greatCount = scoreArr.filter(score => score === 'Great').length;

@@ -1,7 +1,5 @@
 import { useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
-import * as mpPose from '@mediapipe/pose';
-import { Camera } from '@mediapipe/camera_utils';
 
 import config from '@utils/mediapipe/config';
 import useDrawLandmarks from '@utils/mediapipe/useDrawLandmarks';
@@ -24,7 +22,7 @@ const WebCam = ({ start, end }) => {
       typeof webcamRef.current !== 'undefined' &&
       webcamRef.current !== null
     ) {
-      const camera = new Camera(webcamRef.current.video, {
+      const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
           if (frameInterval.current % 4 === 0) {
@@ -60,7 +58,7 @@ const WebCam = ({ start, end }) => {
         drawLandmarks(
           canvasCtx,
           results.poseLandmarks,
-          mpPose.POSE_CONNECTIONS
+          window.POSE_CONNECTIONS
         );
         // TODO: 아래 기능은 부위별 canvas 상에서의 상대 위치 및 가시 정도를 뽑아낸 후
         // 각 classifier별로 로직을 다르게 가져갑니다.

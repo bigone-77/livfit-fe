@@ -43,7 +43,7 @@ const PlayPage = () => {
   // TODO: 타이머가 끝났을시 ResultPage로 리다이렉팅
   useEffect(() => {
     if (timeUp) {
-      navigate(`/${exercise}/result?goal=${true}`);
+      navigate(`/${exercise}/result`);
     }
   }, [timeUp]);
 

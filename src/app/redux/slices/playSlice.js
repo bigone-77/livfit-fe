@@ -11,9 +11,12 @@ const playSlice = createSlice({
     setCounter: (state, action) => {
       state.scoreArray.push(...action.payload);
     },
+    resetCounter: (state) => {
+      state.scoreArray = [];
+    },
   },
 });
 
-export const { setCounter } = playSlice.actions;
+export const { setCounter, resetCounter } = playSlice.actions;
 
 export default playSlice.reducer;

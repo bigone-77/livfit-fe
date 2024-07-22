@@ -24,7 +24,6 @@ const updateSquatCount = (landmarks) => {
 
   // 엉덩이가 내려간 상태인지 확인
   if (averageLegAngle <= minSquatAngle) {
-    console.log(averageLegAngle);
     if (!isSquat) {
       isSquat = true;
       // 스쿼트 품질 평가
