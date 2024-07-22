@@ -25,7 +25,6 @@ const PlayPage = () => {
   // 본 화면에 들어오면 바로 3, 2, 1 타이머 작동
   useEffect(() => {
     if (timeLeft <= 0) {
-      setGetStart(true);
       setShowStart(true);
       setTimeout(() => {
         setShowStart(false);
@@ -59,7 +58,7 @@ const PlayPage = () => {
       <Navbar title={parsedPlay(exercise)} closed styles rest={rest} />
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
         {/* WebCam 컴포넌트 로직만 다르게 가져가기  */}
-        <WebCam start={timeLeft === 0} end={timeUp} />
+        <WebCam start={timeLeft === 0} end={timeUp} setTimerStart={setGetStart} exercise={exercise} />
         <section className="absolute top-0">
           <Score />
         </section>

@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
+
+import { resetCounter } from '@redux/slices/playSlice';
 
 import backArrow from '@svgs/left-arrow.svg';
 import lightBackArrow from '@svgs/light-left-arrow.svg';
@@ -11,6 +14,18 @@ import lightClose from '@svgs/light-close.svg';
 // rest는 쉬는 화면 나오게 하기 위한 boolean으로 이때 z-index를 부여합니다.
 const Navbar = ({ title, closed, styles, rest }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const backHandler = () => {
+    dispatch(resetCounter());
+    navigate(-1);
+  }
+
+  const closeHandler = () => {
+    dispatch(resetCounter());
+    navigate('/');
+  }
+
   return (
     <>
       <nav
@@ -22,14 +37,14 @@ const Navbar = ({ title, closed, styles, rest }) => {
           <img
             src={lightBackArrow}
             alt={backArrow}
-            onClick={() => navigate(-1)}
+            onClick={backHandler}
             className={`${!closed && 'absolute top-12 left-10'} z-10`}
           />
         ) : (
           <img
             src={backArrow}
             alt={backArrow}
-            onClick={() => navigate(-1)}
+            onClick={backHandler}
             className={`${!closed && 'absolute top-12 left-10'}`}
           />
         )}
@@ -42,13 +57,13 @@ const Navbar = ({ title, closed, styles, rest }) => {
         </p>
         
         {closed && !rest && (
-          <img src={close} alt={close} onClick={() => navigate('/')} />
+          <img src={close} alt={close} onClick={closeHandler} />
         )}
         {closed && rest && (
           <img
             src={lightClose}
             alt={close}
-            onClick={() => navigate('/')}
+            onClick={closeHandler}
             className="z-10"
           />
         )}

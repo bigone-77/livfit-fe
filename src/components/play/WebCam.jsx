@@ -6,7 +6,7 @@ import useDrawLandmarks from '@utils/mediapipe/useDrawLandmarks';
 import { simplifyPoseLandmarks } from '@utils/mediapipe/calcAngle';
 import updateSquatCount from '@utils/mediapipe/classifier/squat.classifier';
 
-const WebCam = ({ start, end }) => {
+const WebCam = ({ start, end, setTimerStart, exercise }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const cameraRef = useRef(null); // camera 객체를 참조할 변수
@@ -30,9 +30,10 @@ const WebCam = ({ start, end }) => {
           }
         },
       });
-      
+
       if (start) {
         camera.start();
+        setTimerStart(true); // 웹캠이 켜지고 나서야 타이머 작동시키기
         cameraRef.current = camera; // camera 객체를 참조 변수에 저장
       }
     }
@@ -63,7 +64,15 @@ const WebCam = ({ start, end }) => {
         // TODO: 아래 기능은 부위별 canvas 상에서의 상대 위치 및 가시 정도를 뽑아낸 후
         // 각 classifier별로 로직을 다르게 가져갑니다.
         const simplifiedLandmarks = simplifyPoseLandmarks(results);
-        updateSquatCount(simplifiedLandmarks);
+        if (exercise) {
+          switch (exercise) {
+            case 'squart':
+              updateSquatCount(simplifiedLandmarks);
+            // case 'lunge':
+            // 런지 카운트 판별 메서드 들어갈 자리
+            // ...
+          }
+        }
       }
       canvasCtx.restore(); // save했던 드로잉 상태를 복원
     }
@@ -73,17 +82,13 @@ const WebCam = ({ start, end }) => {
     if (end && cameraRef.current) {
       cameraRef.current.stop();
     }
-  }, [end])
+  }, [end]);
 
   return (
     <div className="fixed inset-0 w-full h-screen">
       <Webcam ref={webcamRef} className="hidden" />
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-      />
-      <section className="absolute text-5xl text-orange">
-      </section>
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <section className="absolute text-5xl text-orange"></section>
     </div>
   );
 };
