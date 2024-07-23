@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import Navbar from '@layouts/Navbar';
+import Navbar from "@layouts/Navbar";
 
-import GroupButton from '@components/play/GroupButton';
-import Timer from '@components/play/Timer';
-import Score from '@components/play/Score';
-import WebCam from '@components/play/WebCam';
-import CountTime from '@components/play/CountTime';
-import RestScreen from '@components/play/RestScreen';
+import GroupButton from "@components/play/GroupButton";
+import Timer from "@components/play/Timer";
+import Score from "@components/play/Score";
+import WebCam from "@components/play/WebCam";
+import CountTime from "@components/play/CountTime";
+import RestScreen from "@components/play/RestScreen";
 
-import { parsedPlay } from '@constants/parsedPlay';
+import { parsedPlay } from "@constants/parsedPlay";
 
 const PlayPage = () => {
   const [getStart, setGetStart] = useState(false); // 시작 타이머 용도
@@ -58,7 +58,12 @@ const PlayPage = () => {
       <Navbar title={parsedPlay(exercise)} closed styles rest={rest} />
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
         {/* WebCam 컴포넌트 로직만 다르게 가져가기  */}
-        <WebCam start={timeLeft === 0} end={timeUp} setTimerStart={setGetStart} exercise={exercise} />
+        <WebCam
+          start={timeLeft === 0}
+          end={timeUp}
+          setTimerStart={setGetStart}
+          exercise={exercise}
+        />
         <section className="absolute top-0">
           <Score />
         </section>

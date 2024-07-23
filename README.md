@@ -69,13 +69,13 @@ git push origin main
 - 예시
 
   ```tsx
-  import React from 'react';
-  import ReactDOM from 'react-dom/client';
-  import App from './App.jsx';
-  import './index.css';
-  import { BrowserRouter } from 'react-router-dom';
+  import React from "react";
+  import ReactDOM from "react-dom/client";
+  import App from "./App.jsx";
+  import "./index.css";
+  import { BrowserRouter } from "react-router-dom";
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
       <BrowserRouter>
         <App />
@@ -91,8 +91,8 @@ git push origin main
 ### Routes.jsx
 
 ```tsx
-import { Route, Routes as ReactRouters } from 'react-router-dom';
-import HomePage from '@pages/HomePage';
+import { Route, Routes as ReactRouters } from "react-router-dom";
+import HomePage from "@pages/HomePage";
 
 const Routes = () => {
   return (

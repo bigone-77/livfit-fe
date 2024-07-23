@@ -1,5 +1,5 @@
-import clearImage from '@images/ending/clear.png';
-import failImage from '@images/ending/fail.png';
+import clearImage from "@images/ending/clear.png";
+import failImage from "@images/ending/fail.png";
 
 const GoalEnding = ({ scoreLength }) => {
   // 우선 개수만 받자 타이머 맞춘 시간은 나중에 넣어보기로 하고
@@ -34,6 +34,6 @@ const GoalEnding = ({ scoreLength }) => {
   }
 
   return <section className="mb-20">{content}</section>;
-}
+};
 
-export default GoalEnding
+export default GoalEnding;

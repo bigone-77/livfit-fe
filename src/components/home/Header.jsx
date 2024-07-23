@@ -1,7 +1,7 @@
-import logo from '@svgs/logo.svg';
-import badge from '@svgs/badge.svg';
-import alarm from '@svgs/alarm.svg';
-import search from '@svgs/search.svg';
+import logo from "@svgs/logo.svg";
+import badge from "@svgs/badge.svg";
+import alarm from "@svgs/alarm.svg";
+import search from "@svgs/search.svg";
 
 const Header = () => {
   return (

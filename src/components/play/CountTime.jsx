@@ -1,10 +1,10 @@
-import one from '@images/play/one.png';
-import two from '@images/play/two.png';
-import three from '@images/play/three.png';
+import one from "@images/play/one.png";
+import two from "@images/play/two.png";
+import three from "@images/play/three.png";
 
-import restOne from '@images/rest/one.png';
-import restTwo from '@images/rest/two.png';
-import restThree from '@images/rest/three.png';
+import restOne from "@images/rest/one.png";
+import restTwo from "@images/rest/two.png";
+import restThree from "@images/rest/three.png";
 
 const CountTime = ({ time, restTime }) => {
   if (time === 1) {

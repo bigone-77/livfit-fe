@@ -2,7 +2,6 @@ import EffectText from "./EffectText";
 import RatingCard from "./RatingCard";
 import RecordTable from "./RecordTable";
 
-
 const BreakEnding = ({ scoreArr }) => {
   // 기록 갱신했을 경우와 그렇지 못한 경우 boolean값을 변수로 받습니다.
   // 여기선 일단 임의의 변수로 프로세스 처리
@@ -34,6 +33,6 @@ const BreakEnding = ({ scoreArr }) => {
       </div>
     </section>
   );
-}
+};
 
-export default BreakEnding
+export default BreakEnding;

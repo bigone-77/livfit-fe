@@ -1,7 +1,7 @@
 import {
   POSE_LANDMARKS_LEFT,
   POSE_LANDMARKS_RIGHT,
-} from '@constants/poseNumber';
+} from "@constants/poseNumber";
 
 function angleBetweenLines(landmark1, landmark2, landmark3) {
   const { x: x1, y: y1 } = landmark1;

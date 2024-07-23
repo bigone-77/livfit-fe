@@ -1,5 +1,5 @@
-import handshake from '@svgs/handshake.svg';
-import MissonSwiper from './MissonSwiper';
+import handshake from "@svgs/handshake.svg";
+import MissonSwiper from "./MissonSwiper";
 
 const Banner = () => {
   return (

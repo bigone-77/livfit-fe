@@ -1,32 +1,32 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import progress from '@images/progress.png';
+import progress from "@images/progress.png";
 
 const DUMMY_MISSONS = [
   {
     id: 1,
-    name: '스쿼트',
-    goal: '100개',
+    name: "스쿼트",
+    goal: "100개",
   },
   {
     id: 2,
-    name: '런지',
-    goal: '200개',
+    name: "런지",
+    goal: "200개",
   },
   {
     id: 3,
-    name: '푸시업',
-    goal: '200개',
+    name: "푸시업",
+    goal: "200개",
   },
   {
     id: 4,
-    name: '플랭크',
-    goal: '5분30초',
+    name: "플랭크",
+    goal: "5분30초",
   },
 ];
 

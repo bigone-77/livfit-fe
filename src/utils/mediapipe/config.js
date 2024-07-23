@@ -2,7 +2,8 @@
 
 const config = () => {
   const pose = new window.Pose({
-    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
+    locateFile: (file) =>
+      `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
   });
 
   pose.setOptions({

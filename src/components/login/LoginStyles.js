@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import uncheckedImg from '/src/assets/images/login/unchecked.svg';
-import checkedImg from '/src/assets/images/login/checked.svg';
-import googleLogo from '/src/assets/images/login/g-logo.png';
-import naverLogo from '/src/assets/images/login/n-logo.png';
-import kakaoLogo from '/src/assets/images/login/k-logo.png';
+import styled from "styled-components";
+import uncheckedImg from "/src/assets/images/login/unchecked.svg";
+import checkedImg from "/src/assets/images/login/checked.svg";
+import googleLogo from "/src/assets/images/login/g-logo.png";
+import naverLogo from "/src/assets/images/login/n-logo.png";
+import kakaoLogo from "/src/assets/images/login/k-logo.png";
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ export const LoginContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   font-size: 12px;
-  font-family: 'Inter-Regular', sans-serif;
+  font-family: "Inter-Regular", sans-serif;
   color: #bdbdbd;
 `;
 
@@ -74,12 +74,12 @@ export const Checkbox = styled.input`
   display: none;
 
   &:checked + label {
-    background: url('${checkedImg}') no-repeat;
+    background: url("${checkedImg}") no-repeat;
   }
 `;
 
 export const CheckboxLabel = styled.label`
-  background: url('${uncheckedImg}') no-repeat;
+  background: url("${uncheckedImg}") no-repeat;
   width: 15px;
   height: 15px;
   display: inline-block;

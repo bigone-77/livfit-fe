@@ -1,5 +1,5 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import playReducer from './slices/playSlice';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import playReducer from "./slices/playSlice";
 
 const rootReducer = combineReducers({
   play: playReducer,

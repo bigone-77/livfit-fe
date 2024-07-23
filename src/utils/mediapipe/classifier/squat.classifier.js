@@ -1,6 +1,6 @@
-import store from '@redux/store';
-import { setCounter } from '@redux/slices/playSlice';
-import { calcLowerPoseAngles, calcUpperBodyAngle } from '../calcAngle';
+import store from "@redux/store";
+import { setCounter } from "@redux/slices/playSlice";
+import { calcLowerPoseAngles, calcUpperBodyAngle } from "../calcAngle";
 
 let isSquat = false;
 const minSquatAngle = 75; // 최소 각도, 엉덩이가 내려간 상태
@@ -29,11 +29,11 @@ const updateSquatCount = (landmarks) => {
       // 스쿼트 품질 평가
 
       if (averageLegAngle > 70) {
-        store.dispatch(setCounter(['Good']));
+        store.dispatch(setCounter(["Good"]));
       } else if (averageLegAngle <= 70 && averageLegAngle > 65) {
-        store.dispatch(setCounter(['Great']));
+        store.dispatch(setCounter(["Great"]));
       } else {
-        store.dispatch(setCounter(['Perfect']));
+        store.dispatch(setCounter(["Perfect"]));
       }
     }
   }

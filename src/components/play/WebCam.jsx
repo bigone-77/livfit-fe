@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
-import Webcam from 'react-webcam';
+import { useEffect, useRef } from "react";
+import Webcam from "react-webcam";
 
-import config from '@utils/mediapipe/config';
-import useDrawLandmarks from '@utils/mediapipe/useDrawLandmarks';
-import { simplifyPoseLandmarks } from '@utils/mediapipe/calcAngle';
-import updateSquatCount from '@utils/mediapipe/classifier/squat.classifier';
+import config from "@utils/mediapipe/config";
+import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
+import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
+import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 
 const WebCam = ({ start, end, setTimerStart, exercise }) => {
   const webcamRef = useRef(null);
@@ -19,7 +19,7 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
     pose.onResults(onResults);
 
     if (
-      typeof webcamRef.current !== 'undefined' &&
+      typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null
     ) {
       const camera = new window.Camera(webcamRef.current.video, {
@@ -39,7 +39,7 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
     }
 
     function onResults(results) {
-      const canvasCtx = canvasRef.current.getContext('2d');
+      const canvasCtx = canvasRef.current.getContext("2d");
       canvasCtx.save(); // canvas 드로잉 상태 저장
       canvasCtx.clearRect(
         0,
@@ -66,7 +66,7 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
         const simplifiedLandmarks = simplifyPoseLandmarks(results);
         if (exercise) {
           switch (exercise) {
-            case 'squart':
+            case "squart":
               updateSquatCount(simplifiedLandmarks);
             // case 'lunge':
             // 런지 카운트 판별 메서드 들어갈 자리

@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { resetCounter } from '@redux/slices/playSlice';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { resetCounter } from "@redux/slices/playSlice";
 
 const GroupButton = () => {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ const GroupButton = () => {
 
   const exitHandler = () => {
     dispatch(resetCounter());
-    navigate('/');
+    navigate("/");
   };
 
   const restartHandler = () => {

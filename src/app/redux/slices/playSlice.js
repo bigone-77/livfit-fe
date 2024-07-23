@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   scoreArray: [],
 };
 
 const playSlice = createSlice({
-  name: 'play',
+  name: "play",
   initialState,
   reducers: {
     setCounter: (state, action) => {

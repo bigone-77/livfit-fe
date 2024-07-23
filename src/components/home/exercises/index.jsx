@@ -1,8 +1,8 @@
-import topSection from '@svgs/top-section.svg';
-import bottomSection from '@svgs/bottom-section.svg';
-import fire from '@svgs/fire.svg';
+import topSection from "@svgs/top-section.svg";
+import bottomSection from "@svgs/bottom-section.svg";
+import fire from "@svgs/fire.svg";
 
-import SelectEx from './SelectEx';
+import SelectEx from "./SelectEx";
 
 const Exercises = () => {
   return (

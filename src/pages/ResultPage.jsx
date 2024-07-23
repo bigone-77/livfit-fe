@@ -1,13 +1,13 @@
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import Navbar from '@layouts/Navbar';
+import Navbar from "@layouts/Navbar";
 
-import EndingGroupButton from '@components/ending/GroupButton';
-import BreakEnding from '@components/ending/BreakEnding';
+import EndingGroupButton from "@components/ending/GroupButton";
+import BreakEnding from "@components/ending/BreakEnding";
 // import GoalEnding from '@components/ending/GoalEnding';
 
-import { parsedPlay } from '@constants/parsedPlay';
+import { parsedPlay } from "@constants/parsedPlay";
 
 const ResultPage = () => {
   const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도

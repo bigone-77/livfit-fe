@@ -1,14 +1,14 @@
-import { Route, Routes as ReactRouters, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Route, Routes as ReactRouters, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-import HomePage from '@pages/HomePage';
-import ExercisePage from '@pages/ExercisePage';
-import PlayPage from '@pages/PlayPage';
-import LoginPage from '@pages/LoginPage';
-import ResultPage from '@pages/ResultPage';
+import HomePage from "@pages/HomePage";
+import ExercisePage from "@pages/ExercisePage";
+import PlayPage from "@pages/PlayPage";
+import LoginPage from "@pages/LoginPage";
+import ResultPage from "@pages/ResultPage";
 
-import Footer from '@layouts/footer';
-import Navbar from '@layouts/Navbar';
+import Footer from "@layouts/footer";
+import Navbar from "@layouts/Navbar";
 
 const Routes = () => {
   const location = useLocation();

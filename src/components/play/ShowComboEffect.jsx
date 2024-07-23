@@ -1,13 +1,13 @@
-import good from '@images/play/good.png';
-import great from '@images/play/great.png';
-import perfect from '@images/play/perfect.png';
+import good from "@images/play/good.png";
+import great from "@images/play/great.png";
+import perfect from "@images/play/perfect.png";
 
 const ShowComboEffect = ({ effect }) => {
-  if (effect === 'good') {
+  if (effect === "good") {
     return <img src={good} alt={effect} />;
   }
 
-  if (effect === 'great') {
+  if (effect === "great") {
     return <img src={great} alt={effect} />;
   }
 

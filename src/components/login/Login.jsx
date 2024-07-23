@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   LoginContainer,
   LoginBox,
@@ -13,12 +13,12 @@ import {
   SnsLogin,
   SnsButtons,
   SnsButton,
-} from './LoginStyles';
-import logo from '/src/assets/images/logo.png';
+} from "./LoginStyles";
+import logo from "/src/assets/images/logo.png";
 
 const Login = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
   const handleLogin = (e) => {

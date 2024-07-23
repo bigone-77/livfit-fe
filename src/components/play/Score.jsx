@@ -1,6 +1,6 @@
 // import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import ShowComboEffect from './ShowComboEffect';
+import { useSelector } from "react-redux";
+import ShowComboEffect from "./ShowComboEffect";
 // good -> 10점 orange3
 // great -> 20점 orange2
 // perfect -> 30점 red
@@ -22,11 +22,11 @@ const Score = () => {
   const scoreColor = () => {
     if (scoreArr.length > 0) {
       const lastScore = scoreArr[scoreArr.length - 1]; // 마지막 점수 획득한 값
-      if (lastScore === 'Good') return 'text-orange3';
-      if (lastScore === 'Great') return 'text-orange2';
-      if (lastScore === 'Perfect') return 'text-red';
+      if (lastScore === "Good") return "text-orange3";
+      if (lastScore === "Great") return "text-orange2";
+      if (lastScore === "Perfect") return "text-red";
     }
-    return 'text-orange3';
+    return "text-orange3";
   };
 
   return (
