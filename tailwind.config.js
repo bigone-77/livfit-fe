@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        mini: "400px",
+      },
       fontFamily: {
         English: ["ErasBoldITC"],
         GameNumber: ["crimsondestroyersemital"],
@@ -13,7 +16,9 @@ module.exports = {
         text50: "#FFFFFF",
         text75: "#F0F2F4",
         text80: "#D5D5D5",
+        text90: "#F6F6F6",
         text100: "#D9D9D9",
+        text125: "#EAEAEA",
         text150: "#BAB6B7",
         text200: "#797979",
         text300: "#023047",
@@ -28,6 +33,8 @@ module.exports = {
         yellow: "#FFB703",
         ivory: "#FFF3B1",
         ivory2: "#FFF7B4",
+        badge_color: "#FFCA68",
+        apricot: "#FFDFC1",
         lime: "#B3DF5A",
         lightblue: "#71A7C0",
         lightblue2: "#8ECAE6",
@@ -37,8 +44,14 @@ module.exports = {
       },
       backgroundImage: {
         main: "url('./assets/images/homeBackgroundImage.png')",
+        badge: "url('./assets/images/badgeBackgroundImage.png')",
+        challenge: "url('./assets/images/challenge/challengeBgImage.png')",
         break_effect: "url('./assets/images/ending/break-effect.png')",
         no_break_effect: "url('./assets/images/ending/no-break-effect.png')",
+        squat: "url('./assets/images/exercise/squat.png')",
+        lunge: "url('./assets/images/exercise/lunge.png')",
+        pushup: "url('./assets/images/exercise/pushup.png')",
+        squat_detail: "url('./assets/images/exercise/squat-detail.png')",
       },
     },
   },

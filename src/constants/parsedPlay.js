@@ -1,10 +1,10 @@
 export const parsedPlay = (play) => {
   switch (play) {
-    case "squart":
+    case "squat":
       return "스쿼트";
     case "lunge":
       return "런지";
-    case "stretch":
-      return "스트레칭";
+    case "pushup":
+      return "푸시업";
   }
 };

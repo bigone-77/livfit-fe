@@ -1,36 +1,62 @@
+import axios from "@api/axios";
+import { useQuery } from "@tanstack/react-query";
+
+import { useEffect, useState } from "react";
 import EffectText from "./EffectText";
 import RatingCard from "./RatingCard";
 import RecordTable from "./RecordTable";
 
-const BreakEnding = ({ scoreArr }) => {
-  // 기록 갱신했을 경우와 그렇지 못한 경우 boolean값을 변수로 받습니다.
-  // 여기선 일단 임의의 변수로 프로세스 처리
-  // isRank가 true라면 기록 갱신 처리
-  // let isRank = true;
+const BreakEnding = ({ scoreArr, subject, currentCount }) => {
+  const [isBreak, setIsBreak] = useState(false);
+  const {
+    data: recordsRes,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["exercise", subject],
+    queryFn: () => axios(`${import.meta.env.VITE_MOCKING_SERVER_URL}/records`),
+  });
 
-  // let content;
+  let content;
 
-  // if (isRank) {
-  //   content =
-  // } else {
-  //   content =
-  // }
+  useEffect(() => {
+    if (recordsRes) {
+      let highestCount = recordsRes.data.reduce((max, record) => {
+        return Math.max(max, record.count);
+      }, 0);
+
+      if (currentCount > highestCount) setIsBreak(true);
+      else setIsBreak(false);
+    }
+  }, [recordsRes, currentCount]);
+
+  if (isLoading) {
+    content = <p>data loading...</p>;
+  } else if (isError) {
+    content = <p>data fetching error...</p>;
+  } else if (recordsRes) {
+    content = (
+      <div className="w-full px-10 mt-10 place-items-center text-text150">
+        <RecordTable records={recordsRes.data} />
+      </div>
+    );
+  }
 
   return (
-    <section className="relative text-center pb-96 text-text50">
-      {/* 부수적인 css요소 들어갈 자리입니다. */}
-      {/* <div className="absolute w-full h-32 bg-center bg-no-repeat bg-contain top-10 bg-opacity-10 bg-break_effect" /> */}
-      <div className="absolute w-full h-32 bg-center bg-no-repeat bg-contain top-10 bg-opacity-10 bg-break_effect" />
-      <EffectText text={scoreArr.length} isBreak={true} />
-      <p className="absolute text-3xl right-10 top-32 font-GameNumber">1:00</p>
+    <section className="relative w-full text-center text-text50">
+      <div
+        className={`absolute w-full h-32 bg-center bg-no-repeat bg-contain top-10 bg-opacity-10 ${
+          isBreak ? "bg-break_effect" : "bg-no_break_effect"
+        } `}
+      />
+      <EffectText text={scoreArr.length} isBreak={isBreak} />
+      <p className="absolute text-3xl right-16 top-32 font-GameNumber">1:00</p>
       <RatingCard scoreArr={scoreArr} />
       <div className="mt-8">
         <p className="font-semibold">축하합니다!</p>
         <p className="font-semibold">새로운 기록을 달성하셨군요!</p>
       </div>
-      <div className="w-full px-10 mt-10 place-items-center text-text150">
-        <RecordTable />
-      </div>
+      {content}
     </section>
   );
 };

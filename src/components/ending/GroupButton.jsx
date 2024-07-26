@@ -1,6 +1,6 @@
+import { resetCounter } from "@redux/slices/playSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { resetCounter } from "@redux/slices/playSlice";
 
 const GroupButton = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const GroupButton = () => {
   };
 
   return (
-    <div className="grid items-center w-screen grid-cols-2 gap-4 px-10 text-xl text-center">
+    <div className="grid items-center w-full grid-cols-2 gap-4 px-10 text-xl text-center">
       <div
         className="py-3 rounded-xl bg-text50 text-text400"
         onClick={exitHandler}

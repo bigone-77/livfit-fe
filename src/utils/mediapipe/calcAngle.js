@@ -1,4 +1,5 @@
 import {
+  POSE_LANDMARKS_CENTER,
   POSE_LANDMARKS_LEFT,
   POSE_LANDMARKS_RIGHT,
 } from "@constants/poseNumber";
@@ -36,22 +37,49 @@ function calcLowerPoseAngles(landmarks) {
   return { right_legAngle, left_legAngle };
 }
 
+function calcPushupAngles(landmarks) {
+  // 오른쪽 어깨 - 팔꿈치 - 손목 각도 계산
+  const right_armAngle = angleBetweenLines(
+    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_SHOULDER],
+    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_ELBOW],
+    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_WRIST]
+  );
+
+  const left_armAngle = angleBetweenLines(
+    landmarks[POSE_LANDMARKS_LEFT.LEFT_SHOULDER],
+    landmarks[POSE_LANDMARKS_LEFT.LEFT_ELBOW],
+    landmarks[POSE_LANDMARKS_LEFT.LEFT_WRIST]
+  );
+
+  return { right_armAngle, left_armAngle };
+}
+
 function calcUpperBodyAngle(landmarks) {
   // 오른쪽 어깨 - 엉덩이 - 왼쪽 어깨 각도 계산
   const rightShoulderHipAngle = angleBetweenLines(
     landmarks[POSE_LANDMARKS_RIGHT.RIGHT_SHOULDER],
     landmarks[POSE_LANDMARKS_RIGHT.RIGHT_HIP],
-    landmarks[POSE_LANDMARKS_LEFT.LEFT_SHOULDER]
+    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_SHOULDER]
   );
 
   // 왼쪽 어깨 - 엉덩이 - 오른쪽 어깨 각도 계산
   const leftShoulderHipAngle = angleBetweenLines(
     landmarks[POSE_LANDMARKS_LEFT.LEFT_SHOULDER],
     landmarks[POSE_LANDMARKS_LEFT.LEFT_HIP],
-    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_SHOULDER]
+    landmarks[POSE_LANDMARKS_LEFT.LEFT_SHOULDER]
   );
 
   return (rightShoulderHipAngle + leftShoulderHipAngle) / 2;
+}
+
+function calcShoulderNoseAngle(landmarks) {
+  const turtleDetectAngle = angleBetweenLines(
+    landmarks[POSE_LANDMARKS_CENTER.NOSE],
+    landmarks[POSE_LANDMARKS_LEFT.LEFT_SHOULDER],
+    landmarks[POSE_LANDMARKS_RIGHT.RIGHT_SHOULDER]
+  );
+
+  return turtleDetectAngle;
 }
 
 function simplifyPoseLandmarks(results) {
@@ -70,4 +98,10 @@ function simplifyPoseLandmarks(results) {
   });
 }
 
-export { calcLowerPoseAngles, calcUpperBodyAngle, simplifyPoseLandmarks };
+export {
+  calcLowerPoseAngles,
+  calcPushupAngles,
+  calcShoulderNoseAngle,
+  calcUpperBodyAngle,
+  simplifyPoseLandmarks,
+};

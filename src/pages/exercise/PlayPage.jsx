@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import Navbar from "@layouts/Navbar";
+import PlayNavbar from "@layouts/PlayNavbar";
 
-import GroupButton from "@components/play/GroupButton";
-import Timer from "@components/play/Timer";
-import Score from "@components/play/Score";
-import WebCam from "@components/play/WebCam";
 import CountTime from "@components/play/CountTime";
+import GroupButton from "@components/play/GroupButton";
 import RestScreen from "@components/play/RestScreen";
+import Score from "@components/play/Score";
+import Timer from "@components/play/Timer";
+import WebCam from "@components/play/WebCam";
 
 import { parsedPlay } from "@constants/parsedPlay";
 
@@ -47,28 +47,27 @@ const PlayPage = () => {
   }, [timeUp]);
 
   return (
-    <div className="w-screen h-screen overflow-hidden">
+    <div className="relative">
       {timeLeft > 0 && (
-        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-70">
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black bg-opacity-70">
           <CountTime time={timeLeft} />
         </div>
       )}
       {rest && <RestScreen setRest={setRest} />}
 
-      <Navbar title={parsedPlay(exercise)} closed styles rest={rest} />
+      <PlayNavbar title={parsedPlay(exercise)} closed styles rest={rest} />
+      <WebCam
+        start={timeLeft === 0}
+        end={timeUp}
+        setTimerStart={setGetStart}
+        exercise={exercise}
+      />
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
-        {/* WebCam 컴포넌트 로직만 다르게 가져가기  */}
-        <WebCam
-          start={timeLeft === 0}
-          end={timeUp}
-          setTimerStart={setGetStart}
-          exercise={exercise}
-        />
         <section className="absolute top-0">
           <Score />
         </section>
         {showStart && (
-          <p className="absolute flex justify-center text-center top-72 text-text500 text-8xl font-Score">
+          <p className="absolute flex justify-center text-center top-[20%] text-text500 text-8xl font-Score">
             START
           </p>
         )}

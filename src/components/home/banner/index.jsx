@@ -4,7 +4,7 @@ import MissonSwiper from "./MissonSwiper";
 const Banner = () => {
   return (
     <section className="px-8 mt-6">
-      <div className="flex items-center gap-4 p-4 mb-4 rounded-xl bg-ivory2">
+      <div className="flex items-center gap-4 p-4 mb-4 rounded-xl bg-orange3 bg-opacity-15">
         <img src={handshake} alt="handshake" />
         <div className="w-full">
           <span className="flex items-center">

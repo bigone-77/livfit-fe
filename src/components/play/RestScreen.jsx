@@ -21,18 +21,20 @@ const RestScreen = ({ setRest }) => {
   }, [timeLeft]);
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black">
-      <section className="flex flex-col items-center justify-center gap-10 mb-10">
-        <p className="text-6xl text-lightblue2 font-Score">REST</p>
+    <div className="absolute inset-0 z-10 flex justify-center w-full h-full bg-black">
+      <section className="relative flex flex-col items-center gap-2 mt-28">
+        <p className="absolute text-6xl top-12 text-lightblue2 font-Score">
+          REST
+        </p>
         <CountTime restTime={timeLeft} />
-        <div className="flex items-center justify-center gap-2">
+        <div className="absolute flex items-center justify-center gap-2 top-96">
           <img src={bulb} alt={bulb} />
-          <div className="text-xs text-text50">
-            <p className="mb-2">
+          <div className="text-[10px] text-text50">
+            <p className="mb-2 whitespace-nowrap">
               발가락을 오므리고 마치 바닥을 움켜잡는 느낌적인 느낌으로 스쿼트를
               해보세요!
             </p>
-            <p>
+            <p className="whitespace-nowrap">
               자세도 안정적이고 중반부에도 계속해서 하체를 이용해 일어날 수 있게
               됩니다!
             </p>

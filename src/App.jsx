@@ -1,10 +1,11 @@
+import Wrapper from "@commons/Wrapper";
 import Routes from "./router/Routes";
 
 function App() {
   return (
-    <div>
+    <Wrapper>
       <Routes />
-    </div>
+    </Wrapper>
   );
 }
 

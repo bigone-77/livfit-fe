@@ -1,5 +1,5 @@
-import store from "@redux/store";
 import { setCounter } from "@redux/slices/playSlice";
+import store from "@redux/store";
 import { calcLowerPoseAngles, calcUpperBodyAngle } from "../calcAngle";
 
 let isSquat = false;

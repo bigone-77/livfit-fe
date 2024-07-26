@@ -3,11 +3,14 @@ import { Outlet, useLocation } from "react-router-dom";
 import home from "@svgs/footer/home.svg";
 import live from "@svgs/footer/live.svg";
 import profile from "@svgs/footer/profile.svg";
-import review from "@svgs/footer/review.svg";
 import store from "@svgs/footer/store.svg";
+import turtle from "@svgs/footer/turtle.svg";
 
 import selectedHome from "@svgs/footer/home-select.svg";
 import selectedLive from "@svgs/footer/live-select.svg";
+import selectedProfile from "@svgs/footer/profile-select.svg";
+import selectedStore from "@svgs/footer/store-select.svg";
+import selectedTurtle from "@svgs/footer/turtle-select.svg";
 
 import CategoryBox from "./CategoryBox";
 
@@ -33,21 +36,24 @@ const Footer = () => {
           url="/exercise"
         />
         <CategoryBox
-          imageSrc={review}
-          title="후기"
-          selected={pathname === "review"}
-          url="/review"
+          imageSrc={turtle}
+          selectedImageSrc={selectedTurtle}
+          title="거북목 측정"
+          selected={pathname === "/turtle"}
+          url="/turtle"
         />
         <CategoryBox
           imageSrc={store}
+          selectedImageSrc={selectedStore}
           title="스토어"
-          selected={pathname === "store"}
+          selected={pathname === "/store"}
           url="/store"
         />
         <CategoryBox
           imageSrc={profile}
+          selectedImageSrc={selectedProfile}
           title="마이"
-          selected={pathname === "profile"}
+          selected={pathname === "/profile"}
           url="/profile"
         />
       </footer>

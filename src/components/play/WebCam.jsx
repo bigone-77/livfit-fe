@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 
+import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
+import updateLungeCount from "@utils/mediapipe/classifier/lunge.classifier";
+import updatePushupCount from "@utils/mediapipe/classifier/pushup.classifier";
+import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
-import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
-import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 
 const WebCam = ({ start, end, setTimerStart, exercise }) => {
   const webcamRef = useRef(null);
@@ -68,9 +70,12 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
           switch (exercise) {
             case "squart":
               updateSquatCount(simplifiedLandmarks);
-            // case 'lunge':
-            // 런지 카운트 판별 메서드 들어갈 자리
-            // ...
+              break;
+            case "lunge":
+              updateLungeCount(simplifiedLandmarks);
+              break;
+            case "pushup":
+              updatePushupCount(simplifiedLandmarks);
           }
         }
       }
@@ -85,7 +90,7 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
   }, [end]);
 
   return (
-    <div className="fixed inset-0 w-full h-screen">
+    <div className="absolute inset-0 w-full h-full">
       <Webcam ref={webcamRef} className="hidden" />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <section className="absolute text-5xl text-orange"></section>
