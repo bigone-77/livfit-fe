@@ -8,10 +8,12 @@ import TurtleRank from "@components/home/turtleRank";
 export default function HomePage() {
   return (
     <Wrapper>
-      <Header />
-      <Banner />
-      <Exercises />
-      <TurtleRank />
+      <div className="pb-20">
+        <Header />
+        <Banner />
+        <Exercises />
+        <TurtleRank />
+      </div>
     </Wrapper>
   );
 }

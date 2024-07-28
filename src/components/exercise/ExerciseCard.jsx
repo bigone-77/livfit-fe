@@ -17,18 +17,6 @@ const ExerciseCard = ({ exercise }) => {
 
   const [isLiked, setIsLiked] = useState(false);
 
-  const goPlayHandler = (exercise) => () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(() => {
-        // navigate(`/play/${exercise}`);
-        navigate(`/exercise/${exercise}`);
-      })
-      .catch((error) => {
-        console.error("Error accessing webcam: ", error);
-      });
-  };
-
   const likeHandler = (event) => {
     event.stopPropagation();
     setIsLiked((prev) => !prev);
@@ -37,7 +25,7 @@ const ExerciseCard = ({ exercise }) => {
   return (
     <section
       className={`relative w-full bg-center bg-no-repeat bg-cover rounded-xl ${bgClasses[exercise]} h-60`}
-      onClick={goPlayHandler(exercise)}
+      onClick={() => navigate(exercise)}
     >
       <div className="absolute inset-0 bg-black/35 rounded-xl">
         <div className="relative w-full h-full p-4">

@@ -52,6 +52,8 @@ module.exports = {
         lunge: "url('./assets/images/exercise/lunge.png')",
         pushup: "url('./assets/images/exercise/pushup.png')",
         squat_detail: "url('./assets/images/exercise/squat-detail.png')",
+        lunge_detail: "url('./assets/images/exercise/lunge-detail.png')",
+        pushup_detail: "url('./assets/images/exercise/pushup-detail.png')",
       },
     },
   },

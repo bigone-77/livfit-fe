@@ -40,7 +40,6 @@ const Routes = () => {
         <Route path="/exercise" element={<Navbar closed />}>
           <Route index element={<ExercisePage />} />
         </Route>
-        <Route path="/exercise/:name" element={<DetailExercisePage />} />
         {/* 거북목 측정 페이지입니다. */}
         <Route path="/turtle" element={<Navbar closed bgColor={"#F6F6F6"} />}>
           <Route index element={<TurtlePage />} />
@@ -50,6 +49,8 @@ const Routes = () => {
         {/* 마이페이지입니다. */}
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
+      {/* 운동 옵션 선택 페이지 */}
+      <Route path="/exercise/:name" element={<DetailExercisePage />} />
 
       {/* 실제 운동이 이행될 페이지입니다. */}
       <Route path="/play/:exercise" element={<PlayPage />} />
