@@ -31,6 +31,8 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
             await pose.send({ image: webcamRef.current.video });
           }
         },
+        width: 1280,
+        height: 720,
       });
 
       if (start) {
@@ -41,7 +43,10 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
     }
 
     function onResults(results) {
-      const canvasCtx = canvasRef.current.getContext("2d");
+      const canvas = canvasRef.current;
+      const canvasCtx = canvas.getContext("2d");
+      canvas.width = 1280;
+      canvas.height = 720;
       canvasCtx.save(); // canvas 드로잉 상태 저장
       canvasCtx.clearRect(
         0,
@@ -91,7 +96,16 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
 
   return (
     <div className="absolute inset-0 w-full h-full">
-      <Webcam ref={webcamRef} className="hidden" />
+      <Webcam
+        ref={webcamRef}
+        videoConstraints={{
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: "user",
+          frameRate: { ideal: 30, max: 60 },
+        }}
+        style={{ display: "none" }}
+      />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       <section className="absolute text-5xl text-orange"></section>
     </div>
