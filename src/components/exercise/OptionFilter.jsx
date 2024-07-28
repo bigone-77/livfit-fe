@@ -7,7 +7,7 @@ const OptionFilter = ({ goPlayHandler, exercise }) => {
   const seconds = Array.from({ length: 60 }, (_, i) => i + "초");
 
   return (
-    <>
+    <div className="w-full h-full overflow-y-scroll">
       <div className="flex items-center justify-center">
         <img src={TabBar} alt="tab-bar" className="mt-6" />
       </div>
@@ -39,7 +39,7 @@ const OptionFilter = ({ goPlayHandler, exercise }) => {
           </button>
         </section>
       </div>
-    </>
+    </div>
   );
 };
 

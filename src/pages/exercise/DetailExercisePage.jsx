@@ -46,7 +46,7 @@ const DetailExercisePage = () => {
           />
         </main>
         <div
-          className={`border absolute bottom-0 left-0 right-0 h-[65%] w-full rounded-t-xl bg-text50 ${
+          className={`border pb-10 absolute bottom-0 left-0 right-0 h-[65%] w-full rounded-t-xl bg-text50 ${
             showOption ? "block slide-up" : "hidden"
           }`}
         >
