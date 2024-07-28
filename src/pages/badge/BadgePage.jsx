@@ -7,7 +7,8 @@ const BadgePage = () => {
       <header className="w-full bg-badge bg-badge_color bg-opacity-[0.12] px-6">
         <Header />
       </header>
-      <div className="flex-1 h-full p-6 overflow-y-hidden border -translate-y-5 rounded-tl-[32px] rounded-tr-[32px] pb-4 shadow-lg bg-[#F6F6F6]">
+      <div className="h-8 rounded-t-[32px] border-t w-full bg-[#F6F6F6] -translate-y-3" />
+      <div className="w-full h-full p-6 overflow-y-hidden bg-[#F6F6F6]">
         <div className="h-full overflow-y-scroll">
           <Contents />
         </div>

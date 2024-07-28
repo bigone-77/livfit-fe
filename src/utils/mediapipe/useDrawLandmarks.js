@@ -24,7 +24,7 @@ const useDrawLandmarks = (all) => {
         ctx.arc(
           landmark.x * ctx.canvas.width,
           landmark.y * ctx.canvas.height,
-          5,
+          20, // 점의 크기를 10로 변경
           0,
           2 * Math.PI
         );
@@ -34,7 +34,7 @@ const useDrawLandmarks = (all) => {
 
       if (connections) {
         ctx.strokeStyle = "white";
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 6; // 선의 두께를 6으로 변경
         for (let i = 9; i < connections.length; i++) {
           // 인덱스 10부터 시작
           const [startIdx, endIdx] = connections[i];
@@ -55,7 +55,6 @@ const useDrawLandmarks = (all) => {
 
       // 임의의 이미지를 얼굴 부분에 넣기
       if (image && all) {
-        // Mediapipe landmark indices for face boundaries
         const leftEar = landmarks[7]; // 왼쪽 귀
         const rightEar = landmarks[8]; // 오른쪽 귀
         const nose = landmarks[0]; // 코
@@ -64,7 +63,6 @@ const useDrawLandmarks = (all) => {
         const mouthLeft = landmarks[9]; // 입 (왼쪽)
         const mouthRight = landmarks[10]; // 입 (오른쪽)
 
-        // Calculate bounding box for face
         const minX = Math.min(
           leftEar.x,
           rightEar.x,
@@ -102,9 +100,8 @@ const useDrawLandmarks = (all) => {
           mouthRight.y
         );
 
-        // Extend the bounding box to cover more area
-        const xOffset = 0.7 * (maxX - minX); // add 20% padding on each side
-        const yOffset = 0.7 * (maxY - minY); // add 20% padding on top and bottom
+        const xOffset = 0.7 * (maxX - minX);
+        const yOffset = 0.7 * (maxY - minY);
 
         const x = (minX - xOffset) * ctx.canvas.width;
         const y = (minY - yOffset) * ctx.canvas.height;

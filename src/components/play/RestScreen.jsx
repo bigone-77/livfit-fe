@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import bulb from "@images/rest/bulb.png";
-import CountTime from "./CountTime";
 
 const RestScreen = ({ setRest }) => {
   const [timeLeft, setTimeLeft] = useState(3);
@@ -26,7 +25,12 @@ const RestScreen = ({ setRest }) => {
         <p className="absolute text-6xl top-12 text-lightblue2 font-Score">
           REST
         </p>
-        <CountTime restTime={timeLeft} />
+        <p
+          className="text-[300px] font-GameNumber rest-effect"
+          data-text={timeLeft}
+        >
+          {timeLeft}
+        </p>
         <div className="absolute flex items-center justify-center gap-2 top-96">
           <img src={bulb} alt={bulb} />
           <div className="text-[10px] text-text50">
