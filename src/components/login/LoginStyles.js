@@ -1,9 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import uncheckedImg from "/src/assets/images/login/unchecked.svg";
 import checkedImg from "/src/assets/images/login/checked.svg";
-import googleLogo from "/src/assets/images/login/g-logo.png";
-import naverLogo from "/src/assets/images/login/n-logo.png";
-import kakaoLogo from "/src/assets/images/login/k-logo.png";
+import googleLogo from '/src/assets/images/login/g-logo.svg';
+import naverLogo from '/src/assets/images/login/n-logo.png';
+import kakaoLogo from '/src/assets/images/login/k-logo.png';
+
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -11,24 +12,25 @@ export const LoginContainer = styled.div`
   align-items: center;
   height: 100vh;
   max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
+  background-color: #f6f6f6;
   font-size: 12px;
   font-family: "Inter-Regular", sans-serif;
-  color: #bdbdbd;
+  color: #6A6A6A;
 `;
 
 export const LoginBox = styled.div`
   padding: 40px;
-  background-color: white;
   border-radius: 8px;
-  text-align: center;
+  align-items: center;
   width: 400px;
 `;
 
-export const Logo = styled.img`
-  width: 150px;
-  margin-bottom: 80px;
+export const LogoDiv = styled.div`
+  display: flex;
+  width: 100%;
+  margin-bottom: 70px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Form = styled.form`
@@ -36,14 +38,22 @@ export const Form = styled.form`
   flex-direction: column;
 `;
 
+export const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 export const Input = styled.input`
+  width: 100%;
   height: 50px;
   margin-bottom: 10px;
   padding-left: 25px;
-  background-color: #f7f7f7;
+  background-color: #ffffff;
   border: none;
   border-radius: 32px;
-  box-shadow: inset -1px 2px 4px -2px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -51,13 +61,15 @@ export const Input = styled.input`
 `;
 
 export const LoginButton = styled.button`
+  width: 100%;
   height: 50px;
   margin-bottom: 10px;
-  background-color: #ff702a;
+  background-color: #FB8500;
   color: white;
   border: none;
   border-radius: 32px;
   cursor: pointer;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -90,11 +102,14 @@ export const CheckboxLabel = styled.label`
 export const Links = styled.div`
   display: flex;
   justify-content: space-around;
-  color: #bdbdbd;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  color: #6A6A6A;
   margin-bottom: 20px;
 
   a {
-    color: #bdbdbd;
+    color: #6A6A6A;
     text-decoration: none;
 
     &:hover {
@@ -104,27 +119,34 @@ export const Links = styled.div`
 `;
 
 export const SnsLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
+  span {
+    margin-bottom: 10px;
+  }
 `;
 
 export const SnsButtons = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 20px;
+  padding: 10px;
+  width: 70%;
 `;
 
 export const SnsButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   background-size: cover;
   background-position: center;
 
   &.snsButton1 {
-    background-image: url(${googleLogo});
+    background-image: url("${googleLogo}");
   }
 
   &.snsButton2 {
