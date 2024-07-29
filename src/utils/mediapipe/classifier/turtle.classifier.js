@@ -2,7 +2,7 @@ import { calcShoulderNoseAngle } from "../calcAngle";
 
 const detectTurtleNeck = (landmarks) => {
   const turtleDetectionAngle = calcShoulderNoseAngle(landmarks);
-  console.log(turtleDetectionAngle);
+  return turtleDetectionAngle;
 };
 
 export default detectTurtleNeck;

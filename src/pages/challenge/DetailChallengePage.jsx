@@ -2,7 +2,7 @@ import GroupButton from "@components/challenge/GroupButton";
 
 const DetailChallengePage = () => {
   return (
-    <div className="px-6 pt-6 bg-[#F6F6F6] h-full">
+    <div className="px-6 py-6 bg-[#F6F6F6] h-full">
       <p className="text-3xl">하체 운동의 근본</p>
       <h1 className="mt-2 text-xs text-text200">
         챌린지를 달성할수록 업그레이드 된 배지를 획득할 수 있어요

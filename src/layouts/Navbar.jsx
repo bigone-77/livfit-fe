@@ -9,7 +9,7 @@ import lightBackArrow from "@svgs/light-left-arrow.svg";
 // closed를 props로 부여합니다.
 
 // isWhite -> white navbar
-const Navbar = ({ isWhite, bgColor, closed }) => {
+const Navbar = ({ isWhite, bgColor, closed, turtle }) => {
   const navigate = useNavigate();
 
   const backHandler = () => {
@@ -23,7 +23,8 @@ const Navbar = ({ isWhite, bgColor, closed }) => {
   return (
     <>
       <nav
-        className={`flex items-center justify-between px-6 pt-10 bg-[${bgColor}]`}
+        className="flex items-center justify-between px-6 pt-10"
+        style={{ backgroundColor: bgColor }}
       >
         {isWhite ? (
           <img src={lightBackArrow} alt={backArrow} onClick={backHandler} />
@@ -31,6 +32,11 @@ const Navbar = ({ isWhite, bgColor, closed }) => {
           <img src={backArrow} alt={backArrow} onClick={backHandler} />
         )}
 
+        {turtle && (
+          <p className="text-text500 z-10 text-center bg-text100 text-lg w-60 p-2 rounded-[82px]">
+            {turtle}
+          </p>
+        )}
         {closed && isWhite ? (
           <img src={lightClose} alt={close} onClick={closeHandler} />
         ) : (

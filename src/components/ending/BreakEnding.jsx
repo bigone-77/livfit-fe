@@ -14,8 +14,7 @@ const BreakEnding = ({ scoreArr, subject, currentCount }) => {
     isError,
   } = useQuery({
     queryKey: ["exercise", subject],
-    queryFn: () =>
-      privateApi(`${import.meta.env.VITE_MOCKING_SERVER_URL}/records`),
+    queryFn: () => privateApi("/records"),
   });
 
   let content;

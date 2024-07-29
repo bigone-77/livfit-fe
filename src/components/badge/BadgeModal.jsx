@@ -6,6 +6,7 @@ import tiger_gray from "@images/badge/tiger-badge-gray.png";
 
 import lockIcon from "@svgs/badge/dark-lock.svg";
 import nextArrow from "@svgs/right-arrow.svg";
+import { useNavigate } from "react-router-dom";
 
 const BadgeModal = ({
   modalOpen,
@@ -14,6 +15,7 @@ const BadgeModal = ({
   badgeDesc,
   badgeId,
 }) => {
+  const navigate = useNavigate();
   return (
     <Modal
       isOpen={modalOpen}
@@ -60,10 +62,16 @@ const BadgeModal = ({
             배지 획득하러 가시겠어요?
           </p>
           <section className="grid w-full grid-cols-2 gap-3 text-sm font-semibold">
-            <button className="p-2 border-2 text-text150 border-text150 rounded-xl">
+            <button
+              className="p-2 border-2 text-text150 border-text150 rounded-xl"
+              onClick={() => setModalOpen(false)}
+            >
               다음에 할게요
             </button>
-            <button className="p-2 text-text50 bg-orange2 rounded-xl">
+            <button
+              className="p-2 text-text50 bg-orange2 rounded-xl"
+              onClick={() => navigate("/challenge")}
+            >
               네 좋아요!
             </button>
           </section>

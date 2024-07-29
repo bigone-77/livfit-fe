@@ -5,6 +5,8 @@ import chalText from "@images/challenge/chal.png";
 import challengeText from "@images/challenge/challenge.png";
 import lengeText from "@images/challenge/lenge.png";
 
+import dots from "@svgs/challenge/dots.svg";
+
 const ChallengePage = () => {
   return (
     <div className="w-full h-screen overflow-y-hidden">
@@ -20,8 +22,14 @@ const ChallengePage = () => {
           </h1>
         </section>
       </header>
-      <div className="flex-1 h-full p-6 overflow-y-hidden border -translate-y-6 rounded-tl-[32px] rounded-tr-[32px] pb-4 shadow-lg bg-text50">
-        <div className="h-full overflow-y-scroll">
+      <div className="flex-1 h-full p-6 overflow-y-auto border -translate-y-6 rounded-tl-[32px] rounded-tr-[32px] shadow-lg bg-text50 pb-20">
+        <div className="h-full overflow-y-scroll pb-60">
+          <section className="flex items-center justify-between px-4 mb-4">
+            <img src={dots} alt="dots" />
+            <p className="px-6 py-2 font-semibold rounded-lg cursor-pointer bg-orange2 text-text50">
+              내 챌린지 {">"}
+            </p>
+          </section>
           <Contents />
         </div>
       </div>
