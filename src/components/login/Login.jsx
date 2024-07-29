@@ -6,7 +6,7 @@ import {
   LoginContainer, LoginBox, LogoDiv, Form, InputDiv, Input, LoginButton, KeepLoggedIn, Checkbox, CheckboxLabel, Links, SnsLogin, SnsButtons, SnsButton
 } from './LoginStyles';
 
-const LoginPage = () => {
+const Login = () => {
   const [loginId, setloginId] = useState("");
   const [password, setPassword] = useState("");
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
@@ -52,9 +52,9 @@ const LoginPage = () => {
             <span>로그인 상태 유지</span>
           </KeepLoggedIn>
           <Links>
-            <Link to="/find-password">비밀번호 찾기</Link>
+            <Link to="/auth/findpw">비밀번호 찾기</Link>
             <span> | </span>
-            <Link to="/signup">회원가입</Link>
+            <Link to="/auth/signup">회원가입</Link>
           </Links>
           <SnsLogin>
             <span>SNS로 로그인하기</span>
@@ -70,4 +70,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
