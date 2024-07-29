@@ -153,29 +153,23 @@ select {
     1px -1px 0 #ff0303;
 }
 
-/* .swiper-button-prev {
-  background: url('@svgs/prev-arrow.svg');
-  width: 10px !important;
-  height: 17px !important;
-  left: 0px !important;
-  background-size: cover !important;
-  background-position: top !important;
-  cursor: pointer !important;
-} */
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
-/* :root {
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
 
 a {
   font-weight: 500;

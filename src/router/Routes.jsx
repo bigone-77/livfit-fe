@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Routes as ReactRouters, Route, useLocation } from "react-router-dom";
 
-import ActiveBadgePage from "@pages/badge/ActiveBadgePage";
 import BadgePage from "@pages/badge/BadgePage";
 
 import ChallengePage from "@pages/challenge/ChallengePage";
@@ -14,10 +13,10 @@ import PlayPage from "@pages/exercise/PlayPage";
 import TurtlePage from "@pages/turtle/TurtlePage";
 import TurtlePlayPage from "@pages/turtle/TurtlePlayPage";
 
+import ResultPage from "@pages/exercise/ResultPage";
 import HomePage from "@pages/HomePage";
 import LoginPage from "@pages/LoginPage";
 import ProfilePage from "@pages/ProfilePage";
-import ResultPage from "@pages/ResultPage";
 import StorePage from "@pages/StorePage";
 
 import Footer from "@layouts/footer";
@@ -33,6 +32,8 @@ const Routes = () => {
 
   return (
     <ReactRouters>
+      {/* 로그인 페이지 */}
+      <Route path="/login" element={<LoginPage />} />
       {/* 공통 푸터 적용입니다 */}
       <Route path="/" element={<Footer />}>
         <Route index element={<HomePage />} />
@@ -41,7 +42,7 @@ const Routes = () => {
           <Route index element={<ExercisePage />} />
         </Route>
         {/* 거북목 측정 페이지입니다. */}
-        <Route path="/turtle" element={<Navbar closed bgColor={"#F6F6F6"} />}>
+        <Route path="/turtle" element={<Navbar closed bgColor={"#FFFFFF"} />}>
           <Route index element={<TurtlePage />} />
         </Route>
         {/* 스토어 페이지입니다. */}
@@ -59,17 +60,8 @@ const Routes = () => {
       {/* 거북목 측정 페이지 */}
       <Route path="/turtle/play" element={<TurtlePlayPage />} />
 
-      {/* 로그인 페이지 */}
-      <Route path="/login" element={<LoginPage />} />
-
       {/* 배지 페이지 */}
       <Route path="/badge" element={<BadgePage />} />
-      <Route
-        path="/badge/active"
-        element={<Navbar closed bgColor={"#F6F6F6"} />}
-      >
-        <Route index element={<ActiveBadgePage />} />
-      </Route>
       {/* 챌린지 페이지 */}
       <Route path="/challenge" element={<ChallengePage />} />
       {/* <Route path="/challenge/:id" element={<DetailChallengePage />} /> */}

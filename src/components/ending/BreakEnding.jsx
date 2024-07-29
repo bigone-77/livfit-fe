@@ -1,4 +1,4 @@
-import axios from "@api/axios";
+import { privateApi } from "@api/axios";
 import { useQuery } from "@tanstack/react-query";
 
 import { useEffect, useState } from "react";
@@ -14,7 +14,8 @@ const BreakEnding = ({ scoreArr, subject, currentCount }) => {
     isError,
   } = useQuery({
     queryKey: ["exercise", subject],
-    queryFn: () => axios(`${import.meta.env.VITE_MOCKING_SERVER_URL}/records`),
+    queryFn: () =>
+      privateApi(`${import.meta.env.VITE_MOCKING_SERVER_URL}/records`),
   });
 
   let content;

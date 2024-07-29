@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import alarm from "@svgs/alarm.svg";
 import badge from "@svgs/badge.svg";
+import login from "@svgs/login.svg";
 import logo from "@svgs/logo.svg";
-import search from "@svgs/search.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,7 +19,12 @@ const Header = () => {
       <img src={logo} alt="Logo" className="pl-7" />
       <section className="flex items-center gap-4">
         <img src={alarm} alt="Alarm" />
-        <img src={search} alt="Search" />
+        <img
+          src={login}
+          alt="login"
+          onClick={() => navigate("/login")}
+          className="z-10"
+        />
       </section>
     </header>
   );
