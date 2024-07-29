@@ -15,7 +15,10 @@ import TurtlePlayPage from "@pages/turtle/TurtlePlayPage";
 
 import ResultPage from "@pages/exercise/ResultPage";
 import HomePage from "@pages/HomePage";
-import LoginPage from "@pages/LoginPage";
+import LoginPage from "@pages/login/LoginPage";
+import FindpwPage from "@pages/login/FindpwPage";
+import SignupPage from "@pages/login/SignupPage";
+
 import ProfilePage from "@pages/ProfilePage";
 import StorePage from "@pages/StorePage";
 
@@ -33,6 +36,11 @@ const Routes = () => {
   return (
     <ReactRouters>
       {/* 로그인 페이지 */}
+      <Route path="/auth">
+        <Route path="login" element={<LoginPage/>}/>
+        <Route path="findpw" element={<FindpwPage/>}/>
+        <Route path="signup" element={<SignupPage/>}/>
+      </Route>
       <Route path="/login" element={<LoginPage />} />
       {/* 공통 푸터 적용입니다 */}
       <Route path="/" element={<Footer />}>
