@@ -13,9 +13,9 @@ const WebCam = ({ start, end }) => {
   const mutation = useMutation({
     mutationFn: (body) => {
       if (localStorage.getItem("accessToken")) {
-        privateApi.post("/api/turtle/o/save_turtle_record", body);
+        privateApi.post("/turtle/o/save_turtle_record", body);
       } else {
-        publicApi.post("/api/turtle/x/save_turtle_record", body);
+        publicApi.post("/turtle/x/save_turtle_record", body);
       }
     },
   });

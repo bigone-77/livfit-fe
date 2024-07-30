@@ -32,14 +32,14 @@ const Footer = () => {
           imageSrc={live}
           selectedImageSrc={selectedLive}
           title="운동 측정"
-          selected={pathname === "/exercise"}
+          selected={pathname.includes("/exercise")}
           url="/exercise"
         />
         <CategoryBox
           imageSrc={turtle}
           selectedImageSrc={selectedTurtle}
           title="거북목 측정"
-          selected={pathname === "/turtle"}
+          selected={pathname.includes("/turtle")}
           url="/turtle"
         />
         <CategoryBox

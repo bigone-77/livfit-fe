@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mini: "400px",
+        mini: "450px",
+        tablet: "600px",
       },
       fontFamily: {
         English: ["ErasBoldITC"],
@@ -56,8 +57,21 @@ module.exports = {
         squat_detail: "url('./assets/images/exercise/squat-detail.png')",
         lunge_detail: "url('./assets/images/exercise/lunge-detail.png')",
         pushup_detail: "url('./assets/images/exercise/pushup-detail.png')",
+        ending_blur_table:
+          "url('./assets/images/ending/ending-blur-table.png')",
+        dummy: "url('./assets/images/challenge/dummy.png')",
+        turtle: "url('./assets/images/turtle/turtle-background.png')",
+        turtle_ranking: "url('./assets/images/turtle/turtle-ranking.png')",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".bg-blur": {
+          filter: "blur(2px)",
+        },
+      });
+    },
+  ],
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import NameSection from "@components/exercise/NameSection";
 import OptionFilter from "@components/exercise/OptionFilter";
@@ -7,21 +7,8 @@ import TipSection from "@components/exercise/TipSection";
 import Navbar from "@layouts/Navbar";
 
 const DetailExercisePage = () => {
-  const navigate = useNavigate();
   const { name: exercise } = useParams();
   const [showOption, setShowOption] = useState(false);
-
-  const goPlayHandler = (exercise) => () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(() => {
-        navigate(`/play/${exercise}`);
-      })
-      .catch((error) => {
-        console.error("Error accessing webcam: ", error);
-      });
-    console.log(exercise);
-  };
 
   const bgClasses = {
     squat: "bg-squat_detail",
@@ -38,7 +25,7 @@ const DetailExercisePage = () => {
       <div className="relative z-20 flex flex-col h-full">
         <Navbar isWhite closed />
         <main className="flex flex-col justify-between flex-grow px-10 mt-10 mb-12">
-          <TipSection />
+          <TipSection desc="스쿼트는 자세 정확도에 따라 효과가 달라져요!" />
           <NameSection
             name={exercise}
             showOption={showOption}
@@ -50,7 +37,7 @@ const DetailExercisePage = () => {
             showOption ? "block slide-up" : "hidden"
           }`}
         >
-          <OptionFilter goPlayHandler={goPlayHandler} exercise={exercise} />
+          <OptionFilter exercise={exercise} />
         </div>
       </div>
     </div>

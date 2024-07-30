@@ -1,24 +1,60 @@
+import { publicApi } from "@api/axios";
+import { useQuery } from "@tanstack/react-query";
+
+import Loader from "@components/commons/Loader";
+
 import turtleImage from "@images/turtle.png";
 import one from "@svgs/home/one.svg";
 import three from "@svgs/home/three.svg";
 import two from "@svgs/home/two.svg";
 
 const Rankings = () => {
+  const {
+    data: turtleRecords,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["turtle"],
+    queryFn: () => publicApi("/turtle/all-records"),
+  });
+
+  let content;
+
+  if (isLoading) {
+    content = <Loader />;
+  }
+
+  if (isError) {
+    content = <p>Network Error...</p>;
+  }
+
+  if (turtleRecords) {
+    const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);
+    content = (
+      <>
+        <div className="relative flex items-center rounded-[46px] bg-[#FFDB63] w-[90%] py-1">
+          <img src={one} alt="one" className="absolute left-0" />
+          <p className="ml-10 text-sm">{sortedRecords[0].nickname}</p>
+        </div>
+        <div className="relative flex items-center rounded-[46px] bg-[#FFECAD] w-[60%] py-1">
+          <img src={two} alt="two" className="absolute left-0" />
+          <p className="ml-10 text-sm">{sortedRecords[1].nickname}</p>
+        </div>
+        <div className="relative flex items-center rounded-[46px] bg-[#FFF2C6] w-[50%] py-1">
+          <img src={three} alt="three" className="absolute left-0" />
+          <p className="ml-10 text-sm">{sortedRecords[2].nickname}</p>
+        </div>
+      </>
+    );
+  }
+
   return (
-    <section className="relative flex flex-col w-full gap-2 mt-6">
-      <div className="relative h-8 rounded-[46px] bg-[#FFDB63] w-[80%]">
-        <img src={one} alt="one" className="absolute left-0" />
-      </div>
-      <div className="relative h-8 rounded-[46px] bg-[#FFECAD] w-[70%]">
-        <img src={two} alt="two" className="absolute left-0" />
-      </div>
-      <div className="relative h-8 rounded-[46px] bg-[#FFF2C6] w-[60%]">
-        <img src={three} alt="three" className="absolute left-0" />
-      </div>
+    <section className="relative flex flex-col w-full gap-2 mt-4">
+      {content}
       <img
         src={turtleImage}
         alt="turtle-image"
-        className="absolute bottom-0 right-2"
+        className="absolute bottom-0 -right-2"
       />
     </section>
   );

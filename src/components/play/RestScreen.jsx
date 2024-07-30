@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import bulb from "@images/rest/bulb.png";
 
-const RestScreen = ({ setRest }) => {
-  const [timeLeft, setTimeLeft] = useState(3);
+const RestScreen = ({ restTime, setRest }) => {
+  const [timeLeft, setTimeLeft] = useState(restTime);
 
   // 본 화면에 들어오면 바로 3, 2, 1 타이머 작동
   useEffect(() => {
@@ -21,12 +21,12 @@ const RestScreen = ({ setRest }) => {
 
   return (
     <div className="absolute inset-0 z-10 flex justify-center w-full h-full bg-black">
-      <section className="relative flex flex-col items-center gap-2 mt-28">
+      <section className="relative flex flex-col items-center gap-1 mt-28">
         <p className="absolute text-6xl top-12 text-lightblue2 font-Score">
           REST
         </p>
         <p
-          className="text-[300px] font-GameNumber rest-effect"
+          className="text-[280px] font-GameNumber rest-effect"
           data-text={timeLeft}
         >
           {timeLeft}

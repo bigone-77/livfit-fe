@@ -1,12 +1,12 @@
+import { useState } from "react";
 import Modal from "react-modal";
 
+import { useNavigate } from "react-router-dom";
+
 import { badgeModalStyle } from "@constants/badgeModalStyle";
-
 import tiger_gray from "@images/badge/tiger-badge-gray.png";
-
 import lockIcon from "@svgs/badge/dark-lock.svg";
 import nextArrow from "@svgs/right-arrow.svg";
-import { useNavigate } from "react-router-dom";
 
 const BadgeModal = ({
   modalOpen,
@@ -15,12 +15,30 @@ const BadgeModal = ({
   badgeDesc,
   badgeId,
 }) => {
+  const [isClosing, setIsClosing] = useState(false);
   const navigate = useNavigate();
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setModalOpen(false);
+      setIsClosing(false);
+    }, 750); // 닫힘 애니메이션 시간과 일치시킵니다.
+  };
+
   return (
     <Modal
       isOpen={modalOpen}
-      onRequestClose={() => setModalOpen(false)}
-      style={badgeModalStyle}
+      onRequestClose={handleClose}
+      style={{
+        ...badgeModalStyle,
+        content: {
+          ...badgeModalStyle.content,
+          animation: isClosing
+            ? "slideOut 0.75s forwards"
+            : "slideIn 0.75s forwards",
+        },
+      }}
       ariaHideApp={false}
       contentLabel="Pop up Message"
     >
@@ -64,7 +82,7 @@ const BadgeModal = ({
           <section className="grid w-full grid-cols-2 gap-3 text-sm font-semibold">
             <button
               className="p-2 border-2 text-text150 border-text150 rounded-xl"
-              onClick={() => setModalOpen(false)}
+              onClick={handleClose}
             >
               다음에 할게요
             </button>

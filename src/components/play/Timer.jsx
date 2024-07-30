@@ -1,10 +1,20 @@
 /* eslint-disable react/display-name */
 import { memo, useEffect, useState } from "react";
 
-const Timer = memo(({ start, paused, setTimeUp }) => {
-  const MINUTES_IN_MS = 1 * 60 * 1000; // 1분
+const Timer = memo(({ start, paused, setTimeUp, duration }) => {
   const INTERVAL = 1000; // 1초
-  const [timeLeft, setTimeLeft] = useState(MINUTES_IN_MS);
+
+  const parseDuration = (duration) => {
+    const [minutes, seconds] = duration.split(" ").map((part) => {
+      const unit = part.slice(-1);
+      const value = parseInt(part, 10);
+      return unit === "분" ? value * 60 : value;
+    });
+    return (minutes || 0) * 1000 + (seconds || 0) * 1000;
+  };
+
+  const initialTime = parseDuration(duration);
+  const [timeLeft, setTimeLeft] = useState(initialTime);
 
   const minutes = String(Math.floor((timeLeft / (1000 * 60)) % 60)).padStart(
     2,
@@ -33,15 +43,15 @@ const Timer = memo(({ start, paused, setTimeUp }) => {
 
   useEffect(() => {
     if (!start) {
-      setTimeLeft(MINUTES_IN_MS);
+      setTimeLeft(initialTime);
     }
-  }, [start, paused]);
+  }, [start, paused, initialTime]);
 
   useEffect(() => {
     if (timeLeft === 0) {
       setTimeUp(true);
     }
-  }, [timeLeft]);
+  }, [timeLeft, setTimeUp]);
 
   return (
     <div className="flex items-center justify-center mb-4 text-7xl font-GameNumber">

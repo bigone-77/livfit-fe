@@ -11,8 +11,11 @@ import Timer from "@components/play/Timer";
 import WebCam from "@components/play/WebCam";
 
 import { parsedPlay } from "@constants/parsedPlay";
+import { useSelector } from "react-redux";
 
 const PlayPage = () => {
+  const playConfig = useSelector((state) => state.play);
+
   const [getStart, setGetStart] = useState(false); // 시작 타이머 용도
   const [timeLeft, setTimeLeft] = useState(3); // 카운트다운을 위해 3초로 설정
   const [showStart, setShowStart] = useState(false); // START 문구 보여주기용
@@ -53,7 +56,12 @@ const PlayPage = () => {
           <CountTime time={timeLeft} />
         </div>
       )}
-      {rest && <RestScreen setRest={setRest} />}
+      {rest && (
+        <RestScreen
+          restTime={playConfig.restTime.split("초")[0]}
+          setRest={setRest}
+        />
+      )}
 
       <PlayNavbar title={parsedPlay(exercise)} closed styles rest={rest} />
       <WebCam
@@ -76,6 +84,7 @@ const PlayPage = () => {
             start={getStart && !showStart}
             paused={rest}
             setTimeUp={setTimeUp}
+            duration={playConfig.playTime}
           />
           <GroupButton rest={rest} setRest={setRest} />
         </section>

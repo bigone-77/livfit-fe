@@ -7,7 +7,7 @@ export const useLogin = () => {
   const signIn = async (data) => {
     if (data) {
       try {
-        const response = await publicApi.post("/api/users/login", data);
+        const response = await publicApi.post("/users/login", data);
 
         if (response.status === 200) {
           // 로그인 성공

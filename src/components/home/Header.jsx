@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <header className="relative flex items-center justify-between w-full px-8 h-52 bg-gradient-triple">
-      <div className="absolute bottom-0 left-0 right-0 z-10 w-full h-full bg-center bg-no-repeat bg-contain bg-opacity-10 bg-main" />
+      <div className="absolute bottom-0 left-0 right-0 z-10 w-full h-full bg-center bg-no-repeat bg-contain bg-blur bg-main" />
       <img
         onClick={() => navigate("/badge")}
         src={badge}

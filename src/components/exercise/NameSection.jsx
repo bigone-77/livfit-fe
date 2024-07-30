@@ -11,7 +11,7 @@ const NameSection = ({ name, showOption, setShowOption }) => {
       <button
         className={`${
           showOption ? "text-text50" : "text-[#313131]"
-        } text-xl bg-orange2 rounded-[74px] w-full py-4 mt-10 font-semibold`}
+        } text-xl bg-text50 rounded-[74px] w-full py-4 mt-10 font-semibold`}
         onClick={() => setShowOption(!showOption)}
       >
         옵션 선택하기

@@ -14,7 +14,7 @@ import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
 const WebCam = ({ start, end, setTimerStart, exercise }) => {
   const mutation = useMutation({
     mutationFn: (body) => {
-      privateApi.post("/api/squat/save_record", body);
+      privateApi.post(`/${exercise}/save_record`, body);
     },
   });
   const webcamRef = useRef(null);
@@ -100,7 +100,7 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
     if (end && cameraRef.current) {
       cameraRef.current.stop();
       mutation.mutate({
-        timerSec: 60,
+        timer_sec: 60,
         count: 13,
         perfect: 3,
         good: 5,

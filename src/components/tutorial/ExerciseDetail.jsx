@@ -1,10 +1,9 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { ExerciseData } from './ExerciseData';
-import StateCard from './StateCard';
-import BackButton from './BackButton';
+import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
+import styled from "styled-components";
+import BackButton from "./BackButton";
+import { ExerciseData } from "./ExerciseData";
+import StateCard from "./StateCard";
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ const PageContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   font-size: 12px;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
 `;
 
 const HeaderContainer = styled.div`
@@ -38,7 +37,7 @@ const Title = styled.span`
 
 const EngTitle = styled.span`
   font-size: 10px;
-  color: #ABABAB;
+  color: #ababab;
 `;
 
 const CardList = styled.div`
@@ -64,8 +63,8 @@ const TestButton = styled.button`
   width: 150px;
   height: 38px;
   margin-top: 20px;
-  color: #FFFFFF;
-  background-color: #FB8500;
+  color: #ffffff;
+  background-color: #fb8500;
   border: none;
   border-radius: 10px;
   &:focus {

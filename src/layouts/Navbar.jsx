@@ -37,11 +37,13 @@ const Navbar = ({ isWhite, bgColor, closed, turtle }) => {
             {turtle}
           </p>
         )}
-        {closed && isWhite ? (
-          <img src={lightClose} alt={close} onClick={closeHandler} />
-        ) : (
-          <img src={close} alt={close} onClick={closeHandler} />
-        )}
+        {closed ? (
+          isWhite ? (
+            <img src={lightClose} alt={close} onClick={closeHandler} />
+          ) : (
+            <img src={close} alt={close} onClick={closeHandler} />
+          )
+        ) : null}
       </nav>
       <Outlet />
     </>

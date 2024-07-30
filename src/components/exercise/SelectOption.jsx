@@ -1,9 +1,19 @@
-const SelectOption = ({ values, title, step }) => {
+const SelectOption = ({
+  values,
+  title,
+  step,
+  onChange,
+  onMinutesChange,
+  onSecondsChange,
+}) => {
   let content;
-  if (step === 2 || step === 3) {
+  if (step === 3) {
     content = (
       <section className="flex items-center justify-between w-full gap-2">
-        <select className="block w-full py-4 pl-20 border border-gray-300 rounded-lg outline-none bg-text50 ">
+        <select
+          className="block w-full py-4 pl-20 border border-gray-300 rounded-lg outline-none bg-text50"
+          onChange={onMinutesChange}
+        >
           <option value="" disabled>
             선택
           </option>
@@ -13,7 +23,10 @@ const SelectOption = ({ values, title, step }) => {
             </option>
           ))}
         </select>
-        <select className="block w-full py-4 pl-20 border border-gray-300 rounded-lg outline-none bg-text50 ">
+        <select
+          className="block w-full py-4 pl-20 border border-gray-300 rounded-lg outline-none bg-text50"
+          onChange={onSecondsChange}
+        >
           <option value="" disabled>
             선택
           </option>
@@ -27,7 +40,10 @@ const SelectOption = ({ values, title, step }) => {
     );
   } else {
     content = (
-      <select className="block w-full py-4 pl-48 border border-gray-300 rounded-lg outline-none bg-text50 ">
+      <select
+        className="block w-full py-4 pl-48 border border-gray-300 rounded-lg outline-none bg-text50"
+        onChange={onChange}
+      >
         <option value="" disabled>
           선택
         </option>
@@ -42,7 +58,6 @@ const SelectOption = ({ values, title, step }) => {
   return (
     <div className="flex flex-col gap-3">
       <p className="text-xl">{title}</p>
-
       {content}
     </div>
   );

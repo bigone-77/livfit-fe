@@ -1,12 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import playerbutton from '/src/assets/playerbutton.svg'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+// import playerbutton from '/src/assets/playerbutton.svg'
 
 const CardContainer = styled(Link)`
   width: 100%;
   height: 121px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 10px;
   margin-top: 10px;
   display: flex;
@@ -19,7 +18,7 @@ const VideoContainer = styled.div`
   width: 40%;
   align-items: center;
   justify-content: center;
-  background-image: url(${(props) => props.img || ''});
+  background-image: url(${(props) => props.img || ""});
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -58,9 +57,9 @@ const CardContent = styled.span`
 const ExerciseCard = ({ img, title, text1, text2, navigateTo }) => {
   return (
     <CardContainer to={navigateTo}>
-        <VideoContainer img={img}>
-          <img src={playerbutton} width={40}/>
-        </VideoContainer>
+      <VideoContainer img={img}>
+        {/* <img src={playerbutton} width={40}/> */}
+      </VideoContainer>
       <TextContainer>
         <TitleAndText1>
           <CardTitle>{title}</CardTitle>

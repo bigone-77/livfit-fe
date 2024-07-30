@@ -26,7 +26,7 @@
 
 @layer utilities {
   .bg-gradient-triple {
-    background: linear-gradient(to bottom, #8ecae6, #ffb703, #fb6900);
+    background: linear-gradient(to bottom, #ffa43e, #f8c48a, #f6f6f6);
   }
   .text-outline-black {
     color: white;
@@ -164,10 +164,12 @@ select {
 
 @keyframes slideOut {
   from {
+    opacity: 1;
     transform: translateY(0);
   }
   to {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 

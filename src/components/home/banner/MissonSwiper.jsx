@@ -1,67 +1,63 @@
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { publicApi } from "@api/axios";
+import { useQuery } from "@tanstack/react-query";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { parsedPlay } from "@constants/parsedPlay";
+import { timeFormat } from "@utils/timeFormat";
+
+import Loader from "@commons/Loader";
 
 import progress from "@images/progress.png";
-
-const DUMMY_MISSONS = [
-  {
-    id: 1,
-    name: "스쿼트",
-    goal: "100개",
-  },
-  {
-    id: 2,
-    name: "런지",
-    goal: "200개",
-  },
-  {
-    id: 3,
-    name: "푸시업",
-    goal: "200개",
-  },
-  {
-    id: 4,
-    name: "플랭크",
-    goal: "5분30초",
-  },
-];
+import fire from "@svgs/fire.svg";
+import rightArrow from "@svgs/right-arrow.svg";
 
 const MissonSwiper = () => {
+  const {
+    data: mission,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["mission"],
+    queryFn: () => publicApi("/today_exercise/show/1"),
+  });
+
+  let content;
+
+  if (isLoading) {
+    content = <Loader />;
+  }
+
+  if (isError) {
+    content = <p>Networking Error...</p>;
+  }
+
+  if (mission) {
+    content = (
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <h1 className="mb-2 text-xs font-light text-text150">오늘의 미션</h1>
+          <span className="flex items-center gap-1 text-2xl font-semibold text-text500">
+            <img src={fire} alt="fire" />
+            <p className="">{parsedPlay(mission.data.exercise_name)}</p>
+            <p>{mission.data.count}개</p>
+            <p>성공하기</p>
+
+            <p>{timeFormat(mission.data.timer_sec)}</p>
+          </span>
+        </div>
+        <img src={rightArrow} alt="right-arrow" />
+      </div>
+    );
+  }
+
   return (
-    <>
-      <Swiper
-        modules={[Pagination, Scrollbar, Navigation]}
-        pagination={{ clickable: true }}
-        navigation={true}
-        spaceBetween={30}
-        initialSlide={0}
-        loop
-      >
-        {DUMMY_MISSONS.map((mission, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <section className="flex flex-col gap-2 p-6 border shadow-xl rounded-2xl">
-                <h1 className="text-xs font-light text-orange">오늘의 미션</h1>
-                <span className="flex items-center gap-2 text-2xl font-semibold text-text500">
-                  <p className="">{mission.name}</p>
-                  <p>{mission.goal}</p>
-                  <p>성공하기</p>
-                </span>
-                <img src={progress} alt="dummy-progress" className="mb-8" />
-                <div className="flex items-center justify-center w-full gap-1 text-5xl font-bold font-English">
-                  <p className="text-outline-black">TODAY</p>
-                  <p className="text-text500">MISSION</p>
-                </div>
-              </section>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </>
+    <section className="flex flex-col gap-2 px-6 pt-6 shadow-xl rounded-2xl">
+      {content}
+      <img src={progress} alt="dummy-progress" className="mb-8" />
+      <div className="flex items-center justify-center w-full gap-1 text-3xl font-bold mini:text-4xl tablet:text-5xl font-English">
+        <p className="text-outline-black">TODAY</p>
+        <p className="text-text500">MISSION</p>
+      </div>
+    </section>
   );
 };
 
