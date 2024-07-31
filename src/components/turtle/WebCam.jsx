@@ -26,7 +26,6 @@ const WebCam = ({ start, end }) => {
   const mutation = useMutation({
     mutationFn: async (body) => {
       try {
-        console.log(showModal);
         if (localStorage.getItem("accessToken")) {
           await privateApi.post("/turtle/o/save_turtle_record", body);
           navigate("/turtle/ranking");

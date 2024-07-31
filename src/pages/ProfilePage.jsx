@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 import { privateApi } from "@api/axios";
 
@@ -15,9 +16,17 @@ import vSrc from "@svgs/profile/v-hand.svg";
 import arrow from "@svgs/small-right-arrow.svg";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
   const { data: main } = useQuery({
     queryKey: ["main"],
-    queryFn: () => privateApi.get("/mypage"),
+    queryFn: async () => {
+      try {
+        await privateApi.get("/mypage").then((res) => res.data);
+      } catch (error) {
+        navigate("/");
+      }
+    },
   });
 
   let content;
@@ -26,15 +35,15 @@ const ProfilePage = () => {
     content = (
       <>
         <div className="px-8 pb-10">
-          <Header nickname={main.data.nickname} />
+          <Header nickname={main.nickname} />
           <section className="grid grid-cols-3 gap-2 mt-6 mb-4">
             <RecordSection itemSrc={memoSrc} name="운동 기록" />
             <RecordSection itemSrc={turtleSrc} name="거북목 측정 기록" />
             <RecordSection itemSrc={chartSrc} name="미션 연속 달성 기록" />
           </section>
           <PerformanceSection
-            point={main.data.totalPoints}
-            badgeSum={main.data.badgeCount}
+            point={main.totalPoints}
+            badgeSum={main.badgeCount}
           />
         </div>
         <section className="w-full h-full px-8 pb-20 bg-text50">
@@ -49,7 +58,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="flex flex-col gap-4 overflow-scroll h-60 scroll-smooth">
-            {main.data.challengeEntities.map((challenge, index) => (
+            {main.challengeEntities.map((challenge, index) => (
               <RowCard key={index} />
             ))}
           </div>
