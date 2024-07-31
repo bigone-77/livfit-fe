@@ -44,4 +44,23 @@ export const stringTimeFormat = (timeString) => {
   return formatTime(timeString);
 };
 
-export default stringTimeFormat;
+export const timeStringToSeconds = (timeString) => {
+  const [minutesPart, secondsPart] = timeString.split(" ").reduce(
+    (acc, part) => {
+      if (part.includes("분")) {
+        acc[0] = parseInt(part.replace("분", ""), 10);
+      } else if (part.includes("초")) {
+        acc[1] = parseInt(part.replace("초", ""), 10);
+      }
+      return acc;
+    },
+    [0, 0]
+  );
+
+  const minutes = minutesPart || 0;
+  const seconds = secondsPart || 0;
+
+  return minutes * 60 + seconds;
+};
+
+export default { timeFormat, stringTimeFormat, timeStringToSeconds };

@@ -54,62 +54,62 @@ const useDrawLandmarks = (all) => {
       }
 
       // 임의의 이미지를 얼굴 부분에 넣기
-      if (image && all) {
-        const leftEar = landmarks[7]; // 왼쪽 귀
-        const rightEar = landmarks[8]; // 오른쪽 귀
-        const nose = landmarks[0]; // 코
-        const leftEye = landmarks[2]; // 왼쪽 눈
-        const rightEye = landmarks[5]; // 오른쪽 눈
-        const mouthLeft = landmarks[9]; // 입 (왼쪽)
-        const mouthRight = landmarks[10]; // 입 (오른쪽)
+      // if (image && all) {
+      //   const leftEar = landmarks[7]; // 왼쪽 귀
+      //   const rightEar = landmarks[8]; // 오른쪽 귀
+      //   const nose = landmarks[0]; // 코
+      //   const leftEye = landmarks[2]; // 왼쪽 눈
+      //   const rightEye = landmarks[5]; // 오른쪽 눈
+      //   const mouthLeft = landmarks[9]; // 입 (왼쪽)
+      //   const mouthRight = landmarks[10]; // 입 (오른쪽)
 
-        const minX = Math.min(
-          leftEar.x,
-          rightEar.x,
-          nose.x,
-          leftEye.x,
-          rightEye.x,
-          mouthLeft.x,
-          mouthRight.x
-        );
-        const maxX = Math.max(
-          leftEar.x,
-          rightEar.x,
-          nose.x,
-          leftEye.x,
-          rightEye.x,
-          mouthLeft.x,
-          mouthRight.x
-        );
-        const minY = Math.min(
-          leftEar.y,
-          rightEar.y,
-          nose.y,
-          leftEye.y,
-          rightEye.y,
-          mouthLeft.y,
-          mouthRight.y
-        );
-        const maxY = Math.max(
-          leftEar.y,
-          rightEar.y,
-          nose.y,
-          leftEye.y,
-          rightEye.y,
-          mouthLeft.y,
-          mouthRight.y
-        );
+      //   const minX = Math.min(
+      //     leftEar.x,
+      //     rightEar.x,
+      //     nose.x,
+      //     leftEye.x,
+      //     rightEye.x,
+      //     mouthLeft.x,
+      //     mouthRight.x
+      //   );
+      //   const maxX = Math.max(
+      //     leftEar.x,
+      //     rightEar.x,
+      //     nose.x,
+      //     leftEye.x,
+      //     rightEye.x,
+      //     mouthLeft.x,
+      //     mouthRight.x
+      //   );
+      //   const minY = Math.min(
+      //     leftEar.y,
+      //     rightEar.y,
+      //     nose.y,
+      //     leftEye.y,
+      //     rightEye.y,
+      //     mouthLeft.y,
+      //     mouthRight.y
+      //   );
+      //   const maxY = Math.max(
+      //     leftEar.y,
+      //     rightEar.y,
+      //     nose.y,
+      //     leftEye.y,
+      //     rightEye.y,
+      //     mouthLeft.y,
+      //     mouthRight.y
+      //   );
 
-        const xOffset = 0.7 * (maxX - minX);
-        const yOffset = 0.7 * (maxY - minY);
+      //   const xOffset = 0.7 * (maxX - minX);
+      //   const yOffset = 0.7 * (maxY - minY);
 
-        const x = (minX - xOffset) * ctx.canvas.width;
-        const y = (minY - yOffset) * ctx.canvas.height;
-        const width = (maxX - minX + 2 * xOffset) * ctx.canvas.width;
-        const height = (maxY - minY + 2 * yOffset) * ctx.canvas.height;
+      //   const x = (minX - xOffset) * ctx.canvas.width;
+      //   const y = (minY - yOffset) * ctx.canvas.height;
+      //   const width = (maxX - minX + 2 * xOffset) * ctx.canvas.width;
+      //   const height = (maxY - minY + 2 * yOffset) * ctx.canvas.height;
 
-        ctx.drawImage(image, x, y, width, height);
-      }
+      //   // ctx.drawImage(image, x, y, width, height);
+      // }
     },
     [all, image]
   );

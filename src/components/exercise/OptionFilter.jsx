@@ -8,13 +8,13 @@ import SelectOption from "./SelectOption";
 import TabBar from "@svgs/exercise/tab-bar.svg";
 import { useNavigate } from "react-router-dom";
 
-const countsArr = Array.from({ length: 12 }, (_, i) => (i + 1) * 5 + "개");
-const minutesArr = Array.from({ length: 60 }, (_, i) => i + "분");
-const secondsArr = Array.from({ length: 60 }, (_, i) => i + "초");
+const countsArr = Array.from({ length: 5 }, (_, i) => i + 1 + "세트");
+const minutesArr = Array.from({ length: 12 }, (_, i) => i * 5 + "분");
+const secondsArr = Array.from({ length: 12 }, (_, i) => i * 5 + "초");
 
 const OptionFilter = ({ exercise }) => {
   const navigate = useNavigate();
-  const [goalCount, setGoalCount] = useState(0);
+  const [goalSet, setGoalSet] = useState("1세트");
   const [playMinutes, setPlayMinutes] = useState("0분");
   const [playSeconds, setPlaySeconds] = useState("0초");
   const [restSeconds, setRestSeconds] = useState("0초");
@@ -24,7 +24,7 @@ const OptionFilter = ({ exercise }) => {
   const handleStartClick = () => {
     const playTime = `${playMinutes} ${playSeconds}`;
     const restTime = `${restSeconds}`;
-    dispatch(setPlay({ goalCount, playTime, restTime }));
+    dispatch(setPlay({ goalSet, playTime, restTime }));
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then(() => {
@@ -45,9 +45,9 @@ const OptionFilter = ({ exercise }) => {
         <hr className="my-5" />
         <section className="flex flex-col gap-5">
           <SelectOption
-            title="목표 개수"
+            title="목표 세트"
             values={countsArr}
-            onChange={(e) => setGoalCount(e.target.value)}
+            onChange={(e) => setGoalSet(e.target.value)}
           />
           <SelectOption
             title="쉬는 시간"

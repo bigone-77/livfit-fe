@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import stringTimeFormat from "../../utils/timeFormat";
+import { stringTimeFormat } from "../../utils/timeFormat";
 import EffectText from "./EffectText";
 import RatingCard from "./RatingCard";
 import RecordTable from "./RecordTable";
@@ -13,7 +13,8 @@ const BreakEnding = ({ scoreArr, subject, currentCount, playTime }) => {
   const [isBreak, setIsBreak] = useState(false);
   const { data: records, isError } = useQuery({
     queryKey: ["exercise", subject],
-    queryFn: () => privateApi(`/${subject}/get_my_record`),
+    queryFn: () =>
+      privateApi.get(`/${subject}/get_my_record`).then((res) => res.data),
     retry: false,
   });
 
@@ -21,7 +22,7 @@ const BreakEnding = ({ scoreArr, subject, currentCount, playTime }) => {
 
   useEffect(() => {
     if (records) {
-      let highestCount = records.data.reduce((max, record) => {
+      let highestCount = records.reduce((max, record) => {
         return Math.max(max, record.count);
       }, 0);
 
@@ -51,7 +52,7 @@ const BreakEnding = ({ scoreArr, subject, currentCount, playTime }) => {
   if (records) {
     content = (
       <div className="w-full px-10 mt-10 overflow-y-auto h-52 text-text150">
-        <RecordTable records={records.data} />
+        <RecordTable records={records} />
       </div>
     );
   }

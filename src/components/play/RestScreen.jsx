@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import bulb from "@images/rest/bulb.png";
 
 const RestScreen = ({ restTime, setRest }) => {
+  console.log("날 화면에 보여줭");
   const [timeLeft, setTimeLeft] = useState(restTime);
 
-  // 본 화면에 들어오면 바로 3, 2, 1 타이머 작동
   useEffect(() => {
     if (timeLeft <= 0) {
       setRest(false); // 본래 화면으로 돌아가기
@@ -20,7 +20,7 @@ const RestScreen = ({ restTime, setRest }) => {
   }, [timeLeft]);
 
   return (
-    <div className="absolute inset-0 z-10 flex justify-center w-full h-full bg-black">
+    <div className="absolute inset-0 z-30 flex justify-center w-full h-full bg-black">
       <section className="relative flex flex-col items-center gap-1 mt-28">
         <p className="absolute text-6xl top-12 text-lightblue2 font-Score">
           REST

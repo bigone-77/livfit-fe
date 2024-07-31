@@ -40,24 +40,30 @@ const TurtlePage = () => {
     const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);
     content = (
       <div className="flex flex-col items-center gap-2 mt-4">
-        <RoundColorSection
-          imageSrc={one}
-          nickname={sortedRecords[0].nickname}
-          score={sortedRecords[0].score}
-          rank={1}
-        />
-        <RoundColorSection
-          imageSrc={two}
-          nickname={sortedRecords[1].nickname}
-          score={sortedRecords[1].score}
-          rank={2}
-        />
-        <RoundColorSection
-          imageSrc={three}
-          nickname={sortedRecords[2].nickname}
-          score={sortedRecords[2].score}
-          rank={3}
-        />
+        {sortedRecords.length > 0 && (
+          <RoundColorSection
+            imageSrc={one}
+            nickname={sortedRecords[0].nickname}
+            score={sortedRecords[0].score}
+            rank={1}
+          />
+        )}
+        {sortedRecords.length > 1 && (
+          <RoundColorSection
+            imageSrc={two}
+            nickname={sortedRecords[1].nickname}
+            score={sortedRecords[1].score}
+            rank={2}
+          />
+        )}
+        {sortedRecords.length > 2 && (
+          <RoundColorSection
+            imageSrc={three}
+            nickname={sortedRecords[2].nickname}
+            score={sortedRecords[2].score}
+            rank={3}
+          />
+        )}
       </div>
     );
   }

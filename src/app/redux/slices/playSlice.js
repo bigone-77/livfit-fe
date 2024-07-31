@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  goalCount: 0,
+  goalSet: 0,
   playTime: "",
   restTime: "",
   scoreArray: [],
@@ -12,7 +12,7 @@ const playSlice = createSlice({
   initialState,
   reducers: {
     setPlay: (state, action) => {
-      state.goalCount = action.payload.goalCount;
+      state.goalSet = action.payload.goalSet;
       state.playTime = action.payload.playTime;
       state.restTime = action.payload.restTime;
     },

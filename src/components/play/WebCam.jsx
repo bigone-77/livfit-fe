@@ -1,8 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import Webcam from "react-webcam";
-
-import { privateApi } from "@api/axios";
 
 import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
 import updateLungeCount from "@utils/mediapipe/classifier/lunge.classifier";
@@ -11,12 +8,7 @@ import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
 
-const WebCam = ({ start, end, setTimerStart, exercise }) => {
-  const mutation = useMutation({
-    mutationFn: (body) => {
-      privateApi.post(`/${exercise}/save_record`, body);
-    },
-  });
+const WebCam = ({ start, setTimerStart, exercise }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const cameraRef = useRef(null); // camera 객체를 참조할 변수
@@ -95,19 +87,6 @@ const WebCam = ({ start, end, setTimerStart, exercise }) => {
       canvasCtx.restore(); // save했던 드로잉 상태를 복원
     }
   }, [start]);
-
-  useEffect(() => {
-    if (end && cameraRef.current) {
-      cameraRef.current.stop();
-      mutation.mutate({
-        timer_sec: 60,
-        count: 13,
-        perfect: 3,
-        good: 5,
-        great: 5,
-      });
-    }
-  }, [end]);
 
   return (
     <div className="absolute inset-0 w-full h-full">

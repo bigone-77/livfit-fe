@@ -8,22 +8,45 @@ import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
 import detectTurtleNeck from "@utils/mediapipe/classifier/turtle.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
+import { useNavigate } from "react-router-dom";
+import SendNicknameModal from "./SendNicknameModal";
 
 const WebCam = ({ start, end }) => {
+  const navigate = useNavigate();
   const mutation = useMutation({
-    mutationFn: (body) => {
-      if (localStorage.getItem("accessToken")) {
-        privateApi.post("/turtle/o/save_turtle_record", body);
-      } else {
-        publicApi.post("/turtle/x/save_turtle_record", body);
+    mutationFn: async (body) => {
+      try {
+        if (localStorage.getItem("accessToken")) {
+          await privateApi.post("/turtle/o/save_turtle_record", body);
+          navigate("/turtle/ranking");
+        }
+      } catch (error) {
+        setShowModal(true);
       }
     },
   });
+
+  const handleNicknameSubmit = async (nickname) => {
+    setShowModal(false);
+    try {
+      await publicApi.post("/turtle/x/save_turtle_record", {
+        nickname,
+        score: lastRecordedScore,
+      });
+      navigate("/turtle/ranking");
+    } catch (error) {
+      console.error("Public API 요청 중 에러 발생:", error);
+    }
+  };
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const cameraRef = useRef(null);
   const frameInterval = useRef(0);
   const [angles, setAngles] = useState([]);
+  const [nickname, setNickname] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [lastRecordedScore, setLastRecordedScore] = useState(null);
 
   const pose = config();
   const drawLandmarks = useDrawLandmarks("all");
@@ -102,6 +125,8 @@ const WebCam = ({ start, end }) => {
       if (angles.length > 0) {
         const avgAngle =
           angles.reduce((acc, val) => acc + val, 0) / angles.length;
+        setLastRecordedScore(Number(avgAngle.toFixed(2)));
+
         if (localStorage.getItem("accessToken")) {
           mutation.mutate({ score: Number(avgAngle.toFixed(2)) });
         } else {
@@ -129,6 +154,15 @@ const WebCam = ({ start, end }) => {
         style={{ display: "none" }}
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      {showModal && (
+        <SendNicknameModal
+          enteredNickname={nickname}
+          setEnteredNickname={setNickname}
+          modalOpen={showModal}
+          setModalOpen={setShowModal}
+          submitHandler={handleNicknameSubmit}
+        />
+      )}
     </div>
   );
 };

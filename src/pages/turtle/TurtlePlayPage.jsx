@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
+
+import CountTime from "@components/play/CountTime";
 import WebCam from "@components/turtle/WebCam";
 import Navbar from "@layouts/Navbar";
-import { useEffect, useState } from "react";
-import TrackingBar from "../../components/turtle/TrackingBar";
+
+import trackingBar from "@images/turtle/track-bar.png";
 
 const TurtlePlayPage = () => {
   const [timeLeft, setTimeLeft] = useState(3); // 카운트다운을 위해 3초로 설정
@@ -40,10 +43,7 @@ const TurtlePlayPage = () => {
     <div className="relative">
       {timeLeft > 0 && (
         <div className="absolute inset-0 z-20 flex items-center justify-center bg-black bg-opacity-70">
-          <p className="">
-            거북목 측정을 시작합니다! 직사각형에 양쪽 두 어깨와 얼굴이 정면으로
-            놓이게끔 해주세요
-          </p>
+          <CountTime time={timeLeft} />
         </div>
       )}
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
@@ -57,9 +57,15 @@ const TurtlePlayPage = () => {
         )}
         <WebCam start={timeLeft === 0} end={timesUp} />
       </main>
-      <div className="absolute inset-0">
-        <TrackingBar />
-      </div>
+      {timeLeft === 0 && trackingLeft > 0 && (
+        <div className="absolute inset-0">
+          <img
+            src={trackingBar}
+            alt="track-bar"
+            className="z-50 w-2/3 translate-y-1/3 translate-x-1/4 h-2/3"
+          />
+        </div>
+      )}
     </div>
   );
 };
