@@ -1,7 +1,6 @@
 import { publicApi } from "@api/axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { parsedPlay } from "@constants/parsedPlay";
 import { timeFormat } from "@utils/timeFormat";
 
 import Loader from "@commons/Loader";
@@ -37,10 +36,7 @@ const MissonSwiper = () => {
           <h1 className="mb-2 text-xs font-light text-text150">오늘의 미션</h1>
           <span className="flex items-center gap-1 text-2xl font-semibold text-text500">
             <img src={fire} alt="fire" />
-            <p className="">{parsedPlay(mission.data.exercise_name)}</p>
-            <p>{mission.data.count}개</p>
-            <p>성공하기</p>
-
+            <p className="">{mission.data.exercise_name}</p>
             <p>{timeFormat(mission.data.timer_sec)}</p>
           </span>
         </div>

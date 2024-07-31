@@ -26,6 +26,17 @@ const TurtlePage = () => {
     queryFn: () => publicApi("/turtle/all-records"),
   });
 
+  const handleTrackHandler = () => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(() => {
+        navigate("/turtle/play");
+      })
+      .catch((error) => {
+        console.error("Error accessing webcam: ", error);
+      });
+  };
+
   let content;
 
   if (isLoading) {
@@ -89,7 +100,7 @@ const TurtlePage = () => {
             <img src={trackBar} alt="trackBar" />
             <button
               className="w-full h-[58px] rounded-[74px] bg-orange2 mb-10 text-text50 font-semibold"
-              onClick={() => navigate("/turtle/play")}
+              onClick={handleTrackHandler}
             >
               측정하러가기
             </button>

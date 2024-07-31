@@ -8,7 +8,7 @@ import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
 
-const WebCam = ({ start, setTimerStart, exercise }) => {
+const WebCam = ({ start, setTimerStart, exercise, end }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const cameraRef = useRef(null); // camera 객체를 참조할 변수
@@ -87,6 +87,12 @@ const WebCam = ({ start, setTimerStart, exercise }) => {
       canvasCtx.restore(); // save했던 드로잉 상태를 복원
     }
   }, [start]);
+
+  useEffect(() => {
+    if (end && cameraRef.current) {
+      cameraRef.current.stop();
+    }
+  }, [end]);
 
   return (
     <div className="absolute inset-0 w-full h-full">

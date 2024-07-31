@@ -72,7 +72,9 @@ const Routes = () => {
         {/* 스토어 페이지입니다. */}
         <Route path="/store" element={<StorePage />} />
         {/* 마이페이지입니다. */}
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<Navbar closed mypage />}>
+          <Route index element={<ProfilePage />} />
+        </Route>
       </Route>
       {/* 운동 옵션 선택 페이지 */}
       <Route path="/exercise/:name" element={<DetailExercisePage />} />

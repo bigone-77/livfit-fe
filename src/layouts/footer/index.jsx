@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <>
       <Outlet />
-      <footer className="fixed bottom-0 grid grid-cols-5 shadow-2xl place-items-center bg-text75 w-full max-w-[500px]">
+      <footer className="fixed bottom-0 grid grid-cols-5 shadow-2xl place-items-center bg-text75 w-full max-w-[500px] z-50">
         <CategoryBox
           imageSrc={home}
           selectedImageSrc={selectedHome}

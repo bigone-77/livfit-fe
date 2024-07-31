@@ -62,6 +62,7 @@ module.exports = {
         dummy: "url('./assets/images/challenge/dummy.png')",
         turtle: "url('./assets/images/turtle/turtle-background.png')",
         turtle_ranking: "url('./assets/images/turtle/turtle-ranking.png')",
+        store: "url('./assets/images/store/store-background.png')",
       },
     },
   },

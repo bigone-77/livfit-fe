@@ -40,6 +40,8 @@ const PlayPage = () => {
   const [currentSet, setCurrentSet] = useState(1); // 현재 세트 수 추적
   const [timerKey, setTimerKey] = useState(0); // 타이머를 리셋하기 위한 키
 
+  const [cameraEnd, setCameraEnd] = useState(false); // 웹캠 카메라 end 시키기 위한 값
+
   const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도
   const navigate = useNavigate();
 
@@ -84,6 +86,7 @@ const PlayPage = () => {
           perfect: playConfig.scoreArray.filter((score) => score === "Perfect")
             .length,
         });
+        setCameraEnd(true);
         navigate(`/${exercise}/result`);
       }
     }
@@ -108,6 +111,7 @@ const PlayPage = () => {
         start={timeLeft === 0}
         setTimerStart={setGetStart}
         exercise={exercise}
+        end={cameraEnd}
       />
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
         <section className="absolute top-0">

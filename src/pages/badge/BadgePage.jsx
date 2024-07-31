@@ -1,7 +1,16 @@
+// import { useQuery } from "@tanstack/react-query";
+
+// import { privateApi } from "@api/axios";
+
 import Contents from "@components/badge/Contents";
 import Header from "@components/badge/Header";
 
 const BadgePage = () => {
+  // const { data } = useQuery({
+  //   queryKey: ["badge"],
+  //   queryFn: () => privateApi.get("/badges/mybadge"),
+  // });
+  // console.log(data);
   return (
     <div className="max-w-[500px] w-full h-screen overflow-y-hidden flex flex-col">
       <header className="w-full bg-badge bg-badge_color bg-opacity-[0.12] px-6">

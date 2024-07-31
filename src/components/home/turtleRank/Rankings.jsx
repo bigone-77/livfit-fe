@@ -7,6 +7,7 @@ import turtleImage from "@images/turtle.png";
 import one from "@svgs/home/one.svg";
 import three from "@svgs/home/three.svg";
 import two from "@svgs/home/two.svg";
+import { truncate } from "../../../utils/truncate";
 
 const Rankings = () => {
   const {
@@ -34,15 +35,21 @@ const Rankings = () => {
       <>
         <div className="relative flex items-center rounded-[46px] bg-[#FFDB63] w-[90%] py-1">
           <img src={one} alt="one" className="absolute left-0" />
-          <p className="ml-10 text-sm">{sortedRecords[0].nickname}</p>
+          <p className="ml-10 text-sm">
+            {truncate(sortedRecords[0].nickname, 9)}
+          </p>
         </div>
         <div className="relative flex items-center rounded-[46px] bg-[#FFECAD] w-[60%] py-1">
           <img src={two} alt="two" className="absolute left-0" />
-          <p className="ml-10 text-sm">{sortedRecords[1].nickname}</p>
+          <p className="ml-10 text-sm">
+            {truncate(sortedRecords[1].nickname, 5)}
+          </p>
         </div>
         <div className="relative flex items-center rounded-[46px] bg-[#FFF2C6] w-[50%] py-1">
           <img src={three} alt="three" className="absolute left-0" />
-          <p className="ml-10 text-sm">{sortedRecords[2].nickname}</p>
+          <p className="ml-10 text-sm">
+            {truncate(sortedRecords[2].nickname, 3)}
+          </p>
         </div>
       </>
     );

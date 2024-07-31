@@ -13,15 +13,27 @@ import SendNicknameModal from "./SendNicknameModal";
 
 const WebCam = ({ start, end }) => {
   const navigate = useNavigate();
+
+  const webcamRef = useRef(null);
+  const canvasRef = useRef(null);
+  const cameraRef = useRef(null);
+  const frameInterval = useRef(0);
+  const [angles, setAngles] = useState([]);
+  const [nickname, setNickname] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [lastRecordedScore, setLastRecordedScore] = useState(null);
+
   const mutation = useMutation({
     mutationFn: async (body) => {
       try {
+        console.log(showModal);
         if (localStorage.getItem("accessToken")) {
           await privateApi.post("/turtle/o/save_turtle_record", body);
           navigate("/turtle/ranking");
         }
       } catch (error) {
         setShowModal(true);
+        console.log(showModal);
       }
     },
   });
@@ -38,15 +50,6 @@ const WebCam = ({ start, end }) => {
       console.error("Public API 요청 중 에러 발생:", error);
     }
   };
-
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
-  const cameraRef = useRef(null);
-  const frameInterval = useRef(0);
-  const [angles, setAngles] = useState([]);
-  const [nickname, setNickname] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [lastRecordedScore, setLastRecordedScore] = useState(null);
 
   const pose = config();
   const drawLandmarks = useDrawLandmarks("all");
@@ -116,12 +119,6 @@ const WebCam = ({ start, end }) => {
   useEffect(() => {
     if (end && cameraRef.current) {
       cameraRef.current.stop();
-      console.log("카메라 중지");
-    }
-  }, [end]);
-
-  useEffect(() => {
-    if (end) {
       if (angles.length > 0) {
         const avgAngle =
           angles.reduce((acc, val) => acc + val, 0) / angles.length;
@@ -130,10 +127,7 @@ const WebCam = ({ start, end }) => {
         if (localStorage.getItem("accessToken")) {
           mutation.mutate({ score: Number(avgAngle.toFixed(2)) });
         } else {
-          mutation.mutate({
-            nickname: "부산어묵",
-            score: Number(avgAngle.toFixed(2)),
-          });
+          setShowModal(true);
         }
       } else {
         console.log("No angles detected.");
