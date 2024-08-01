@@ -33,7 +33,7 @@ export default function Lunge() {
           title="기본 런지"
           text1="Basic Lunge"
           text2="3set 10min"
-          navigateTo="/exercise/tutorial/detail/4"
+          navigateTo="/tutorial/detail/4"
         />
       </BasicContainer>
       <AdvancedContainer>
@@ -43,14 +43,14 @@ export default function Lunge() {
           title="사이드 런지"
           text1="Side Lunge"
           text2="3set 12min"
-          navigateTo="/exercise/tutorial/detail/5"
+          navigateTo="/tutorial/detail/5"
         />
         <ExerciseCard
           img={reverseLunge}
           title="리버스 런지"
           text1="Reverse Lunge"
           text2="3set 12min"
-          navigateTo="/exercise/tutorial/detail/6"
+          navigateTo="/tutorial/detail/6"
         />
       </AdvancedContainer>
     </ExerciseContainer>

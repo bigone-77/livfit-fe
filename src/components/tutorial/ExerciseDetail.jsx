@@ -9,16 +9,22 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
   font-size: 12px;
   background-color: #f6f6f6;
+  padding-bottom: 90px;
 `;
 
 const HeaderContainer = styled.div`
   height: 60px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 `;
 
 const DetailContainer = styled.div`

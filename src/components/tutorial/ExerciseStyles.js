@@ -9,6 +9,7 @@ export const ExerciseContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   background-color: #F6F6F6;
+  padding-bottom: 90px;
 `;
 
 export const HeroShot = styled.div`
@@ -44,13 +45,5 @@ export const AdvancedContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 90%;
-`;
-
-export const DetailDiv = styled.div`
-  width: 100%;
-  height: 121px;
-  background-color: #D9D9D9;
-  border-radius: 10px;
-  margin-top: 10px;
 `;
 

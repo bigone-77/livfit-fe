@@ -12,7 +12,8 @@ const StateContainer = styled.div`
 
 const Text1 = styled.div`
   font-size: 10px;
-  color: #ABABAB
+  color: #ABABAB;
+  margin-bottom: 5px;
 `
 
 const Title = styled.span`
@@ -30,7 +31,6 @@ const StateCard = ({ text1, title, text2 }) => {
   return (
     <StateContainer>
         <Text1>{text1}</Text1>
-        <br />
         <Title>{title}</Title>
         <Text2>{text2}</Text2>
     </StateContainer>

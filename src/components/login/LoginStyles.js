@@ -12,9 +12,8 @@ export const LoginContainer = styled.div`
   align-items: center;
   height: 100vh;
   max-width: 500px;
-  background-color: #f6f6f6;
+  background-color: #f8f8f8;
   font-size: 12px;
-  font-family: "Inter-Regular", sans-serif;
   color: #6A6A6A;
 `;
 

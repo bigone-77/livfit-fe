@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import playerbutton from '/src/assets/playerbutton.svg'
+import playerbutton from '@images/tutorial/playerbutton.svg'
 
 const CardContainer = styled(Link)`
   width: 100%;
@@ -39,7 +39,7 @@ const TextContainer = styled.div`
 const TitleAndText1 = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const CardTitle = styled.span`
@@ -58,7 +58,7 @@ const ExerciseCard = ({ img, title, text1, text2, navigateTo }) => {
   return (
     <CardContainer to={navigateTo}>
       <VideoContainer img={img}>
-        {/* <img src={playerbutton} width={40}/> */}
+        <img src={playerbutton} width={40}/>
       </VideoContainer>
       <TextContainer>
         <TitleAndText1>
