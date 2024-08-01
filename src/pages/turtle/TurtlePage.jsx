@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { publicApi } from "@api/axios";
 
-import Loader from "@components/commons/Loader";
-import TipSection from "@components/exercise/TipSection";
+import TipSection from "@commons/TipSection";
+
 import RoundColorSection from "@components/turtle/RoundColorSection";
 
 import Navbar from "@layouts/Navbar";
@@ -17,11 +17,7 @@ import two from "@svgs/home/two.svg";
 
 const TurtlePage = () => {
   const navigate = useNavigate();
-  const {
-    data: turtleRecords,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: turtleRecords } = useQuery({
     queryKey: ["turtle"],
     queryFn: () => publicApi("/turtle/all-records"),
   });
@@ -38,14 +34,6 @@ const TurtlePage = () => {
   };
 
   let content;
-
-  if (isLoading) {
-    content = <Loader />;
-  }
-
-  if (isError) {
-    content = <p>Network Error...</p>;
-  }
 
   if (turtleRecords) {
     const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);

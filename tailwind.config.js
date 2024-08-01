@@ -45,11 +45,13 @@ module.exports = {
         perfect: "#FF477E",
       },
       backgroundImage: {
+        error: "url('./assets/images/404.jpeg')",
         main: "url('./assets/images/homeBackgroundImage.png')",
         badge: "url('./assets/images/badgeBackgroundImage.png')",
         challenge: "url('./assets/images/challenge/challengeBgImage.png')",
         break_effect: "url('./assets/images/ending/break-effect.png')",
         no_break_effect: "url('./assets/images/ending/no-break-effect.png')",
+        turtle_effect: "url('./assets/images/turtle-effect.png')",
         badge_effect: "url('./assets/images/badge/badge-effect.png')",
         squat: "url('./assets/images/exercise/squat.png')",
         lunge: "url('./assets/images/exercise/lunge.png')",

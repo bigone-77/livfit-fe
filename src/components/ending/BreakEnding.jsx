@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { stringTimeFormat } from "../../utils/timeFormat";
-import EffectText from "./EffectText";
+import EffectText from "@commons/EffectText";
+import { stringTimeFormat } from "@utils/timeFormat";
 import RatingCard from "./RatingCard";
 import RecordTable from "./RecordTable";
 

@@ -3,31 +3,17 @@ import { useQuery } from "@tanstack/react-query";
 
 import { timeFormat } from "@utils/timeFormat";
 
-import Loader from "@commons/Loader";
-
 import progress from "@images/progress.png";
 import fire from "@svgs/fire.svg";
 import rightArrow from "@svgs/right-arrow.svg";
 
 const MissonSwiper = () => {
-  const {
-    data: mission,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: mission } = useQuery({
     queryKey: ["mission"],
     queryFn: () => publicApi("/today_exercise/show/1"),
   });
 
   let content;
-
-  if (isLoading) {
-    content = <Loader />;
-  }
-
-  if (isError) {
-    content = <p>Networking Error...</p>;
-  }
 
   if (mission) {
     content = (

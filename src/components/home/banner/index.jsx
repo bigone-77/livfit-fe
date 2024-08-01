@@ -1,10 +1,15 @@
 import handshake from "@svgs/handshake.svg";
 import MissonSwiper from "./MissonSwiper";
 
-const Banner = () => {
+const Banner = ({ guest }) => {
+  console.log(guest);
   return (
     <section className="px-8 mt-6">
-      <div className="flex items-center gap-4 p-4 mb-4 rounded-xl bg-orange3 bg-opacity-15">
+      <div
+        className={`${
+          guest && "blur-sm bg-text50"
+        } flex items-center gap-4 p-4 mb-4 rounded-xl bg-orange3 bg-opacity-15`}
+      >
         <img src={handshake} alt="handshake" />
         <div className="w-full">
           <span className="flex items-center">

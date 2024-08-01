@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
+import TipSection from "@commons/TipSection";
 import NameSection from "@components/exercise/NameSection";
 import OptionFilter from "@components/exercise/OptionFilter";
-import TipSection from "@components/exercise/TipSection";
 import Navbar from "@layouts/Navbar";
 
 const DetailExercisePage = () => {
