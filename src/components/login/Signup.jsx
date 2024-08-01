@@ -8,22 +8,20 @@ const SignupContainer = styled.div`
   flex-direction: column;
   height: 95vh;
   background-color: #f8f8f8;
-  font-family: "Inter-Regular", sans-serif;
   color: #6A6A6A;
-  padding: 20px;
 `;
 
 const Header = styled.div`
   display: flex;
-  align-items: center;
   width: 100%;
   height: 100px;
   padding: 10px;
 `;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: column;
+  padding: 40px;
+  border-radius: 8px;
+  align-items: center;
 `;
 
 const Title = styled.h1`
@@ -79,7 +77,6 @@ const Signup = () => {
         />
         <SubmitButton onClick={handleSignup}>완료</SubmitButton>
       </Content>
-      
     </SignupContainer>
   );
 };
