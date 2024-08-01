@@ -1,14 +1,40 @@
-const BrandGroup = () => {
-  return (
-    <div className="flex items-center gap-2 pl-6 mt-10 overflow-x-auto whitespace-nowrap scroll-smooth">
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-      <div className="w-20 h-20 rounded-full bg-[#C3D3DB] flex-shrink-0" />
-    </div>
-  );
-};
+import React from 'react';
+import styled from 'styled-components';
+import storeMain from '@images/store/storemain.png';
+import ProductCard from './ProductCard';
+import { productData } from './ProductData';
 
-export default BrandGroup;
+const ProductDiv = styled.div`
+  width: 100%;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  margin-top: 5px;
+`;
+
+const ProductList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+`;
+
+
+export default function BrandGroup() {
+    return (
+      <ProductDiv>
+          <ProductList>
+              {productData.map((product, index) => (
+                  <ProductCard
+                      key={index}
+                      img={product.img}
+                      text1={product.text1}
+                      text2={product.text2}
+                      text3={product.text3}
+                      text4={product.text4}
+                      navigateTo={product.navigateTo}
+                  />
+              ))}
+          </ProductList>
+      </ProductDiv>
+    );
+}

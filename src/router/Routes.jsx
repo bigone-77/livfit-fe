@@ -11,6 +11,13 @@ import ExercisePage from "@pages/exercise/ExercisePage";
 import PlayPage from "@pages/exercise/PlayPage";
 import ResultPage from "@pages/exercise/ResultPage";
 
+import TutorialPage from "@pages/tutorial/TutorialPage";
+import SquatPage from "@pages/tutorial/SquatPage";
+import LungePage from "@pages/tutorial/LungePage";
+import PushupPage from "@pages/tutorial/PushupPage";
+import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
+
+
 import RankingPage from "@pages/turtle/RankingPage";
 import TurtleResultPage from "@pages/turtle/ResultPage";
 import TurtlePage from "@pages/turtle/TurtlePage";
@@ -22,7 +29,7 @@ import LoginPage from "@pages/login/LoginPage";
 import SignupPage from "@pages/login/SignupPage";
 
 import ProfilePage from "@pages/ProfilePage";
-import StorePage from "@pages/StorePage";
+import StorePage from "@pages/store/StorePage";
 
 import Footer from "@layouts/footer";
 import Navbar from "@layouts/Navbar";
@@ -53,14 +60,14 @@ const Routes = () => {
         </Route>
 
         {/* 운동 튜토리얼 페이지 */}
-        {/* <Route path="/exercise/tutorial" element={<AllPage />} />
-        <Route path="/exercise/tutorial/squat" element={<SquatPage />} />
-        <Route path="/exercise/tutorial/lunge" element={<LungePage />} />
-        <Route path="/exercise/tutorial/pushup" element={<PushupPage />} />
+        <Route path="/tutorial" element={<TutorialPage />} />
+        <Route path="/tutorial/squat" element={<SquatPage />} />
+        <Route path="/tutorial/lunge" element={<LungePage />} />
+        <Route path="/tutorial/pushup" element={<PushupPage />} />
         <Route
-          path="/exercise/tutorial/detail/:id"
+          path="/tutorial/detail/:id"
           element={<ExerciseDetailPage />}
-        /> */}
+        />
 
         <Route path="/turtle" element={<TurtlePage />} />
         <Route path="/turtle/ranking" element={<RankingPage />} />

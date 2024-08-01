@@ -10,10 +10,10 @@ import {
 } from "./ExerciseStyles";
 import StateCard from "./StateCard";
 
-import basicSquat from "/src/assets/images/tutorial/squat1.png";
-import halfSquat from "/src/assets/images/tutorial/squat2.png";
-import wideSquat from "/src/assets/images/tutorial/squat3.png";
-import squatMain from "/src/assets/images/tutorial/squatmain.png";
+import basicSquat from "@images/tutorial/squat1.png";
+import halfSquat from "@images/tutorial/squat2.png";
+import wideSquat from "@images/tutorial/squat3.png";
+import squatMain from "@images/tutorial/squatmain.png";
 
 export default function Squat() {
   return (
@@ -33,7 +33,7 @@ export default function Squat() {
           title="기본 스쿼트"
           text1="Basic Squat"
           text2="3set 15min"
-          navigateTo="/exercise/tutorial/detail/1"
+          navigateTo="/tutorial/detail/1"
         />
       </BasicContainer>
       <AdvancedContainer>
@@ -43,14 +43,14 @@ export default function Squat() {
           title="하프 스쿼트"
           text1="Half Squat"
           text2="3set 10min"
-          navigateTo="/exercise/tutorial/detail/2"
+          navigateTo="/tutorial/detail/2"
         />
         <ExerciseCard
           img={wideSquat}
           title="와이드 스쿼트"
           text1="Wide Squat"
           text2="3set 12min"
-          navigateTo="/exercise/tutorial/detail/3"
+          navigateTo="/tutorial/detail/3"
         />
       </AdvancedContainer>
     </ExerciseContainer>

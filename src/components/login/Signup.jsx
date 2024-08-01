@@ -7,8 +7,9 @@ const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 95vh;
-  background-color: #f8f8f8;
+  background-color: #f6f8f8;
   color: #6A6A6A;
+  font-size: 12px;
 `;
 
 const Header = styled.div`

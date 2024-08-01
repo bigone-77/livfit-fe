@@ -1,7 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import backbutton from '@svgs/left-arrow.svg';
+import backbutton from "@images/store/backbutton-white.svg";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const StyledBackButton = styled.button`
   position: absolute;
@@ -26,9 +25,7 @@ const BackButton = () => {
     navigate(-1);
   };
 
-  return (
-    <StyledBackButton onClick={handleClick} />
-  );
+  return <StyledBackButton onClick={handleClick} />;
 };
 
 export default BackButton;

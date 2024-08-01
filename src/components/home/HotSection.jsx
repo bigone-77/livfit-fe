@@ -8,7 +8,7 @@ const HotSection = () => {
   return (
     <section
       className="p-4 rounded-xl bg-[#F7ECD1] relative"
-      onClick={() => navigate("/exercise/tutorial")}
+      onClick={() => navigate("/tutorial")}
     >
       <div className="mb-2 text-lg">
         <h1>현재 LIVFIT에서</h1>

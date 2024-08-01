@@ -8,7 +8,7 @@ const FindpwContainer = styled.div`
   flex-direction: column;
   height: 95vh;
   background-color: #f8f8f8;
-  font-family: "Inter-Regular", sans-serif;
+  font-size: 12px;
   color: #6A6A6A;
 `;
 
