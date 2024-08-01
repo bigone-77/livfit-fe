@@ -10,16 +10,20 @@ const FindpwContainer = styled.div`
   background-color: #f8f8f8;
   font-family: "Inter-Regular", sans-serif;
   color: #6A6A6A;
-  padding: 20px;
 `;
 
 const Header = styled.div`
   display: flex;
-  align-items: center;
   width: 100%;
   height: 100px;
   padding: 10px;
 `;
+
+const Content = styled.div`
+  padding: 40px;
+  border-radius: 8px;
+  align-items: center;
+`
 
 const Title = styled.h1`
   margin-left: 10px;
@@ -57,15 +61,17 @@ const Findpw = () => {
       <Header>
         <BackButton/>
       </Header>
-      <Title>비밀번호 찾기</Title>
-      <br />
-      <Input
-        type="text"
-        placeholder="아이디를 입력해주세요"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-      />
-      <SubmitButton onClick={handlePasswordRecovery}>완료</SubmitButton>
+      <Content>
+        <Title>비밀번호 찾기</Title>
+        <br />
+        <Input
+          type="text"
+          placeholder="아이디를 입력해주세요"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+        />
+        <SubmitButton onClick={handlePasswordRecovery}>완료</SubmitButton>
+      </Content>
     </FindpwContainer>
   );
 };
