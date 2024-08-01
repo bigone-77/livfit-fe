@@ -1,8 +1,6 @@
 import { publicApi } from "@api/axios";
 import { useQuery } from "@tanstack/react-query";
 
-import { timeFormat } from "@utils/timeFormat";
-
 import progress from "@images/progress.png";
 import fire from "@svgs/fire.svg";
 import rightArrow from "@svgs/right-arrow.svg";
@@ -10,7 +8,10 @@ import rightArrow from "@svgs/right-arrow.svg";
 const MissonSwiper = () => {
   const { data: mission } = useQuery({
     queryKey: ["mission"],
-    queryFn: () => publicApi("/today_exercise/show/1"),
+    queryFn: () =>
+      publicApi
+        .get("/mainpage/getTodayexercise")
+        .then((response) => response.data),
   });
 
   let content;
@@ -22,8 +23,7 @@ const MissonSwiper = () => {
           <h1 className="mb-2 text-xs font-light text-text150">오늘의 미션</h1>
           <span className="flex items-center gap-1 text-2xl font-semibold text-text500">
             <img src={fire} alt="fire" />
-            <p className="">{mission.data.exercise_name}</p>
-            <p>{timeFormat(mission.data.timer_sec)}</p>
+            <p className="">{mission.exerciseName}</p>
           </span>
         </div>
         <img src={rightArrow} alt="right-arrow" />

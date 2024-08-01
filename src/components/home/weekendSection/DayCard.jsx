@@ -1,19 +1,31 @@
 import whiteChecked from "@svgs/white-checked.svg";
 
-const DayCard = ({ day, isSuccess }) => {
+// TODO: 1 -> 성공 (체크표시) 0 -> 시작 전 2-> 실패
+
+const DayCard = ({ day, status }) => {
   return (
     <div className="flex flex-col items-center gap-2 font-semibold">
       <div>
         <span className="text-text200">{day}</span>
       </div>
-      <div className="relative w-12 h-12 rounded-full bg-orange2">
-        {isSuccess && (
+      <div
+        className={`relative w-12 h-12 rounded-full ${
+          status === 1
+            ? "bg-orange2"
+            : status === 0
+            ? "bg-text100"
+            : "bg-text200"
+        } bg-orange2`}
+      >
+        {status === 1 && (
           <div className="absolute inset-0 flex items-center justify-center">
             <img src={whiteChecked} alt="checked" />
           </div>
         )}
       </div>
-      <p className="text-sm text-text150">{isSuccess ? "완료" : "도전"}</p>
+      <p className="text-sm text-text150">
+        {status === 1 ? "완료" : status === 0 ? "예정" : "도전"}
+      </p>
     </div>
   );
 };

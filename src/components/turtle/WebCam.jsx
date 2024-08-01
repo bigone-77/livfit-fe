@@ -1,4 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
+import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
@@ -8,10 +9,13 @@ import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
 import detectTurtleNeck from "@utils/mediapipe/classifier/turtle.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
 const WebCam = ({ start, end }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const webcamRef = useRef(null);
@@ -28,7 +32,7 @@ const WebCam = ({ start, end }) => {
       try {
         if (localStorage.getItem("accessToken")) {
           await privateApi.post("/turtle/o/save_turtle_record", body);
-          navigate("/turtle/ranking");
+          navigate("/turtle/result");
         }
       } catch (error) {
         setShowModal(true);
@@ -39,12 +43,15 @@ const WebCam = ({ start, end }) => {
 
   const handleNicknameSubmit = async (nickname) => {
     setShowModal(false);
+    dispatch(setAngle({ angle: Number(lastRecordedScore) * 10 }));
     try {
       await publicApi.post("/turtle/x/save_turtle_record", {
         nickname,
-        score: lastRecordedScore,
+
+        score: Number(lastRecordedScore) * 10,
+        localDate: format(new Date(), "yyyy-MM-dd"),
       });
-      navigate("/turtle/ranking");
+      navigate("/turtle/result");
     } catch (error) {
       console.error("Public API 요청 중 에러 발생:", error);
     }
@@ -121,10 +128,14 @@ const WebCam = ({ start, end }) => {
       if (angles.length > 0) {
         const avgAngle =
           angles.reduce((acc, val) => acc + val, 0) / angles.length;
-        setLastRecordedScore(Number(avgAngle.toFixed(2)));
+        setLastRecordedScore(Number(avgAngle.toFixed(1)));
 
         if (localStorage.getItem("accessToken")) {
-          mutation.mutate({ score: Number(avgAngle.toFixed(2)) });
+          dispatch(setAngle({ angle: Number(avgAngle.toFixed(1)) * 10 }));
+          mutation.mutate({
+            score: Number(avgAngle.toFixed(1)) * 10,
+            localDate: format(new Date(), "yyyy-MM-dd"),
+          });
         } else {
           setShowModal(true);
         }

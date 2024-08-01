@@ -8,7 +8,7 @@ import Header from "@components/badge/Header";
 const BadgePage = () => {
   const { data } = useQuery({
     queryKey: ["badge"],
-    queryFn: () => privateApi.get("/badges/mybadge"),
+    queryFn: () => privateApi.get("/userbadges/mybadge"),
   });
   console.log(data);
   return (

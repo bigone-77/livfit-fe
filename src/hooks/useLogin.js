@@ -1,9 +1,6 @@
 import { publicApi } from "@api/axios";
-import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
-  const navigate = useNavigate();
-
   const signIn = async (data) => {
     if (data) {
       try {
@@ -18,7 +15,7 @@ export const useLogin = () => {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
           }
-          navigate("/");
+          window.location.href = "/";
         } else if (response.status === 401) {
           // 로그인 실패 비번 일치 X
           alert("id 혹은 비밀번호 가 일치하지 않습니다.");

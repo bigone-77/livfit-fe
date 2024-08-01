@@ -3,7 +3,7 @@ const EffectText = ({ text, isBreak, turtle }) => {
     return (
       <span
         className="
-      turtle-effect text-[150px] font-GameNumber"
+      turtle-effect text-[150px] font-GameNumber text-center"
         data-text={text}
       >
         {text}

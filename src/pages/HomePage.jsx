@@ -14,10 +14,10 @@ export default function HomePage() {
   const results = useQueries({
     queries: [
       {
-        queryKey: ["main"],
+        queryKey: ["weekend"],
         queryFn: () =>
           privateApi
-            .get("/mainpage/get-achievement-rate")
+            .get("/mainpage/week-status")
             .then((response) => response.data),
       },
       {
@@ -34,16 +34,13 @@ export default function HomePage() {
     <Wrapper>
       <div className="pb-20">
         <Header />
-        <Banner guest={nicknameData.isError} />
+        <Banner nickname={nicknameData?.data} />
         <Exercises />
         <div className="grid grid-cols-2 gap-6 px-6 mt-8">
           <HotSection />
           <TurtleRank />
         </div>
-        <WeekendSection
-          guest={weekendData.isError}
-          exercises={weekendData?.data?.exercises}
-        />
+        <WeekendSection exercises={weekendData?.data} />
         <ChallengeSection />
       </div>
     </Wrapper>
