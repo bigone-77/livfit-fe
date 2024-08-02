@@ -23,15 +23,7 @@ const TurtlePage = () => {
   });
 
   const handleTrackHandler = async () => {
-    try {
-      // 카메라 권한 요청
-      await navigator.mediaDevices.getUserMedia({ video: true });
-      console.log("Camera access granted");
-      navigate("/turtle/play"); // 페이지 이동
-    } catch (error) {
-      console.error("Error accessing webcam: ", error);
-      alert("카메라 권한을 허용해야 측정이 가능합니다.");
-    }
+    navigate("/turtle/play"); // 페이지 이동
   };
   // const handleTrackHandler = () => {
   //   navigator.mediaDevices
