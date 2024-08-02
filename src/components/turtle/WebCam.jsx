@@ -27,6 +27,8 @@ const WebCam = ({ start, end }) => {
   const [nickname, setNickname] = useState(""); // 사용자 닉네임 상태
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부 상태
   const [lastRecordedScore, setLastRecordedScore] = useState(null); // 마지막 기록된 점수 상태
+  // 카메라 준비 상태 추가
+  const [isCameraReady, setIsCameraReady] = useState(false);
 
   const mutation = useMutation({
     mutationFn: async (body) => {
@@ -63,15 +65,20 @@ const WebCam = ({ start, end }) => {
   const pose = config(); // MediaPipe 설정 초기화
   const drawLandmarks = useDrawLandmarks("all"); // 랜드마크 그리기 설정
 
-  // 카메라 및 포즈 감지를
+  // 카메라 및 포즈 감지
   useEffect(() => {
+    //카메라 먼저 시작 방지
+    if (!start || isCameraReady) return;
+
+    // MediaPipe 결과 처리 함수
     pose.onResults(onResults);
 
-    // 웹캠 요소가 정의되어 있는지 확인
-    if (
-      typeof webcamRef.current !== "undefined" &&
-      webcamRef.current !== null
-    ) {
+    // 카메라 스트림을 사용하여 MediaPipe를 통해 포즈를 감지
+    // if (
+    //   typeof webcamRef.current !== "undefined" &&
+    //   webcamRef.current !== null
+    // ) {
+    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
       // 카메라 인스턴스 생성
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
@@ -88,8 +95,18 @@ const WebCam = ({ start, end }) => {
       if (start) {
         camera.start(); // 측정 시작 시 카메라 시작
         cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
+        setIsCameraReady(true); // 카메라 준비 상태 업데이트
       }
+
+      return () => {
+        // 컴포넌트가 언마운트될 때 스트림 정리
+        if (cameraRef.current) {
+          console.log("Stopping the camera...");
+          cameraRef.current.stop();
+        }
+      };
     }
+
     // 포즈 감지 결과 처리 함수
     function onResults(results) {
       const canvas = canvasRef.current;
