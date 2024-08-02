@@ -14,18 +14,19 @@ import { useNavigate } from "react-router-dom";
 import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
+// WebCam 컴포넌트
 const WebCam = ({ start, end }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
-  const cameraRef = useRef(null);
-  const frameInterval = useRef(0);
-  const [angles, setAngles] = useState([]);
-  const [nickname, setNickname] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [lastRecordedScore, setLastRecordedScore] = useState(null);
+  const webcamRef = useRef(null); // 웹캠 요소 참조
+  const canvasRef = useRef(null); // 캔버스 요소 참조
+  const cameraRef = useRef(null); // 카메라 인스턴스 참조
+  const frameInterval = useRef(0); // 프레임 간격 계산용 참조
+  const [angles, setAngles] = useState([]); // 각도 데이터 상태
+  const [nickname, setNickname] = useState(""); // 사용자 닉네임 상태
+  const [showModal, setShowModal] = useState(false); // 모달 표시 여부 상태
+  const [lastRecordedScore, setLastRecordedScore] = useState(null); // 마지막 기록된 점수 상태
 
   const mutation = useMutation({
     mutationFn: async (body) => {
@@ -41,6 +42,7 @@ const WebCam = ({ start, end }) => {
     },
   });
 
+  // 비회원 일 경우 닉네임 서버로 전송
   const handleNicknameSubmit = async (nickname) => {
     setShowModal(false);
     dispatch(setAngle({ angle: Number(lastRecordedScore) * 10 }));
@@ -57,33 +59,38 @@ const WebCam = ({ start, end }) => {
     }
   };
 
-  const pose = config();
-  const drawLandmarks = useDrawLandmarks("all");
+  // 포즈 감지 설정 및 랜드마크 그리기 설정
+  const pose = config(); // MediaPipe 설정 초기화
+  const drawLandmarks = useDrawLandmarks("all"); // 랜드마크 그리기 설정
 
+  // 카메라 및 포즈 감지를
   useEffect(() => {
     pose.onResults(onResults);
 
+    // 웹캠 요소가 정의되어 있는지 확인
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null
     ) {
+      // 카메라 인스턴스 생성
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
+          // 매 4프레임마다 포즈 데이터 전송
           if (frameInterval.current % 4 === 0) {
             await pose.send({ image: webcamRef.current.video });
           }
         },
-        width: 1280,
-        height: 720,
+        width: 1280, // 비디오 너비 설정
+        height: 720, // 비디오 높이 설정
       });
 
       if (start) {
-        camera.start();
-        cameraRef.current = camera; // camera 객체를 참조 변수에 저장
+        camera.start(); // 측정 시작 시 카메라 시작
+        cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
       }
     }
-
+    // 포즈 감지 결과 처리 함수
     function onResults(results) {
       const canvas = canvasRef.current;
       const canvasCtx = canvas.getContext("2d");
@@ -150,9 +157,10 @@ const WebCam = ({ start, end }) => {
       <Webcam
         ref={webcamRef}
         videoConstraints={{
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-          facingMode: "user",
+          //ideal 의 의미 : '선호' 한다 하지만 필수는 아니다.
+          width: { ideal: 1280 }, //해상도
+          height: { ideal: 720 }, //해상도
+          facingMode: "user", // 전면 카메라 사용
           frameRate: { ideal: 30, max: 60 },
         }}
         style={{ display: "none" }}
