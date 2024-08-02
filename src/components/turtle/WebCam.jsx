@@ -67,7 +67,7 @@ const WebCam = ({ start, end }) => {
 
   // 카메라 및 포즈 감지
   useEffect(() => {
-    //카메라 먼저 시작 방지
+    //카메라 먼저 시작 방지 추가
     if (!start || isCameraReady) return;
 
     // MediaPipe 결과 처리 함수
@@ -92,11 +92,11 @@ const WebCam = ({ start, end }) => {
         height: 720, // 비디오 높이 설정
       });
 
-      if (start) {
-        camera.start(); // 측정 시작 시 카메라 시작
-        cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
-        setIsCameraReady(true); // 카메라 준비 상태 업데이트
-      }
+      //if (start) {
+      camera.start(); // 측정 시작 시 카메라 시작
+      cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
+      setIsCameraReady(true); // 카메라 준비 상태 업데이트
+      //}
 
       return () => {
         // 컴포넌트가 언마운트될 때 스트림 정리
