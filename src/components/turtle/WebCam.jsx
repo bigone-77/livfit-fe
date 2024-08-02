@@ -72,32 +72,72 @@ const WebCam = ({ start, end }) => {
     // MediaPipe 결과 처리 함수
     pose.onResults(onResults);
 
-    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-      // 카메라 인스턴스 생성
-      const camera = new window.Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          frameInterval.current++;
-          // 매 4프레임마다 포즈 데이터 전송
-          if (frameInterval.current % 4 === 0) {
-            await pose.send({ image: webcamRef.current.video });
-          }
-        },
-        width: 1280, // 비디오 너비 설정
-        height: 720, // 비디오 높이 설정
-      });
+    //지금 여기서 모바일 카메라 조건 걸림
+    // 카메라 안나오는거 여기임 모바일
+    //여기서부터
+    // if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+    //   // 카메라 인스턴스 생성
+    //   const camera = new window.Camera(webcamRef.current.video, {
+    //     onFrame: async () => {
+    //       frameInterval.current++;
+    //       // 매 4프레임마다 포즈 데이터 전송
+    //       if (frameInterval.current % 4 === 0) {
+    //         await pose.send({ image: webcamRef.current.video });
+    //       }
+    //     },
+    //     width: 1280, // 비디오 너비 설정
+    //     height: 720, // 비디오 높이 설정
+    //   });
 
-      camera.start(); // 측정 시작 시 카메라 시작
-      cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
-      setIsCameraReady(true); // 카메라 준비 상태 업데이트
+    //   camera.start(); // 측정 시작 시 카메라 시작
+    //   cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
+    //   setIsCameraReady(true); // 카메라 준비 상태 업데이트
 
-      return () => {
-        // 컴포넌트가 언마운트될 때 스트림 정리
-        if (cameraRef.current) {
-          console.log("Stopping the camera...");
-          cameraRef.current.stop();
-        }
-      };
+    //   return () => {
+    //     // 컴포넌트가 언마운트될 때 스트림 정리
+    //     if (cameraRef.current) {
+    //       console.log("Stopping the camera...");
+    //       cameraRef.current.stop();
+    //     }
+    //   };
+    // }
+    //여기까지 원본
+
+    //여기부터
+    // 비디오 메타데이터가 로드된 후 카메라 초기화
+    const handleVideoReady = () => {
+      if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+        // 카메라 인스턴스 생성
+        const camera = new window.Camera(webcamRef.current.video, {
+          onFrame: async () => {
+            frameInterval.current++;
+            // 매 4프레임마다 포즈 데이터 전송
+            if (frameInterval.current % 4 === 0) {
+              await pose.send({ image: webcamRef.current.video });
+            }
+          },
+          width: 1280, // 비디오 너비 설정
+          height: 720, // 비디오 높이 설정
+        });
+
+        camera.start(); // 측정 시작 시 카메라 시작
+        cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
+        setIsCameraReady(true); // 카메라 준비 상태 업데이트
+      }
+    };
+
+    if (webcamRef.current && webcamRef.current.video) {
+      webcamRef.current.video.onloadedmetadata = handleVideoReady;
     }
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 스트림 정리
+      if (cameraRef.current) {
+        console.log("Stopping the camera...");
+        cameraRef.current.stop();
+      }
+    };
+    //여기까지 테스트 3
 
     // 포즈 감지 결과 처리 함수
     function onResults(results) {

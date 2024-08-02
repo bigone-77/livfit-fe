@@ -23,8 +23,12 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
 
     pose.onResults(onResults);
 
-    //카메라 인스턴스 생성 조건 변경
-    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+    //지금 여기서 모바일 카메라 조건 걸림
+    //여기서 NOT READABLE ERROR
+    if (
+      typeof webcamRef.current !== "undefined" &&
+      webcamRef.current !== null
+    ) {
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
