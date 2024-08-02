@@ -14,13 +14,11 @@ const TurtlePlayPage = () => {
   const [webCamReady, setWebCamReady] = useState(false); // 웹캠 시작 상태
 
   const handleWebCamReady = () => {
-    console.log("WebCam Ready");
     setWebCamReady(true); // 웹캠이 준비되었음을 설정
   };
 
   // 321카운트다운 타이머
   useEffect(() => {
-    console.log("userEffect started 321count");
     if (webCamReady && timeLeft > 0) {
       const startTimer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
@@ -42,7 +40,6 @@ const TurtlePlayPage = () => {
       const trackingTimer = setInterval(() => {
         setTrackingLeft((prevTime) => prevTime - 1);
       }, 1000);
-
       return () => clearInterval(trackingTimer);
     } else if (trackingLeft === 0) {
       setTimesUp(true);

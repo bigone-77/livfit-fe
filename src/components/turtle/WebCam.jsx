@@ -67,16 +67,12 @@ const WebCam = ({ start, end, onReady }) => {
   useEffect(() => {
     // 시작 상태 및 카메라 준비 상태 확인
     if (!start || isCameraReady) {
-      console.log("Start not triggered or camera already ready"); ////
       return; // 시작 상태 및 카메라 준비 상태 확인
     }
-    console.log("initializing camera"); /////////
     const initializeCamera = async () => {
       try {
-        console.log("initializing camera2"); /////////
         // 비디오가 이미 준비된 경우
         if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-          console.log("WebCam video readyState is 4, initializing camera"); /////////
           const camera = new window.Camera(webcamRef.current.video, {
             onFrame: async () => {
               frameInterval.current++;
@@ -91,13 +87,10 @@ const WebCam = ({ start, end, onReady }) => {
           camera.start();
           cameraRef.current = camera;
           setIsCameraReady(true);
-          console.log("Camera initialized try successfully");
           onReady(); // 카메라가 준비된 후 콜백 호출
         } else {
           // 비디오 준비가 안되었을 경우 대기
-          console.log("Waiting for video metadata to load..."); ////////////
           webcamRef.current.video.onloadedmetadata = () => {
-            console.log("Video metadata loaded, initializing camera"); //////
             const camera = new window.Camera(webcamRef.current.video, {
               onFrame: async () => {
                 frameInterval.current++;
@@ -112,7 +105,6 @@ const WebCam = ({ start, end, onReady }) => {
             camera.start();
             cameraRef.current = camera;
             setIsCameraReady(true);
-            console.log("Camera initialized successfully after metadata load"); /////
             onReady(); // 카메라가 준비된 후 콜백 호출
           };
         } //여기 추가
