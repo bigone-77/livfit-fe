@@ -18,6 +18,9 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
   const drawLandmarks = useDrawLandmarks();
 
   useEffect(() => {
+    //카메라 먼저 시작 방지 코드 추가
+    if (!start) return;
+
     pose.onResults(onResults);
 
     if (

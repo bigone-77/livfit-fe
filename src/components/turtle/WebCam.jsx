@@ -51,7 +51,6 @@ const WebCam = ({ start, end }) => {
     try {
       await publicApi.post("/turtle/x/save_turtle_record", {
         nickname,
-
         score: Number(lastRecordedScore) * 10,
         localDate: format(new Date(), "yyyy-MM-dd"),
       });
@@ -173,7 +172,7 @@ const WebCam = ({ start, end }) => {
           facingMode: "user", // 전면 카메라 사용
           frameRate: { ideal: 30, max: 60 },
         }}
-        // style={{ display: "none" }} 디스플레이 테스트
+        style={{ display: "none" }}
         // 모바일에서 인라인 재생 허용
         playsInline={true}
       />
