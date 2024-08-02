@@ -75,63 +75,32 @@ const WebCam = ({ start, end }) => {
     // 모바일 카메라 조건 걸림 여기서부터
     //1. webcamRef.current != null 로 지정할시 모바일 Notreadable오류
     //2. webcamRef.current.video.readyState === 4 이거 없을 시 Notreadable오류
-    // if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-    //   // 카메라 인스턴스 생성
-    //   const camera = new window.Camera(webcamRef.current.video, {
-    //     onFrame: async () => {
-    //       frameInterval.current++;
-    //       // 매 4프레임마다 포즈 데이터 전송
-    //       if (frameInterval.current % 4 === 0) {
-    //         await pose.send({ image: webcamRef.current.video });
-    //       }
-    //     },
-    //     width: 1280, // 비디오 너비 설정
-    //     height: 720, // 비디오 높이 설정
-    //   });
-
-    //   camera.start(); // 측정 시작 시 카메라 시작
-    //   cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
-    //   setIsCameraReady(true); // 카메라 준비 상태 업데이트
-
-    //   return () => {
-    //     // 컴포넌트가 언마운트될 때 스트림 정리
-    //     if (cameraRef.current) {
-    //       console.log("Stopping the camera...");
-    //       cameraRef.current.stop();
-    //     }
-    //   };
-    // } //여기까지 원본 복구시 여기까지 복구
-
-    //여기부터
-    const handleVideoReady = () => {
+    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+      // 카메라 인스턴스 생성
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
+          // 매 4프레임마다 포즈 데이터 전송
           if (frameInterval.current % 4 === 0) {
             await pose.send({ image: webcamRef.current.video });
           }
         },
-        width: 1280,
-        height: 720,
+        width: 1280, // 비디오 너비 설정
+        height: 720, // 비디오 높이 설정
       });
 
-      camera.start();
-      cameraRef.current = camera;
-      setIsCameraReady(true);
-    };
+      camera.start(); // 측정 시작 시 카메라 시작
+      cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
+      setIsCameraReady(true); // 카메라 준비 상태 업데이트
 
-    if (webcamRef.current && webcamRef.current.video) {
-      webcamRef.current.video.onloadedmetadata = handleVideoReady;
-    }
-
-    return () => {
-      if (cameraRef.current) {
-        console.log("Stopping the camera...");
-        cameraRef.current.stop();
-      }
-    };
-
-    //여기까지 테스트
+      return () => {
+        // 컴포넌트가 언마운트될 때 스트림 정리
+        if (cameraRef.current) {
+          console.log("Stopping the camera...");
+          cameraRef.current.stop();
+        }
+      };
+    } //여기까지 원본 복구시 여기까지 복구
 
     // 포즈 감지 결과 처리 함수
     function onResults(results) {
@@ -206,16 +175,12 @@ const WebCam = ({ start, end }) => {
           facingMode: "user", // 전면 카메라 사용
           frameRate: { ideal: 30, max: 60 },
         }}
-        style={{ display: "none", zIndex: 1 }} //zIndex 추가
+        style={{ display: "none" }}
         // 모바일에서 인라인 재생 허용
         playsInline={true}
         autoPlay // 수정 -> 자동재생 설정
       />
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 2 }} //zIndex 추가
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       {showModal && (
         <SendNicknameModal
           enteredNickname={nickname}
