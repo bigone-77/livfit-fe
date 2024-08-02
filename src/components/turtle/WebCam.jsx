@@ -213,7 +213,7 @@ import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
 // WebCam 컴포넌트
-const WebCam = ({ start, end }) => {
+const WebCam = ({ start, end, onReady }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -284,6 +284,7 @@ const WebCam = ({ start, end }) => {
           camera.start();
           cameraRef.current = camera;
           setIsCameraReady(true);
+          onReady(); // 카메라가 준비된 후 콜백 호출
         } else {
           // 여기부터
           // 비디오 준비가 안되었을 경우 대기
@@ -302,6 +303,7 @@ const WebCam = ({ start, end }) => {
             camera.start();
             cameraRef.current = camera;
             setIsCameraReady(true);
+            onReady(); // 카메라가 준비된 후 콜백 호출
           };
         } //여기 추가
       } catch (error) {
@@ -340,7 +342,7 @@ const WebCam = ({ start, end }) => {
       }
       canvasCtx.restore();
     }
-  }, [start, isCameraReady]);
+  }, [start, isCameraReady, onReady]);
 
   useEffect(() => {
     if (end && cameraRef.current) {
