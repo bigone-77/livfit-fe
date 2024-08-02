@@ -206,12 +206,16 @@ const WebCam = ({ start, end }) => {
           facingMode: "user", // 전면 카메라 사용
           frameRate: { ideal: 30, max: 60 },
         }}
-        style={{ display: "none" }}
+        style={{ display: "none", zIndex: 1 }} //zIndex 추가
         // 모바일에서 인라인 재생 허용
         playsInline={true}
         autoPlay // 수정 -> 자동재생 설정
       />
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ zIndex: 2 }} //zIndex 추가
+      />
       {showModal && (
         <SendNicknameModal
           enteredNickname={nickname}
