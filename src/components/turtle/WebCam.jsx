@@ -73,8 +73,6 @@ const WebCam = ({ start, end }) => {
     pose.onResults(onResults);
 
     // 모바일 카메라 조건 걸림
-    // 카메라 안나오는거 여기임 모바일
-    // (readyState === 4) 조건 제거시 오류
     //1. webcamRef.current != null 로 지정할시 모바일 Notreadable오류
     //2. webcamRef.current.video.readyState === 4 이거 없을 시 Notreadable오류
     if (webcamRef.current && webcamRef.current.video.readyState === 4) {
@@ -180,6 +178,7 @@ const WebCam = ({ start, end }) => {
         style={{ display: "none" }}
         // 모바일에서 인라인 재생 허용
         playsInline={true}
+        autoPlay // 수정 -> 자동재생 설정
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       {showModal && (
