@@ -4,7 +4,7 @@ import CountTime from "@components/play/CountTime";
 import WebCam from "@components/turtle/WebCam";
 import Navbar from "@layouts/Navbar";
 
-import trackingBar from "@images/turtle/track-bar.png";
+import trackingBar from "@images/turtle/bar.png";
 
 const TurtlePlayPage = () => {
   const [timeLeft, setTimeLeft] = useState(3); // 카운트다운을 위해 3초로 설정
