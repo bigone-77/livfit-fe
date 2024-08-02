@@ -24,17 +24,19 @@ const TurtlePlayPage = () => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearInterval(startTimer);
-    } else {
+    } else if (webCamReady && timeLeft === 0 && !showStart) {
       setShowStart(true);
-      setTimeout(() => {
+      const showStartTimer = setTimeout(() => {
         setShowStart(false);
       }, 1000);
+
+      return () => clearTimeout(showStartTimer);
     }
-  }, [webCamReady, timeLeft]);
+  }, [webCamReady, timeLeft, showStart]);
 
   // 거북목 측정 측정 타이머 (웹캠이 준비되고 카운트다운이 끝난 후 시작)
   useEffect(() => {
-    if (webCamReady && trackingLeft > 0) {
+    if (webCamReady && timeLeft === 0 && trackingLeft > 0) {
       const trackingTimer = setInterval(() => {
         setTrackingLeft((prevTime) => prevTime - 1);
       }, 1000);
