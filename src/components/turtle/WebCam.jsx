@@ -66,11 +66,14 @@ const WebCam = ({ start, end, onReady }) => {
   // 카메라 및 포즈 감지
   useEffect(() => {
     // 시작 상태 및 카메라 준비 상태 확인
-    if (!start || isCameraReady) return;
-
+    if (!start || isCameraReady) {
+      console.log("Start not triggered or camera already ready"); ////
+      return; // 시작 상태 및 카메라 준비 상태 확인
+    }
+    console.log("initializing camera"); /////////
     const initializeCamera = async () => {
       try {
-        console.log("initializing camera"); /////////
+        console.log("initializing camera2"); /////////
         // 비디오가 이미 준비된 경우
         if (webcamRef.current && webcamRef.current.video.readyState === 4) {
           console.log("WebCam video readyState is 4, initializing camera"); /////////
