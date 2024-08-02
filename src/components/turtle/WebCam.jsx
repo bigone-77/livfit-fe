@@ -73,11 +73,6 @@ const WebCam = ({ start, end }) => {
     // MediaPipe 결과 처리 함수
     pose.onResults(onResults);
 
-    // 카메라 스트림을 사용하여 MediaPipe를 통해 포즈를 감지
-    // if (
-    //   typeof webcamRef.current !== "undefined" &&
-    //   webcamRef.current !== null
-    // ) {
     if (webcamRef.current && webcamRef.current.video.readyState === 4) {
       // 카메라 인스턴스 생성
       const camera = new window.Camera(webcamRef.current.video, {
@@ -92,11 +87,9 @@ const WebCam = ({ start, end }) => {
         height: 720, // 비디오 높이 설정
       });
 
-      // if (start) {
       camera.start(); // 측정 시작 시 카메라 시작
       cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
       setIsCameraReady(true); // 카메라 준비 상태 업데이트
-      // }
 
       return () => {
         // 컴포넌트가 언마운트될 때 스트림 정리
@@ -180,7 +173,7 @@ const WebCam = ({ start, end }) => {
           facingMode: "user", // 전면 카메라 사용
           frameRate: { ideal: 30, max: 60 },
         }}
-        style={{ display: "none" }}
+        // style={{ display: "none" }} 디스플레이 테스트
         // 모바일에서 인라인 재생 허용
         playsInline={true}
       />
