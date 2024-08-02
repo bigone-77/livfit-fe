@@ -15,6 +15,7 @@ import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
 import faceMask from "@images/turtle/face-mask.png";
+// import faceMask from "@images/turtle/track-bar.png";
 
 // WebCam 컴포넌트
 const WebCam = ({ start, end, onReady }) => {
@@ -151,26 +152,25 @@ const WebCam = ({ start, end, onReady }) => {
         const angle = detectTurtleNeck(simplifiedLandmarks);
         setAngles((prevAngles) => [...prevAngles, angle]);
 
-        //얼굴 위치에 이미지 덮어 씌우기
-        const faceLandmarks = results.poseLandmarks.slice(0, 468); // 얼굴 랜드마크만 사용 (468개의 점)
-        if (faceLandmarks.length > 0) {
-          const leftEye = faceLandmarks[33];
-          const rightEye = faceLandmarks[263];
-          const faceWidth = Math.abs(rightEye.x - leftEye.x) * canvas.width;
-          const faceHeight = faceWidth; // 원하는 비율에 맞게 조절
-
-          const faceCenterX = ((leftEye.x + rightEye.x) / 2) * canvas.width;
-          const faceCenterY = ((leftEye.y + rightEye.y) / 2) * canvas.height;
+        //얼굴 위치에 이미지 덮어 씌우기 여기부터
+        const noseLandmark = results.poseLandmarks[1]; // 코 끝부분의 랜드마크 인덱스는 1번입니다.
+        if (noseLandmark) {
+          const noseX = noseLandmark.x * canvas.width;
+          const noseY = noseLandmark.y * canvas.height;
+          //화면 이미지 크기 줄이려면 여기서 크기 조정 하면 됨 !
+          const imageSize = 900; // 이미지 크기 설정
+          // const imageSize = Math.min(canvas.width, canvas.height) * 0.3; // 화면 크기에 비례하여 이미지 크기 설정
 
           // 이미지 그리기
           canvasCtx.drawImage(
             image,
-            faceCenterX - faceWidth / 2,
-            faceCenterY - faceHeight / 2,
-            faceWidth,
-            faceHeight
+            noseX - imageSize / 2,
+            noseY - imageSize / 2,
+            imageSize,
+            imageSize
           );
         }
+        //여기까지 완료 검증된거임
       }
       canvasCtx.restore();
     }
