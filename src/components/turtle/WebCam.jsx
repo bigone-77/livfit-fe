@@ -265,7 +265,7 @@ const WebCam = ({ start, end }) => {
   useEffect(() => {
     if (!start || isCameraReady) return; // 시작 상태 및 카메라 준비 상태 확인
 
-    pose.onResults(onResults); // MediaPipe 결과 처리 함수
+    // 밑으로 이동 pose.onResults(onResults); // MediaPipe 결과 처리 함수
 
     const initializeCamera = async () => {
       try {
@@ -284,15 +284,35 @@ const WebCam = ({ start, end }) => {
           camera.start();
           cameraRef.current = camera;
           setIsCameraReady(true);
-        }
+        } else {
+          // 여기부터
+          // 비디오 준비가 안되었을 경우 대기
+          webcamRef.current.video.onloadedmetadata = () => {
+            const camera = new window.Camera(webcamRef.current.video, {
+              onFrame: async () => {
+                frameInterval.current++;
+                if (frameInterval.current % 4 === 0) {
+                  await pose.send({ image: webcamRef.current.video });
+                }
+              },
+              width: 1280,
+              height: 720,
+            });
+
+            camera.start();
+            cameraRef.current = camera;
+            setIsCameraReady(true);
+          };
+        } //여기 추가
       } catch (error) {
         console.error("카메라 초기화 오류:", error);
       }
     };
+    //밑으로이동
+    pose.onResults(onResults); // MediaPipe 결과 처리 함수
 
-    if (start && !isCameraReady) {
-      initializeCamera();
-    }
+    initializeCamera();
+
     return () => {
       if (cameraRef.current) {
         console.log("Stopping the camera...");
