@@ -65,7 +65,7 @@ const TurtlePlayPage = () => {
             START
           </p>
         )}
-        <WebCam start={webCamReady} end={timesUp} onReady={handleWebCamReady} />{" "}
+        <WebCam start={true} end={timesUp} onReady={handleWebCamReady} />{" "}
       </main>
       {webCamReady && trackingLeft > 0 && (
         <div className="absolute inset-0">
