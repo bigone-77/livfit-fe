@@ -92,11 +92,11 @@ const WebCam = ({ start, end }) => {
         height: 720, // 비디오 높이 설정
       });
 
-      //if (start) {
+      // if (start) {
       camera.start(); // 측정 시작 시 카메라 시작
       cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
       setIsCameraReady(true); // 카메라 준비 상태 업데이트
-      //}
+      // }
 
       return () => {
         // 컴포넌트가 언마운트될 때 스트림 정리
@@ -181,6 +181,8 @@ const WebCam = ({ start, end }) => {
           frameRate: { ideal: 30, max: 60 },
         }}
         style={{ display: "none" }}
+        // 모바일에서 인라인 재생 허용
+        playsInline={true}
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       {showModal && (
