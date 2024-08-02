@@ -27,7 +27,7 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
     //여기서 NOT READABLE ERROR
     if (
       //typeof webcamRef.current !== "undefined" &&
-      webcamRef.current !== null
+      webcamRef.current
     ) {
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {

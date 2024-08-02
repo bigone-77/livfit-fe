@@ -75,7 +75,8 @@ const WebCam = ({ start, end }) => {
     // 지금 여기서 모바일 카메라 조건 걸림
     // 카메라 안나오는거 여기임 모바일
     // (readyState === 4) 조건 제거
-    if (webcamRef.current !== null) {
+    //1. webcamRef.current != null 로 지정할시 모바일 Notreadable오류
+    if (webcamRef.current) {
       // 카메라 인스턴스 생성
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
