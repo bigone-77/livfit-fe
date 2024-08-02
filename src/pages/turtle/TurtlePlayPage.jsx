@@ -20,6 +20,7 @@ const TurtlePlayPage = () => {
 
   // 321카운트다운 타이머
   useEffect(() => {
+    console.log("userEffect started 321count");
     if (webCamReady && timeLeft > 0) {
       const startTimer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
