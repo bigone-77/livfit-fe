@@ -263,7 +263,7 @@ const WebCam = ({ start, end }) => {
 
   // 카메라 및 포즈 감지
   useEffect(() => {
-    if (!start || isCameraReady) return; // 시작 상태 및 카메라 준비 상태 확인
+    //if (!start || isCameraReady) return; // 시작 상태 및 카메라 준비 상태 확인 주석처리 테스트
 
     // 밑으로 이동 pose.onResults(onResults); // MediaPipe 결과 처리 함수
 

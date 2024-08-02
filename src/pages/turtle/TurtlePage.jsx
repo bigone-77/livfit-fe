@@ -93,7 +93,7 @@ const TurtlePage = () => {
               거북목 정도를 측정해보고 친구랑 비교해보세요! 바른 자세 습관
               기르는데 도움이 되요
             </h1>
-            <TipSection desc="거북목을 측정은 3초간 진행돼요!" />
+            <TipSection desc="거북목 측정은 3초간 진행돼요!" />
           </section>
           <div className="flex flex-col items-center justify-center gap-10 px-8 mt-10">
             <img src={trackBar} alt="trackBar" />
