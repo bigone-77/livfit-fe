@@ -25,7 +25,6 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
 
     //카메라 인스턴스 생성 조건 변경
     if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-      {
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
