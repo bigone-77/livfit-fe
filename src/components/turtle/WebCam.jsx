@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
+import faceMask from "@images/turtle/face-mask.png";
+
 // WebCam 컴포넌트
 const WebCam = ({ start, end, onReady }) => {
   const dispatch = useDispatch();
@@ -62,6 +64,10 @@ const WebCam = ({ start, end, onReady }) => {
   // 포즈 감지 설정 및 랜드마크 그리기 설정
   const pose = config(); // MediaPipe 설정 초기화
   const drawLandmarks = useDrawLandmarks("all"); // 랜드마크 그리기 설정
+
+  // 이미지 로드
+  const image = new Image();
+  image.src = faceMask;
 
   // 카메라 및 포즈 감지
   useEffect(() => {
@@ -134,6 +140,7 @@ const WebCam = ({ start, end, onReady }) => {
       canvasCtx.save();
       canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
       canvasCtx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+
       if (results.poseLandmarks) {
         drawLandmarks(
           canvasCtx,
@@ -143,6 +150,27 @@ const WebCam = ({ start, end, onReady }) => {
         const simplifiedLandmarks = simplifyPoseLandmarks(results);
         const angle = detectTurtleNeck(simplifiedLandmarks);
         setAngles((prevAngles) => [...prevAngles, angle]);
+
+        //얼굴 위치에 이미지 덮어 씌우기
+        const faceLandmarks = results.poseLandmarks.slice(0, 468); // 얼굴 랜드마크만 사용 (468개의 점)
+        if (faceLandmarks.length > 0) {
+          const leftEye = faceLandmarks[33];
+          const rightEye = faceLandmarks[263];
+          const faceWidth = Math.abs(rightEye.x - leftEye.x) * canvas.width;
+          const faceHeight = faceWidth; // 원하는 비율에 맞게 조절
+
+          const faceCenterX = ((leftEye.x + rightEye.x) / 2) * canvas.width;
+          const faceCenterY = ((leftEye.y + rightEye.y) / 2) * canvas.height;
+
+          // 이미지 그리기
+          canvasCtx.drawImage(
+            image,
+            faceCenterX - faceWidth / 2,
+            faceCenterY - faceHeight / 2,
+            faceWidth,
+            faceHeight
+          );
+        }
       }
       canvasCtx.restore();
     }
