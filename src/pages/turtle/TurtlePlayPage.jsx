@@ -14,6 +14,7 @@ const TurtlePlayPage = () => {
   const [webCamReady, setWebCamReady] = useState(false); // 웹캠 시작 상태
 
   const handleWebCamReady = () => {
+    console.log("WebCam Ready");
     setWebCamReady(true); // 웹캠이 준비되었음을 설정
   };
 

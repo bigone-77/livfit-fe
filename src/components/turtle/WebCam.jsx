@@ -70,6 +70,7 @@ const WebCam = ({ start, end, onReady }) => {
 
     const initializeCamera = async () => {
       try {
+        // 비디오가 이미 준비된 경우
         if (webcamRef.current && webcamRef.current.video.readyState === 4) {
           const camera = new window.Camera(webcamRef.current.video, {
             onFrame: async () => {
@@ -87,7 +88,6 @@ const WebCam = ({ start, end, onReady }) => {
           setIsCameraReady(true);
           onReady(); // 카메라가 준비된 후 콜백 호출
         } else {
-          // 여기부터
           // 비디오 준비가 안되었을 경우 대기
           webcamRef.current.video.onloadedmetadata = () => {
             const camera = new window.Camera(webcamRef.current.video, {
