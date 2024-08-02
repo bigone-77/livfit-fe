@@ -37,12 +37,10 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
         width: 1280,
         height: 720,
       });
-
-      if (start) {
-        camera.start();
-        setTimerStart(true); // 웹캠이 켜지고 나서야 타이머 작동시키기
-        cameraRef.current = camera; // camera 객체를 참조 변수에 저장
-      }
+      //if조건 앞의 if와 중복 제거 test1
+      camera.start();
+      setTimerStart(true); // 웹캠이 켜지고 나서야 타이머 작동시키기
+      cameraRef.current = camera; // camera 객체를 참조 변수에 저장
     }
 
     function onResults(results) {
