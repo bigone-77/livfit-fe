@@ -25,10 +25,8 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
 
     //지금 여기서 모바일 카메라 조건 걸림
     //여기서 NOT READABLE ERROR
-    if (
-      //typeof webcamRef.current !== "undefined" &&
-      webcamRef.current
-    ) {
+    //1. webcamRef.current != null 로 지정할시 모바일 Notreadable오류
+    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
       const camera = new window.Camera(webcamRef.current.video, {
         onFrame: async () => {
           frameInterval.current++;
