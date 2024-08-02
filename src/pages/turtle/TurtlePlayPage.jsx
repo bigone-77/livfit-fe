@@ -133,7 +133,8 @@ const TurtlePlayPage = () => {
             START
           </p>
         )}
-        <WebCam start={webCamReady} end={timesUp} /> {/* 상태 전달 */}
+        {webCamReady && <WebCam start={webCamReady} end={timesUp} />}{" "}
+        {/* 웹캠 준비 상태에 따라 조건부 렌더링 */}
       </main>
       {webCamReady && trackingLeft > 0 && (
         <div className="absolute inset-0">

@@ -290,8 +290,9 @@ const WebCam = ({ start, end }) => {
       }
     };
 
-    initializeCamera();
-
+    if (start && !isCameraReady) {
+      initializeCamera();
+    }
     return () => {
       if (cameraRef.current) {
         console.log("Stopping the camera...");
