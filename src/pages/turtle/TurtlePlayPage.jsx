@@ -17,9 +17,9 @@ const TurtlePlayPage = () => {
     setWebCamReady(true); // 웹캠이 준비되었음을 설정
   };
 
-  // 카운트다운 타이머
+  // 321카운트다운 타이머
   useEffect(() => {
-    if (timeLeft > 0 && webCamReady) {
+    if (webCamReady && timeLeft > 0) {
       const startTimer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
@@ -32,7 +32,7 @@ const TurtlePlayPage = () => {
     }
   }, [webCamReady, timeLeft]);
 
-  // 측정 타이머
+  // 거북목 측정 측정 타이머 (웹캠이 준비되고 카운트다운이 끝난 후 시작)
   useEffect(() => {
     if (webCamReady && trackingLeft > 0) {
       const trackingTimer = setInterval(() => {
@@ -43,7 +43,7 @@ const TurtlePlayPage = () => {
     } else if (trackingLeft === 0) {
       setTimesUp(true);
     }
-  }, [webCamReady, trackingLeft]); // 웹캠 시작 상태와 측정 타이머의 종속성
+  }, [webCamReady, timeLeft, trackingLeft]); // 웹캠 시작 상태와 측정 타이머의 종속성
 
   return (
     <div className="relative">
@@ -62,7 +62,6 @@ const TurtlePlayPage = () => {
           </p>
         )}
         <WebCam start={webCamReady} end={timesUp} onReady={handleWebCamReady} />{" "}
-        {/* 상태 전달 */}
       </main>
       {webCamReady && trackingLeft > 0 && (
         <div className="absolute inset-0">
