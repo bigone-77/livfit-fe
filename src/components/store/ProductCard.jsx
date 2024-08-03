@@ -66,8 +66,10 @@ const CardPrice = styled.span`
 `;
 
 const ProductCard = ({ img, text1, text2, text3, text4, navigateTo }) => {
+  const productId = navigateTo.split('/').pop();
+  
   return (
-    <CardContainer to={navigateTo}>
+    <CardContainer to={`/product/${productId}`}>
       <ProductImage img={img} />
       <CardDetails>
         <CardTitle>{text1}</CardTitle>

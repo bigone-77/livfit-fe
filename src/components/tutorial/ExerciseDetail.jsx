@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import YouTube from "react-youtube";
 import styled from "styled-components";
 import BackButton from "./BackButton";
@@ -80,11 +80,16 @@ const TestButton = styled.button`
 
 const ExerciseDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const exercise = ExerciseData.find((item) => item.id === parseInt(id));
 
   if (!exercise) {
     return <PageContainer>운동 정보를 찾을 수 없습니다.</PageContainer>;
   }
+
+  const handleButtonClick = () => {
+    navigate('/exercise');
+  };
 
   return (
     <PageContainer>
@@ -109,9 +114,7 @@ const ExerciseDetail = () => {
         </CardList>
         <Content>{exercise.content}</Content>
         <ButtonWrapper>
-          <TestButton>
-            <p>자세 측정하러가기</p>
-          </TestButton>
+          <TestButton onClick={handleButtonClick}>자세 측정하러가기</TestButton>
         </ButtonWrapper>
       </DetailContainer>
     </PageContainer>
