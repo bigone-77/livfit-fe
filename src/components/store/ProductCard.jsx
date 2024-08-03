@@ -69,7 +69,7 @@ const ProductCard = ({ img, text1, text2, text3, text4, navigateTo }) => {
   const productId = navigateTo.split('/').pop();
   
   return (
-    <CardContainer to={`/product/${productId}`}>
+    <CardContainer to={`/store/${productId}`}>
       <ProductImage img={img} />
       <CardDetails>
         <CardTitle>{text1}</CardTitle>

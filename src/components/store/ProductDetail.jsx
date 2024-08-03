@@ -79,7 +79,7 @@ const ExtraWrapper = styled.div`
 `;
 
 const ExtraLabel = styled.div`
-  flex: 0 0 150px; /* Adjust as needed */
+  flex: 0 0 150px; 
   font-size: 14px;
   color: #949494;
   margin-bottom: 5px;
@@ -122,7 +122,7 @@ const Button = styled.button`
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const product = productData.find((p) => p.navigateTo === `/product/${id}`);
+  const product = productData.find((p) => p.navigateTo === `/store/${id}`);
 
   if (!product) {
     return <p>Product not found!</p>;
