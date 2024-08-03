@@ -74,7 +74,7 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
         const simplifiedLandmarks = simplifyPoseLandmarks(results);
         if (exercise) {
           switch (exercise) {
-            case "squart":
+            case "squat":
               updateSquatCount(simplifiedLandmarks);
               break;
             case "lunge":
