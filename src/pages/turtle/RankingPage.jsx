@@ -15,6 +15,7 @@ const RankingPage = () => {
   const currentDateFormat = format(new Date(), "yyyy-MM-dd");
 
   const results = useQueries({
+    // TODO: 전체 거북목 기록과 접속한 회원의 닉네임을 얻자 queries로
     queries: [
       {
         queryKey: ["turtle", "records"],
@@ -24,18 +25,16 @@ const RankingPage = () => {
             .then((response) => response.data),
       },
       {
-        queryKey: ["turtle", "my", "records"],
+        queryKey: ["nickname"],
         queryFn: () =>
-          privateApi
-            .get("/turtle/my-records")
-            .then((response) => response.data),
+          privateApi.get("/mainpage/getname").then((response) => response.data),
       },
     ],
   });
 
-  const [allRecords, myRecords] = results;
+  const [allRecords, nickname] = results;
 
-  console.log(myRecords);
+  console.log(nickname.data);
 
   if (allRecords && allRecords.data && allRecords.data.length > 3) {
     return (

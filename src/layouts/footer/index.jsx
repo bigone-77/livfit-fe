@@ -53,7 +53,7 @@ const Footer = () => {
           imageSrc={profile}
           selectedImageSrc={selectedProfile}
           title="마이"
-          selected={pathname === "/profile"}
+          selected={pathname.includes("/profile")}
           url="/profile"
         />
       </footer>

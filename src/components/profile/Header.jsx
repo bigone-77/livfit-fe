@@ -1,12 +1,9 @@
-import EditBadge from "@commons/EditBadge";
-
-import chick from "@images/badge/chick-badge.png";
+import ShowBadge from "@commons/ShowBadge";
 
 const Header = ({ nickname, badgeName }) => {
-  console.log(badgeName);
   return (
     <header className="flex flex-col items-center gap-2 mt-8">
-      <EditBadge imageSrc={chick} />
+      <ShowBadge name={badgeName} edit />
       <p className="text-lg">{nickname}</p>
     </header>
   );

@@ -11,13 +11,13 @@ import ExercisePage from "@pages/exercise/ExercisePage";
 import PlayPage from "@pages/exercise/PlayPage";
 import ResultPage from "@pages/exercise/ResultPage";
 
-import TutorialPage from "@pages/tutorial/TutorialPage";
-import SquatPage from "@pages/tutorial/SquatPage";
+import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
 import LungePage from "@pages/tutorial/LungePage";
 import PushupPage from "@pages/tutorial/PushupPage";
-import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
+import SquatPage from "@pages/tutorial/SquatPage";
+import TutorialPage from "@pages/tutorial/TutorialPage";
 
-
+import MyRankingPage from "@pages/turtle/MyRankingPage";
 import RankingPage from "@pages/turtle/RankingPage";
 import TurtleResultPage from "@pages/turtle/ResultPage";
 import TurtlePage from "@pages/turtle/TurtlePage";
@@ -28,7 +28,10 @@ import FindpwPage from "@pages/login/FindpwPage";
 import LoginPage from "@pages/login/LoginPage";
 import SignupPage from "@pages/login/SignupPage";
 
-import ProfilePage from "@pages/ProfilePage";
+import MyRecordsPage from "@pages/profile/MyRecordsPage";
+import PointPage from "@pages/profile/PointPage";
+import ProfilePage from "@pages/profile/ProfilePage";
+
 import StorePage from "@pages/store/StorePage";
 
 import Footer from "@layouts/footer";
@@ -64,19 +67,19 @@ const Routes = () => {
         <Route path="/tutorial/squat" element={<SquatPage />} />
         <Route path="/tutorial/lunge" element={<LungePage />} />
         <Route path="/tutorial/pushup" element={<PushupPage />} />
-        <Route
-          path="/tutorial/detail/:id"
-          element={<ExerciseDetailPage />}
-        />
+        <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
 
         <Route path="/turtle" element={<TurtlePage />} />
         <Route path="/turtle/ranking" element={<RankingPage />} />
+        <Route path="/turtle/my-ranking" element={<MyRankingPage />} />
         {/* 스토어 페이지입니다. */}
         <Route path="/store" element={<StorePage />} />
         {/* 마이페이지입니다. */}
         <Route path="/profile" element={<Navbar closed mypage />}>
           <Route index element={<ProfilePage />} />
         </Route>
+        <Route path="/profile/my-records" element={<MyRecordsPage />} />
+        <Route path="/profile/myPoint" element={<PointPage />} />
       </Route>
       {/* 운동 옵션 선택 페이지 */}
       <Route path="/exercise/:name" element={<DetailExercisePage />} />

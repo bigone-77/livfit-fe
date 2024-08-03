@@ -61,7 +61,11 @@ const ProfilePage = () => {
         <div className="px-8 pb-10">
           <Header nickname={nickname.data} badgeName={badge.data} />
           <section className="grid grid-cols-3 gap-2 mt-6 mb-4">
-            <RecordSection itemSrc={memoSrc} name="운동 기록" />
+            <RecordSection
+              itemSrc={memoSrc}
+              name="운동 기록"
+              url="my-records"
+            />
             <RecordSection itemSrc={turtleSrc} name="거북목 측정 기록" />
             <RecordSection itemSrc={chartSrc} name="미션 연속 달성 기록" />
           </section>

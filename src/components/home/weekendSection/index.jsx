@@ -3,7 +3,6 @@ import { parsedDay } from "../../../constants/parsedDay";
 import DayCard from "./DayCard";
 
 const WeekendSection = ({ exercises }) => {
-  console.log(exercises);
   return (
     <section className="px-6 mt-10">
       {!exercises ? (

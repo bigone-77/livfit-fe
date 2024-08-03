@@ -9,7 +9,7 @@ import lightBackArrow from "@svgs/light-left-arrow.svg";
 // closed를 props로 부여합니다.
 
 // isWhite -> white navbar
-const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store }) => {
+const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store, point }) => {
   const navigate = useNavigate();
 
   const backHandler = () => {
@@ -23,7 +23,9 @@ const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store }) => {
   return (
     <>
       <nav
-        className="flex items-center justify-between px-6 pt-10"
+        className={`flex items-center justify-between px-6 pt-10 ${
+          point && "bg-transparent"
+        }`}
         style={{ backgroundColor: bgColor }}
       >
         {isWhite ? (
@@ -48,6 +50,11 @@ const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store }) => {
         {store && (
           <p className="z-10 text-2xl text-center mr-[45%] text-text50">
             스토어
+          </p>
+        )}
+        {point && (
+          <p className="z-10 text-2xl text-center mr-[45%] text-text400">
+            포인트
           </p>
         )}
         {closed ? (
