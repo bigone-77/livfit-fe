@@ -10,13 +10,14 @@ export default function CategoryBox({
   const navigate = useNavigate();
   return (
     <section
-      className="flex flex-col items-center justify-center p-4 hover:opacity-50 hover:trasition-all"
+      className="flex flex-col items-center justify-center p-4 hover:opacity-50 transition-all text-center"
       onClick={() => navigate(url)}
     >
       <img src={`${selected ? selectedImageSrc : imageSrc}`} alt={imageSrc} />
-      <p className={`${selected ? "text-orange" : "text-text80"} text-[10px]`}>
-        {title}
-      </p>
+      <p
+        className={`${selected ? "text-orange" : "text-text80"} text-[10px]`}
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
     </section>
   );
 }

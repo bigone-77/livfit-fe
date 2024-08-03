@@ -25,21 +25,29 @@ const Header = ({ isCurrentUser }) => {
       />
       <img src={logo} alt="Logo" className="pl-7" />
 
-      {isCurrentUser ? (
-        <BiLogOut
-          color="white"
-          size={40}
-          onClick={logoutHandler}
-          className="z-10"
-        />
-      ) : (
-        <BiLogIn
-          color="white"
-          size={40}
-          onClick={() => navigate("/login")}
-          className="z-10"
-        />
-      )}
+      <div className="flex flex-col items-center">
+        {isCurrentUser ? (
+          <>
+            <BiLogOut
+              color="white"
+              size={35}
+              onClick={logoutHandler}
+              className="z-10 cursor-pointer"
+            />
+            <span className="text-white mt-0 text-xs">LOGOUT</span>
+          </>
+        ) : (
+          <>
+            <BiLogIn
+              color="white"
+              size={35}
+              onClick={() => navigate("/login")}
+              className="z-10 cursor-pointer"
+            />
+            <span className="text-white mt-0 text-xs">LOGIN</span>
+          </>
+        )}
+      </div>
     </header>
   );
 };
