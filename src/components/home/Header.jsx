@@ -25,7 +25,7 @@ const Header = ({ isCurrentUser }) => {
         onClick={() => navigate("/badge")}
         src={badge}
         alt="Badge"
-        className="z-10"
+        className="z-10 transition-all cursor-pointer hover:opacity-50"
       />
       <img src={logo} alt="Logo" className="pl-7" />
 

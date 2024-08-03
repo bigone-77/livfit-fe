@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { privateApi, publicApi } from "@api/axios";
 
@@ -7,6 +7,7 @@ import DetailSection from "@components/challenge/DetailSection";
 import GroupButton from "@components/challenge/GroupButton";
 
 const DetailChallengePage = () => {
+  const navigate = useNavigate();
   const challengeId = useParams().id;
 
   const { data } = useQuery({
@@ -19,7 +20,12 @@ const DetailChallengePage = () => {
   // onSuccess -> 마이페이지 profile/my-challenge 페이지로 이동
   const mutation = useMutation({
     mutationFn: (body) => privateApi.post("/challenge/participate", body),
+    onSuccess: () => {
+      navigate("/profile/my-challenge");
+    },
   });
+
+  console.log(data);
 
   return (
     <div className="px-6 py-6 bg-[#F6F6F6] h-full">

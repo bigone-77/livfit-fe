@@ -31,13 +31,16 @@ const BottomTab = ({ goup, upDownHandler, data }) => {
             totalStep={data.length}
             step={data.filter((d) => d.status === 1).length}
           />
-          <section className="flex flex-col gap-3">
+          <section className="flex w-full gap-4 overflow-x-auto scroll-smooth">
             {data.map((d, index) => (
               <RowCard
                 key={index}
-                title={d.challengeTitle}
-                status={d.status}
                 id={d.id}
+                title={d.title}
+                desc={d.description}
+                start={d.startDate}
+                end={d.endDate}
+                status={d.status}
               />
             ))}
           </section>

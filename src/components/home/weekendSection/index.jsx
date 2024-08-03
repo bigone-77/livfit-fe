@@ -18,7 +18,10 @@ const WeekendSection = ({ exercises }) => {
           </button>
         </>
       ) : (
-        <div className="flex flex-col p-6 transition-all cursor-pointer rounded-2xl bg-text50 hover:scale-105">
+        <div
+          onClick={() => navigate("/profile/my-challenges")}
+          className="flex flex-col p-6 transition-all cursor-pointer rounded-2xl bg-text50 hover:scale-105"
+        >
           <div className="flex justify-between itesm-center">
             <p className="text-lg text-text500">이번주 운동 달성률</p>
             <p className="text-sm text-text150">자세히 보기</p>

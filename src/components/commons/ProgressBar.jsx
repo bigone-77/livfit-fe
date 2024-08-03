@@ -7,7 +7,7 @@ const ProgressBar = ({ totalStep, step }) => {
   return (
     <div className="relative w-full mt-16 mb-6">
       <div
-        className="absolute -top-10"
+        className="absolute -top-12"
         style={{
           left: `calc(${progressWidth}% - 50px)`,
         }}

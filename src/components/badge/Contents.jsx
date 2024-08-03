@@ -34,10 +34,7 @@ const Contents = ({ badges, selected, setSelected }) => {
           key={index}
         >
           <div className="text-center">
-            <ShowBadge
-              name={badge.name}
-              handler={() => setShowBadgeName(badge.name)}
-            />
+            <ShowBadge name="lock" />
             <p className="text-sm text-text400">{badge.desc}</p>
           </div>
         </div>

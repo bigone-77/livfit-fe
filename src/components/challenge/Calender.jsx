@@ -13,8 +13,10 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaChevronDown } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Calendar = () => {
+  const navigate = useNavigate();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
@@ -42,7 +44,10 @@ const Calendar = () => {
             />
           )}
         </div>
-        <button className="px-2 py-1 text-sm text-white rounded-md bg-orange2">
+        <button
+          onClick={() => navigate("/challenge")}
+          className="px-2 py-1 text-sm text-white rounded-md bg-orange2"
+        >
           전체 보기
         </button>
       </div>

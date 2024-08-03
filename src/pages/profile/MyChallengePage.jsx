@@ -13,8 +13,6 @@ const MyChallengePage = () => {
     queryFn: () => privateApi.get("/challenge/user").then((res) => res.data),
   });
 
-  console.log(challenges);
-
   const [goup, setGoup] = useState(false);
 
   const upDownHandler = () => {

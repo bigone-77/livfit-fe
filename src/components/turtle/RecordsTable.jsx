@@ -1,8 +1,14 @@
 import { format } from "date-fns";
 import { Fragment } from "react";
 
+import one from "@svgs/home/one.svg";
+import three from "@svgs/home/three.svg";
+import two from "@svgs/home/two.svg";
+
 const RecordsTable = ({ records }) => {
-  console.log(records);
+  // 점수 기준으로 records 배열 내림차순 정렬
+  const sortedRecords = [...records].sort((a, b) => b.score - a.score);
+
   return (
     <section className="h-full overflow-x-auto">
       <div className="flex items-center w-full text-sm text-[#9C9C9C] mb-2">
@@ -12,19 +18,30 @@ const RecordsTable = ({ records }) => {
       </div>
       <table className="min-w-full">
         <tbody>
-          {records.map((record, index) => (
+          {sortedRecords.map((record, index) => (
             <Fragment key={index}>
               <tr className="bg-white">
                 <td className="text-center py-6 text-[#9C9C9C] text-xs">
                   {format(new Date(record.localDate), "MM.dd")}
                 </td>
-                <td className="py-6 pl-4 pr-8 text-center">5</td>
+                {/* <td className="py-6 pl-4 pr-8 text-center">{index + 1}</td> */}
+                <td className="py-6 pl-4 pr-8 text-center place-content-center">
+                  {index + 1 === 1 ? (
+                    <img src={one} alt="one" />
+                  ) : index + 1 === 2 ? (
+                    <img src={two} alt="two" />
+                  ) : index + 1 === 3 ? (
+                    <img src={three} alt="three" />
+                  ) : (
+                    index + 1
+                  )}
+                </td>
                 <td className="py-6 pl-6 text-center w-fit">
                   {(record.score / 10).toFixed(1)}°
                 </td>
                 <td className="py-6 pl-2 pr-8">{record.score}</td>
               </tr>
-              {index < records.length - 1 && (
+              {index < sortedRecords.length - 1 && (
                 <tr>
                   <td colSpan="5" className="py-2"></td>
                 </tr>

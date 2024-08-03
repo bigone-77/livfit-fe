@@ -33,10 +33,15 @@ const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store, point }) => {
             src={lightBackArrow}
             alt={backArrow}
             onClick={backHandler}
-            className="z-10"
+            className="z-10 cursor-pointer"
           />
         ) : (
-          <img src={backArrow} alt={backArrow} onClick={backHandler} />
+          <img
+            src={backArrow}
+            alt={backArrow}
+            onClick={backHandler}
+            className="z-10 cursor-pointer"
+          />
         )}
 
         {turtle && (
@@ -59,9 +64,19 @@ const Navbar = ({ isWhite, bgColor, closed, turtle, mypage, store, point }) => {
         )}
         {closed ? (
           isWhite ? (
-            <img src={lightClose} alt={close} onClick={closeHandler} />
+            <img
+              src={lightClose}
+              alt={close}
+              onClick={closeHandler}
+              className="z-10 cursor-pointer"
+            />
           ) : (
-            <img src={close} alt={close} onClick={closeHandler} />
+            <img
+              src={close}
+              alt={close}
+              onClick={closeHandler}
+              className="z-10 cursor-pointer"
+            />
           )
         ) : null}
       </nav>

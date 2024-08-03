@@ -1,4 +1,4 @@
-import { privateApi } from "@api/axios";
+import { privateApi, publicApi } from "@api/axios";
 import { useQueries } from "@tanstack/react-query";
 
 import Wrapper from "@commons/Wrapper";
@@ -26,10 +26,14 @@ export default function HomePage() {
         queryFn: () =>
           privateApi.get("/mainpage/getname").then((response) => response.data),
       },
+      {
+        queryKey: ["challenge", "all"],
+        queryFn: () => publicApi.get("/challenge/list").then((res) => res.data),
+      },
     ],
   });
 
-  const [weekendData, nicknameData] = results;
+  const [weekendData, nicknameData, challengeData] = results;
 
   return (
     <Wrapper>
@@ -47,7 +51,7 @@ export default function HomePage() {
         </div>
 
         <WeekendSection exercises={weekendData?.data} />
-        <ChallengeSection />
+        <ChallengeSection challenges={challengeData?.data} />
       </div>
     </Wrapper>
   );

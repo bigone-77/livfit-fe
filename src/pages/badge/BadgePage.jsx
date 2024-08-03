@@ -1,12 +1,23 @@
 import { useQueries } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { privateApi } from "@api/axios";
 
 import Contents from "@components/badge/Contents";
 import Header from "@components/badge/Header";
-import { useState } from "react";
 
 const BadgePage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      alert("로그인이 필요합니다. 홈으로 이동합니다.");
+      navigate("/");
+    }
+  }, [navigate]);
+
   const [selectedBadge, setSelectedBadge] = useState("성공 배지");
   const results = useQueries({
     queries: [

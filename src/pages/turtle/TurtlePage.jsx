@@ -90,7 +90,7 @@ const TurtlePage = () => {
           <div className="flex flex-col items-center justify-center gap-10 px-8 mt-10">
             <img src={trackBar} alt="trackBar" />
             <button
-              className="w-full h-[58px] rounded-[74px] bg-orange2 mb-10 text-text50 font-semibold"
+              className="w-full h-[58px] rounded-[74px] bg-orange2 mb-10 text-text50 font-semibold hover:opacity-80 transition-all"
               onClick={handleTrackHandler}
             >
               측정하러가기
@@ -106,7 +106,7 @@ const TurtlePage = () => {
             <p className="text-xl">랭킹</p>
           </div>
           <p
-            className="text-sm text-text200"
+            className="text-sm cursor-pointer text-text200 hover:opacity-50"
             onClick={() => navigate("ranking")}
           >
             전체 랭킹 확인하기

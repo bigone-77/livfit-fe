@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { publicApi } from "@api/axios";
+import { privateApi, publicApi } from "@api/axios";
 
 import Contents from "@components/challenge/Contents";
 import Header from "@components/challenge/Header";
@@ -11,11 +11,21 @@ import arrow from "@svgs/challenge/small-arrow.svg";
 
 const ChallengePage = () => {
   const navigate = useNavigate();
+
+  // localStorage에 토큰이 있으면 '/challenge/user'로 요청
+  // 없으면 밑에 있는 'challenge/list'로 요청
   const { data: challenges } = useQuery({
     queryKey: ["challenge", "all"],
     queryFn: () => publicApi.get("/challenge/list").then((res) => res.data),
   });
 
+  const { data: isCurrentUser } = useQuery({
+    queryKey: ["nickname"],
+    queryFn: () =>
+      privateApi.get("/mainpage/getname").then((response) => response.data),
+  });
+
+  console.log(challenges);
   return (
     <div className="w-full h-screen overflow-y-hidden">
       <Header />
@@ -23,13 +33,15 @@ const ChallengePage = () => {
         <div className="h-full overflow-y-scroll pb-60">
           <section className="flex items-center justify-between px-4 mb-4">
             <img src={dots} alt="dots" />
-            <div
-              className="flex items-center gap-1 px-4 py-1 transition-all rounded-lg cursor-pointer bg-orange2 text-text50 hover:opacity-50"
-              onClick={() => navigate("/profile/my-challenges")}
-            >
-              <p className="text-sm font-semibold">내 챌린지</p>
-              <img src={arrow} alt="small-arrow" />
-            </div>
+            {isCurrentUser && (
+              <div
+                className="flex items-center gap-1 px-4 py-1 transition-all rounded-lg cursor-pointer bg-orange2 text-text50 hover:opacity-50"
+                onClick={() => navigate("/profile/my-challenges")}
+              >
+                <p className="text-sm font-semibold">내 챌린지</p>
+                <img src={arrow} alt="small-arrow" />
+              </div>
+            )}
           </section>
           {challenges && challenges.length > 0 && (
             <Contents data={challenges} />

@@ -10,7 +10,7 @@ export default function CategoryBox({
   const navigate = useNavigate();
   return (
     <section
-      className="flex flex-col items-center justify-center p-4 hover:opacity-50 transition-all text-center"
+      className="flex flex-col items-center justify-center p-4 text-center transition-all cursor-pointer hover:opacity-50"
       onClick={() => navigate(url)}
     >
       <img src={`${selected ? selectedImageSrc : imageSrc}`} alt={imageSrc} />
