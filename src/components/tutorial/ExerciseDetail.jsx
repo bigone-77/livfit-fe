@@ -15,7 +15,7 @@ const PageContainer = styled.div`
   margin: 0 auto;
   font-size: 12px;
   background-color: #f6f6f6;
-  padding-bottom: 90px;
+  padding-bottom: 180px;
 `;
 
 const HeaderContainer = styled.div`

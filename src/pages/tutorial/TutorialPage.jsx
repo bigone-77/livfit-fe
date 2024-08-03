@@ -22,7 +22,7 @@ const TutorialContainer = styled.div`
 
 const TutorialHeader = styled.div`
   width: 100%;
-  height: 7vh;
+  height: 9vh;
   position: relative;
   background-image: url(${header});
   background-size: cover;
