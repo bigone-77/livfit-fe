@@ -1,10 +1,18 @@
 import ColCard from "./ColCard";
 
-const Contents = () => {
+const Contents = ({ data }) => {
   return (
     <section className="grid w-full grid-cols-2 gap-3 place-items-center">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <ColCard key={index} />
+      {data.map((d, index) => (
+        <ColCard
+          key={index}
+          title={d.title}
+          desc={d.description}
+          start={d.startDate}
+          end={d.endDate}
+          freq={d.frequency}
+          id={d.id}
+        />
       ))}
     </section>
   );

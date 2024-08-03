@@ -5,9 +5,21 @@ import squat from "@images/squat.png";
 const SelectEx = () => {
   return (
     <div className="flex overflow-x-auto scroll-smooth">
-      <img src={lunge} alt="lunge" className="w-40 h-48 mr-2 shrink-0" />
-      <img src={squat} alt="squat" className="w-40 h-48 mr-2 shrink-0" />
-      <img src={pushup} alt="pushup" className="w-40 h-48 mr-2 shrink-0" />
+      <img
+        src={lunge}
+        alt="lunge"
+        className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
+      />
+      <img
+        src={squat}
+        alt="squat"
+        className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
+      />
+      <img
+        src={pushup}
+        alt="pushup"
+        className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
+      />
     </div>
   );
 };

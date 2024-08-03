@@ -5,7 +5,7 @@ import progress from "@images/progress.png";
 import fire from "@svgs/fire.svg";
 import rightArrow from "@svgs/right-arrow.svg";
 
-const MissonSwiper = () => {
+const TodayMission = () => {
   const { data: mission } = useQuery({
     queryKey: ["mission"],
     queryFn: () =>
@@ -32,7 +32,7 @@ const MissonSwiper = () => {
   }
 
   return (
-    <section className="flex flex-col gap-2 px-6 pt-6 shadow-xl rounded-2xl">
+    <section className="flex flex-col gap-2 px-6 pt-6 transition-all shadow-xl cursor-pointer rounded-2xl hover:scale-105">
       {content}
       <img src={progress} alt="dummy-progress" className="mb-8" />
       <div className="flex items-center justify-center w-full gap-1 text-3xl font-bold mini:text-4xl tablet:text-5xl font-English">
@@ -43,4 +43,4 @@ const MissonSwiper = () => {
   );
 };
 
-export default MissonSwiper;
+export default TodayMission;

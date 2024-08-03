@@ -98,7 +98,6 @@ const Routes = () => {
       <Route path="/badge" element={<BadgePage />} />
       {/* 챌린지 페이지 */}
       <Route path="/challenge" element={<ChallengePage />} />
-      {/* <Route path="/challenge/:id" element={<DetailChallengePage />} /> */}
       <Route
         path="/challenge/:id"
         element={<Navbar closed bgColor={"#F6F6F6"} />}

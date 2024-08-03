@@ -7,7 +7,7 @@ const HotSection = () => {
   const navigate = useNavigate();
   return (
     <section
-      className="p-4 rounded-xl bg-[#F7ECD1] relative"
+      className="p-4 rounded-xl bg-[#F7ECD1] relative hover:scale-105 transition-all cursor-pointer"
       onClick={() => navigate("/tutorial")}
     >
       <div className="mb-2 text-lg">

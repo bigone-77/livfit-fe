@@ -7,7 +7,7 @@ const TurtleRank = () => {
   const navigate = useNavigate();
   return (
     <section
-      className="p-4 rounded-xl bg-text50"
+      className="p-4 transition-all cursor-pointer rounded-xl bg-text50 hover:scale-105"
       onClick={() => navigate("/turtle")}
     >
       <div className="flex flex-col gap-1">

@@ -7,6 +7,7 @@ import ChallengeSection from "@components/home/challengeSection";
 import Exercises from "@components/home/exercises";
 import Header from "@components/home/Header";
 import HotSection from "@components/home/HotSection";
+import TodayMission from "@components/home/TodayMission";
 import TurtleRank from "@components/home/turtleRank";
 import WeekendSection from "@components/home/weekendSection";
 
@@ -40,6 +41,11 @@ export default function HomePage() {
           <HotSection />
           <TurtleRank />
         </div>
+
+        <div className="pt-10 mx-8">
+          <TodayMission />
+        </div>
+
         <WeekendSection exercises={weekendData?.data} />
         <ChallengeSection />
       </div>

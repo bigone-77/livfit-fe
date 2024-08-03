@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 import { publicApi } from "@api/axios";
 
@@ -9,12 +10,11 @@ import dots from "@svgs/challenge/dots.svg";
 import arrow from "@svgs/challenge/small-arrow.svg";
 
 const ChallengePage = () => {
-  const { data } = useQuery({
+  const navigate = useNavigate();
+  const { data: challenges } = useQuery({
     queryKey: ["challenge", "all"],
     queryFn: () => publicApi.get("/challenge/list").then((res) => res.data),
   });
-
-  console.log(data);
 
   return (
     <div className="w-full h-screen overflow-y-hidden">
@@ -23,12 +23,17 @@ const ChallengePage = () => {
         <div className="h-full overflow-y-scroll pb-60">
           <section className="flex items-center justify-between px-4 mb-4">
             <img src={dots} alt="dots" />
-            <div className="flex items-center gap-1 px-4 py-1 rounded-lg cursor-pointer bg-orange2 text-text50">
+            <div
+              className="flex items-center gap-1 px-4 py-1 transition-all rounded-lg cursor-pointer bg-orange2 text-text50 hover:opacity-50"
+              onClick={() => navigate("/profile/my-challenges")}
+            >
               <p className="text-sm font-semibold">내 챌린지</p>
               <img src={arrow} alt="small-arrow" />
             </div>
           </section>
-          <Contents />
+          {challenges && challenges.length > 0 && (
+            <Contents data={challenges} />
+          )}
         </div>
       </div>
     </div>

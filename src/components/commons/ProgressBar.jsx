@@ -12,7 +12,9 @@ const ProgressBar = ({ totalStep, step }) => {
           left: `calc(${progressWidth}% - 50px)`,
         }}
       >
-        <BallonText>{Math.floor(progressWidth)}% 달성</BallonText>
+        {progressWidth && (
+          <BallonText>{Math.floor(progressWidth)}% 달성</BallonText>
+        )}
       </div>
       <div className="w-full h-4 rounded-[51px] bg-[#FFF0C9] overflow-hidden">
         <section

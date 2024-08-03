@@ -12,7 +12,9 @@ const Exercises = () => {
             혼자서도 정확하게! AI로 운동하기
           </p>
         </div>
-        <p className="mr-4 text-sm text-text150">전체 보기</p>
+        <p className="mr-4 text-sm cursor-pointer text-text15 hover:opacity-50">
+          전체 보기
+        </p>
       </div>
       <SelectEx />
     </div>

@@ -7,8 +7,12 @@ import logo from "@svgs/logo.svg";
 
 const Header = ({ isCurrentUser }) => {
   const logoutHandler = () => {
-    if (localStorage.getItem("accessToken")) {
+    if (
+      localStorage.getItem("accessToken") ||
+      localStorage.getItem("refreshToken")
+    ) {
       localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       window.location.href = "/";
     }
   };
@@ -34,7 +38,7 @@ const Header = ({ isCurrentUser }) => {
               onClick={logoutHandler}
               className="z-10 cursor-pointer"
             />
-            <span className="text-white mt-0 text-xs">LOGOUT</span>
+            <span className="mt-0 text-xs text-white">LOGOUT</span>
           </>
         ) : (
           <>
@@ -44,7 +48,7 @@ const Header = ({ isCurrentUser }) => {
               onClick={() => navigate("/login")}
               className="z-10 cursor-pointer"
             />
-            <span className="text-white mt-0 text-xs">LOGIN</span>
+            <span className="mt-0 text-xs text-white">LOGIN</span>
           </>
         )}
       </div>
