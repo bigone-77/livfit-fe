@@ -85,7 +85,14 @@ const ShowBadge = ({ name, edit, handler }) => {
     );
   }
 
-  return <img src={badgeSrc} alt={name} />;
+  return (
+    <img
+      src={badgeSrc}
+      alt={name}
+      className="cursor-pointer"
+      onClick={handler}
+    />
+  );
 };
 
 export default ShowBadge;

@@ -1,8 +1,11 @@
 import ShowBadge from "@commons/ShowBadge";
 import { badgeArray } from "@constants/badgeArray";
+import { useState } from "react";
+import BadgeModal from "./BadgeModal";
 import GroupButton from "./GroupButton";
 
 const Contents = ({ badges, selected, setSelected }) => {
+  const [showBadgeName, setShowBadgeName] = useState("");
   let content;
 
   if (selected === "전체 배지") {
@@ -12,7 +15,10 @@ const Contents = ({ badges, selected, setSelected }) => {
         key={index}
       >
         <div className="text-center">
-          <ShowBadge name={badge.name} />
+          <ShowBadge
+            name={badge.name}
+            handler={() => setShowBadgeName(badge.name)}
+          />
           <p className="text-sm text-text400">{badge.desc}</p>
         </div>
       </div>
@@ -28,7 +34,10 @@ const Contents = ({ badges, selected, setSelected }) => {
           key={index}
         >
           <div className="text-center">
-            <ShowBadge name={badge.name} />
+            <ShowBadge
+              name={badge.name}
+              handler={() => setShowBadgeName(badge.name)}
+            />
             <p className="text-sm text-text400">{badge.desc}</p>
           </div>
         </div>
@@ -44,7 +53,10 @@ const Contents = ({ badges, selected, setSelected }) => {
           key={index}
         >
           <div className="text-center">
-            <ShowBadge name={badge.name} />
+            <ShowBadge
+              name={badge.name}
+              handler={() => setShowBadgeName(badge.name)}
+            />
             <p className="text-sm text-text400">{badge.desc}</p>
           </div>
         </div>
@@ -55,6 +67,13 @@ const Contents = ({ badges, selected, setSelected }) => {
     <section className="w-full">
       <GroupButton selected={selected} setSelected={setSelected} />
       <div className="grid grid-cols-3 gap-6 mt-10">{content}</div>
+      {showBadgeName && (
+        <BadgeModal
+          modalOpen={showBadgeName}
+          setModalOpen={setShowBadgeName}
+          badgeImgSrc={showBadgeName}
+        />
+      )}
     </section>
   );
 };

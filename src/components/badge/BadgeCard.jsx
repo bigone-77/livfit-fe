@@ -32,19 +32,6 @@ const BadgeCard = ({ name, desc, userBadge, category }) => {
         )}
       </div>
     );
-    // content = userBadgeNames.includes(name) ? (
-    // <div className="text-center" onClick={() => setShowModal(true)}>
-    //   <ShowBadge name={name} />
-    //   <p className="text-sm text-text400">{desc}</p>
-    // </div>
-    // ) : (
-    // <>
-    //   <div className="flex items-center justify-center rounded-full shadow-lg w-24 h-24 bg-[#E8E7E7]">
-    //     <img src={lockIcon} alt="Locked badge" />
-    //   </div>
-    //   <p className="text-sm text-text150">활동 배지</p>
-    // </>
-    // );
   }
 
   if (category === "전체 배지") {
