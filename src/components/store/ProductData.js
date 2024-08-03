@@ -4,8 +4,8 @@ export const productData = [
         img: '/src/assets/images/store/livfit_tshirt.png',
         text1: 'Livfit Signiture T-shirt',
         text2: '리브핏 시그니처 티셔츠',
-        text3: '890,000 P',
-        text4: '89,000원',
+        text3: '490,000 P',
+        text4: '49,000원',
         navigateTo: '/product/black-label-tshirt'
     },
     {
