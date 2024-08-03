@@ -1,11 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-import alarm from "@svgs/alarm.svg";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+
 import badge from "@svgs/badge.svg";
-import login from "@svgs/login.svg";
 import logo from "@svgs/logo.svg";
 
-const Header = () => {
+const Header = ({ isCurrentUser }) => {
+  const logoutHandler = () => {
+    if (localStorage.getItem("accessToken")) {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <header className="relative flex items-center justify-between w-full px-8 h-52 bg-gradient-triple">
@@ -17,15 +24,22 @@ const Header = () => {
         className="z-10"
       />
       <img src={logo} alt="Logo" className="pl-7" />
-      <section className="flex items-center gap-4">
-        <img src={alarm} alt="Alarm" />
-        <img
-          src={login}
-          alt="login"
+
+      {isCurrentUser ? (
+        <BiLogOut
+          color="white"
+          size={40}
+          onClick={logoutHandler}
+          className="z-10"
+        />
+      ) : (
+        <BiLogIn
+          color="white"
+          size={40}
           onClick={() => navigate("/login")}
           className="z-10"
         />
-      </section>
+      )}
     </header>
   );
 };

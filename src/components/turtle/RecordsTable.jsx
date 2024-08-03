@@ -18,11 +18,11 @@ const RecordsTable = ({ records }) => {
                 <td className="text-center py-6 text-[#9C9C9C] text-xs">
                   {format(new Date(record.localDate), "MM.dd")}
                 </td>
-                <td className="py-6 pl-4 pr-10 text-center">5</td>
-                <td className="py-6 pl-8 text-center">
+                <td className="py-6 pl-4 pr-8 text-center">5</td>
+                <td className="py-6 pl-6 text-center w-fit">
                   {(record.score / 10).toFixed(1)}°
                 </td>
-                <td className="py-6 pr-10 text-center">{record.score}</td>
+                <td className="py-6 pl-2 pr-8">{record.score}</td>
               </tr>
               {index < records.length - 1 && (
                 <tr>

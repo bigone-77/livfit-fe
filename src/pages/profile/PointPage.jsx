@@ -18,7 +18,7 @@ const PointPage = () => {
 
   if (data) {
     content = (
-      <div className="h-screen mb-20 overflow-y-scroll">
+      <div className="h-screen mb-20 overflow-y-hidden">
         <GreetSection
           nickname={data[0].nickname}
           count={data.length || 0}

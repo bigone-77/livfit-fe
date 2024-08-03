@@ -17,6 +17,7 @@ const ShowGraphRecords = ({ exercise }) => {
   if (!data) {
     return <p>측정된 운동 기록이 없습니다.</p>;
   }
+  console.log(data);
 
   if (data && data.length > 0) {
     return (

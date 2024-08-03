@@ -33,7 +33,7 @@ export default function HomePage() {
   return (
     <Wrapper>
       <div className="pb-20">
-        <Header />
+        <Header isCurrentUser={nicknameData?.data} />
         <Banner nickname={nicknameData?.data} />
         <Exercises />
         <div className="grid grid-cols-2 gap-6 px-6 mt-8">
