@@ -71,7 +71,11 @@ const ProfilePage = () => {
               name="거북목 측정 기록"
               url="/turtle/my-ranking"
             />
-            <RecordSection itemSrc={chartSrc} name="미션 연속 달성 기록" />
+            <RecordSection
+              itemSrc={chartSrc}
+              name="미션 연속 달성 기록"
+              url="/profile/my-challenges"
+            />
           </section>
           <PerformanceSection point={points.data} badgeSum={badgeCount.data} />
         </div>

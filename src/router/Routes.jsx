@@ -28,6 +28,7 @@ import FindpwPage from "@pages/login/FindpwPage";
 import LoginPage from "@pages/login/LoginPage";
 import SignupPage from "@pages/login/SignupPage";
 
+import MyChallengePage from "@pages/profile/MyChallengePage";
 import MyRecordsPage from "@pages/profile/MyRecordsPage";
 import PointPage from "@pages/profile/PointPage";
 import ProfilePage from "@pages/profile/ProfilePage";
@@ -81,6 +82,7 @@ const Routes = () => {
         <Route path="/profile/my-records" element={<MyRecordsPage />} />
         <Route path="/profile/myPoint" element={<PointPage />} />
       </Route>
+      <Route path="/profile/my-challenges" element={<MyChallengePage />} />
       {/* 운동 옵션 선택 페이지 */}
       <Route path="/exercise/:name" element={<DetailExercisePage />} />
 
