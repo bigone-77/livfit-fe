@@ -7,7 +7,7 @@ const RecordsTable = ({ records }) => {
     <section className="h-full overflow-x-auto">
       <div className="flex items-center w-full text-sm text-[#9C9C9C] mb-2">
         <p className="pl-28">랭킹</p>
-        <p className="pl-36">각도</p>
+        <p className="pl-32">각도</p>
         <p className="pl-16">점수</p>
       </div>
       <table className="min-w-full">
