@@ -14,8 +14,6 @@ const PointPage = () => {
     queryFn: () => privateApi.get("/points").then((res) => res.data),
   });
 
-  console.log(data);
-
   let content;
 
   if (data) {
@@ -24,14 +22,13 @@ const PointPage = () => {
         <GreetSection
           nickname={data[0].nickname}
           count={data.length || 0}
-          totalPoint={data.reduce((a, b) => a.points + b.points)}
+          totalPoint={data[data.length - 1].totalPoints}
         />
         <section className="flex items-center justify-between mt-8">
           <div>
             <p className="text-[#AFAFAF] text-xs">내 포인트</p>
             <p className="text-xl">
-              {data.length > 0 ? data.reduce((a, b) => a.points + b.points) : 0}
-              P
+              {data[data.length - 1].totalPoints.toLocaleString()}P
             </p>
           </div>
           <button
@@ -44,13 +41,16 @@ const PointPage = () => {
         <hr className="mt-8 mb-4" />
         <FilterSection />
         {data.length > 0 && (
-          <section className="flex flex-col gap-2 mt-6">
+          <section className="flex flex-col h-full gap-2 mt-6 mb-12">
             {data.map((d, index) => (
               <RowCard
                 key={index}
+                title={d.title}
+                date={d.eventDate}
                 desc={d.description}
                 point={d.points}
                 accPoint={d.totalPoints}
+                type={d.type}
               />
             ))}
           </section>

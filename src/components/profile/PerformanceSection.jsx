@@ -28,7 +28,10 @@ const PerformanceSection = ({ point, badgeSum }) => {
             <img src={medalSrc} alt="medal" />
             <p>보유한 뱃지 개수</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => navigate("/badge")}
+          >
             <p>{badgeSum}개</p>
             <img src={arrow} alt="arrow" />
           </div>

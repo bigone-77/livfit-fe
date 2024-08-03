@@ -12,7 +12,7 @@ const GreetSection = ({ nickname, count, totalPoint }) => {
         </span>
         <span className="flex items-center">
           <p className="mr-1 text-[#818181]">총</p>
-          <p className="text-orange2">{totalPoint}</p>
+          <p className="text-orange2">{totalPoint.toLocaleString()}</p>
           <p className="text-[#818181]">포인트를 적립했어요!</p>
         </span>
       </div>

@@ -9,6 +9,7 @@ import Navbar from "@layouts/Navbar";
 import RankTower from "@components/turtle/RankTower";
 import RowRank from "@components/turtle/RowRank";
 import rankingText from "@images/turtle/ranking.png";
+import MyRowRank from "../../components/turtle/MyRowRank";
 
 const RankingPage = () => {
   const [clickAll, setClickAll] = useState(false);
@@ -34,8 +35,6 @@ const RankingPage = () => {
 
   const [allRecords, nickname] = results;
 
-  console.log(nickname.data);
-
   if (allRecords && allRecords.data && allRecords.data.length > 3) {
     return (
       <div className="w-full h-full overflow-y-auto">
@@ -52,7 +51,7 @@ const RankingPage = () => {
             />
           </section>
         </header>
-        <main className="w-full h-full">
+        <main className="relative w-full h-full">
           <section className="grid grid-cols-2 shadow-lg place-items-center bg-text50">
             <p
               className={`w-full py-4 text-center border-b-4 cursor-pointer ${
@@ -78,15 +77,40 @@ const RankingPage = () => {
                   .sort((a, b) => b.score - a.score) // score 기준으로 내림차순 정렬
                   .slice(3)
                   .map((record, index) => (
-                    <RowRank key={index} data={record} seq={index + 4} />
+                    <RowRank
+                      key={index}
+                      data={record}
+                      seq={index + 4}
+                      userNickname={nickname.data}
+                    />
                   ))
               : allRecords.data
                   .filter((record) => record.localDate === currentDateFormat)
                   .sort((a, b) => b.score - a.score)
                   .map((record, index) => (
-                    <RowRank key={index} data={record} seq={index + 1} />
+                    <RowRank
+                      key={index}
+                      data={record}
+                      seq={index + 1}
+                      userNickname={nickname.data}
+                    />
                   ))}
+            <div className="absolute flex items-center justify-between px-8 py-4 text-text200"></div>
           </section>
+          {nickname.data && (
+            <div className="absolute w-full bottom-16 bg-text50">
+              <MyRowRank
+                data={
+                  clickAll
+                    ? allRecords.data
+                    : allRecords.data.filter(
+                        (record) => record.localDate === currentDateFormat
+                      )
+                }
+                userNickname={nickname.data}
+              />
+            </div>
+          )}
         </main>
       </div>
     );

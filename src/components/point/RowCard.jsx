@@ -1,16 +1,29 @@
-const RowCard = ({ desc, point, accPoint }) => {
+import { format } from "date-fns";
+
+const RowCard = ({ date, title, desc, point, accPoint, type }) => {
   return (
     <section className="flex items-center justify-between">
       <div className="flex items-start gap-10">
-        <p className="text-[#AFAFAF] text-sm">07.15</p>
+        <p className="text-[#AFAFAF] text-sm">
+          {format(new Date(date), "MM.dd")}
+        </p>
         <div>
-          <p className="text-lg text-text400">스쿼트 100개 달성</p>
+          <p className="text-lg text-text400">{title}</p>
           <p className="text-xs text-[#AFAFAF]">{desc}</p>
         </div>
       </div>
       <div className="flex flex-col items-end">
-        <p className="text-lg text-orange2">{point}P</p>
-        <p className="text-xs text-[#AFAFAF]">{accPoint}P</p>
+        <p
+          className={`text-lg ${
+            type === "spend" ? "text-lightblue" : "text-orange2"
+          }`}
+        >
+          {type === "spend"
+            ? `-${point.toLocaleString()}`
+            : point.toLocaleString()}
+          P
+        </p>
+        <p className="text-xs text-[#AFAFAF]">{accPoint.toLocaleString()}P</p>
       </div>
     </section>
   );

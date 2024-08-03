@@ -5,13 +5,6 @@ const RecordTable = ({ records }) => {
     <>
       <p className="mb-2 text-start">이전 기록</p>
       <table className="w-full table-fixed">
-        {/* <thead>
-          <tr>
-            <th className="py-2 pl-2 text-left">시간</th>
-            <th className="py-2 pl-2 text-left">횟수</th>
-            <th className="py-2 pl-2 text-left">평가</th>
-          </tr>
-        </thead> */}
         <tbody>
           {records.map((record, index) => (
             <tr className="border-y-[1px] border-y-text50" key={index}>

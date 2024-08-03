@@ -38,7 +38,7 @@ const TurtlePage = () => {
 
   let content;
 
-  if (turtleRecords) {
+  if (turtleRecords && turtleRecords.data.length > 0) {
     const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);
     content = (
       <div className="flex flex-col items-center gap-2 mt-4">

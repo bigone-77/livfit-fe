@@ -1,68 +1,21 @@
-import { useQueries } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-
-import { privateApi } from "@api/axios";
+import { useState } from "react";
 
 import FilterModal from "@components/profile/FilterModal";
-import RecordsTable from "@components/profile/RecordsTable";
 import SelectEx from "@components/profile/SelectEx";
+import ShowAllRecords from "@components/profile/ShowAllRecords";
+import ShowGraphRecords from "@components/profile/ShowGraphRecords";
 
 import Navbar from "@layouts/Navbar";
 
 import dots from "@svgs/profile/color-dots.svg";
-import { getFilteredRecordsData } from "@utils/getFilteredRecordsData";
 
 const MyRecordsPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [showGraph, setShowGraph] = useState(false);
+
   const [selectedExercise, setSelectedExercise] = useState("squat");
   const [selectedSort, setSelectedSort] = useState("최신순");
   const [selectedTerm, setSelectedTerm] = useState("");
-  const [recordsData, setRecordsData] = useState([]);
-
-  const results = useQueries({
-    queries: [
-      {
-        queryKey: ["exercise", "profile", selectedExercise],
-        queryFn: () =>
-          privateApi
-            .get(`/${selectedExercise}/get_my_record`)
-            .then((res) => res.data),
-      },
-      {
-        queryKey: ["exercise", "profile", "graph", selectedExercise],
-        queryFn: () =>
-          privateApi.get(`/${selectedExercise}/graph`).then((res) => res.data),
-      },
-    ],
-  });
-
-  const [records, graphs] = results;
-
-  console.log(graphs.data);
-
-  useEffect(() => {
-    if (records.data && !showGraph) {
-      const filteredData = getFilteredRecordsData(
-        records.data,
-        selectedSort,
-        selectedTerm
-      );
-      setRecordsData(filteredData);
-    }
-  }, [records.data, showGraph, selectedSort, selectedTerm]);
-
-  let content;
-
-  if (recordsData.length === 0) {
-    content = <p>측정된 운동 기록이 없습니다.</p>;
-  } else {
-    content = (
-      <section className="overflow-y-scroll scroll-smooth h-80">
-        <RecordsTable records={recordsData} />
-      </section>
-    );
-  }
 
   return (
     <div className="relative w-full h-full pb-20 bg-text90">
@@ -115,7 +68,15 @@ const MyRecordsPage = () => {
       >
         <img src={dots} alt="dots" />
       </div>
-      {content}
+      {!showGraph ? (
+        <ShowAllRecords
+          exercise={selectedExercise}
+          sort={selectedSort}
+          term={selectedTerm}
+        />
+      ) : (
+        <ShowGraphRecords exercise={selectedExercise} />
+      )}
       {showFilter && (
         <FilterModal
           modalOpen={showFilter}
