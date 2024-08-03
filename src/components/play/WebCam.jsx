@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 
 import { simplifyPoseLandmarks } from "@utils/mediapipe/calcAngle";
@@ -8,40 +8,79 @@ import updateSquatCount from "@utils/mediapipe/classifier/squat.classifier";
 import config from "@utils/mediapipe/config";
 import useDrawLandmarks from "@utils/mediapipe/useDrawLandmarks";
 
-const WebCam = ({ start, setTimerStart, exercise, end }) => {
+const WebCam = ({ start, setTimerStart, exercise, end, onReady }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const cameraRef = useRef(null); // camera 객체를 참조할 변수
   const frameInterval = useRef(0);
+  const [isCameraReady, setIsCameraReady] = useState(false);
 
   const pose = config();
   const drawLandmarks = useDrawLandmarks();
 
   useEffect(() => {
     //카메라 먼저 시작 방지 코드 추가
-    if (!start) return;
+    if (!start || isCameraReady) return;
+    console.log("WebCam: Attempting to initialize camera"); //////////
+
+    const initializeCamera = () => {
+      // 비디오가 준비된 경우
+      if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+        console.log("WebCam: Video is ready, starting camera"); ///////////
+
+        const camera = new window.Camera(webcamRef.current.video, {
+          onFrame: async () => {
+            frameInterval.current++;
+            if (frameInterval.current % 4 === 0) {
+              await pose.send({ image: webcamRef.current.video });
+            }
+          },
+          width: 1280,
+          height: 720,
+        });
+
+        camera.start();
+        setTimerStart(true); // 웹캠이 켜지고 나서야 타이머 작동시키기
+        cameraRef.current = camera; // camera 객체를 참조 변수에 저장
+        //카메라 상태 업데이트
+        setIsCameraReady(true);
+        console.log("WebCam: Camera started"); /////////////
+        onReady(); // 카메라가 준비된 후 콜백 호출
+      } else {
+        console.log("WebCam: Video not ready, waiting for metadata"); //////////
+        // 비디오가 준비 안되었을 경우 대기
+        webcamRef.current.video.onloadedmetadata = () => {
+          const camera = new window.Camera(webcamRef.current.video, {
+            onFrame: async () => {
+              frameInterval.current++;
+              if (frameInterval.current % 4 === 0) {
+                await pose.send({ image: webcamRef.current.video });
+              }
+            },
+            width: 1280,
+            height: 720,
+          });
+
+          camera.start();
+          cameraRef.current = camera;
+          setIsCameraReady(true);
+          console.log("WebCam: Camera started after metadata loaded"); ///////
+
+          onReady(); // 카메라가 준비된 후 콜백 호출
+        };
+      }
+    };
 
     pose.onResults(onResults);
 
-    //지금 여기서 모바일 카메라 조건 걸림
-    //여기서 NOT READABLE ERROR
-    //1. webcamRef.current != null 로 지정할시 모바일 Notreadable오류
-    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-      const camera = new window.Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          frameInterval.current++;
-          if (frameInterval.current % 4 === 0) {
-            await pose.send({ image: webcamRef.current.video });
-          }
-        },
-        width: 1280,
-        height: 720,
-      });
-      //if조건 앞의 if와 중복 제거 test1
-      camera.start();
-      setTimerStart(true); // 웹캠이 켜지고 나서야 타이머 작동시키기
-      cameraRef.current = camera; // camera 객체를 참조 변수에 저장
-    }
+    initializeCamera();
+
+    return () => {
+      if (cameraRef.current) {
+        console.log("Stopping the camera...");
+        cameraRef.current.stop();
+      }
+    };
 
     function onResults(results) {
       const canvas = canvasRef.current;
@@ -87,7 +126,7 @@ const WebCam = ({ start, setTimerStart, exercise, end }) => {
       }
       canvasCtx.restore(); // save했던 드로잉 상태를 복원
     }
-  }, [start]);
+  }, [start, isCameraReady, onReady]);
 
   useEffect(() => {
     if (end && cameraRef.current) {

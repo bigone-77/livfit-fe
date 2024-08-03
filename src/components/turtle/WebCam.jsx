@@ -15,7 +15,6 @@ import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
 import faceMask from "@images/turtle/face-mask.png";
-// import faceMask from "@images/turtle/track-bar.png";
 
 // WebCam 컴포넌트
 const WebCam = ({ start, end, onReady }) => {

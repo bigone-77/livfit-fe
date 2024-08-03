@@ -29,6 +29,7 @@ const PlayPage = () => {
       privateApi.post(`/${exercise}/save_record`, body);
     },
   });
+
   const playConfig = useSelector((state) => state.play);
 
   const [getStart, setGetStart] = useState(false); // 시작 타이머 용도
@@ -41,41 +42,74 @@ const PlayPage = () => {
   const [timerKey, setTimerKey] = useState(0); // 타이머를 리셋하기 위한 키
 
   const [cameraEnd, setCameraEnd] = useState(false); // 웹캠 카메라 end 시키기 위한 값
+  //WebCam 컴포넌트의 상태저장
+  const [webcamReady, setWebcamReady] = useState(false);
 
   const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도
   const navigate = useNavigate();
 
-  // 본 화면에 들어오면 바로 3, 2, 1 타이머 작동
+  // 웹캠이 준비되었을 때 호출되는 함수
+  const handleWebCamReady = () => {
+    console.log("PlayPage: WebCam is ready");
+    setWebcamReady(true); // 웹캠이 준비되었음을 설정
+  };
+
+  // 카메라 준비 상태에 따른 3, 2, 1 카운트다운 시작
   useEffect(() => {
-    if (timeLeft <= 0) {
-      setShowStart(true);
-      setTimeout(() => {
-        setShowStart(false);
-      }, 1000); // 1초 후에 "START" 텍스트를 숨김
+    // 웹캠이 준비되지 않으면 대기
+    if (!webcamReady) {
+      console.log("PlayPage: Waiting for WebCam to be ready");
       return;
     }
+    console.log(`PlayPage: Starting countdown with timeLeft=${timeLeft}`); //////
 
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 1000);
+    if (timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          console.log(
+            `PlayPage: Countdown ticking. Time left: ${prevTime - 1}`
+          ); //////
+          return prevTime - 1;
+        }); // 매초마다 남은 시간을 1씩 감소
+      }, 1000);
+      return () => clearInterval(timer);
+    }
 
-    return () => clearInterval(timer);
-  }, [timeLeft]);
+    if (timeLeft === 0) {
+      // 카운트다운이 끝난 경우 START문구 표시
+      setShowStart(true);
+      console.log("PlayPage: Countdown finished, showing START"); ////
+      setTimeout(() => {
+        // 1초 후 'START' 문구 숨기기
+        setShowStart(false);
+        // 카운트다운 완료 후 운동 시작
+        setGetStart(true);
+        console.log("PlayPage: Starting the exercise"); ////////
+      }, 1000);
+      return;
+    }
+  }, [webcamReady, timeLeft]);
 
+  // 세트가 끝났을 때 로직
   useEffect(() => {
     if (timeUp) {
       if (currentSet < parseInt(playConfig.goalSet.split("세트")[0], 10)) {
+        // 목표 세트 수에 도달하지 못한 경우 휴식 화면 표시
         setRest(true);
         setTimeout(() => {
+          //휴식 화면 숨기기
           setRest(false);
+          // 현재 세트 수 증가
           setCurrentSet((prevSet) => prevSet + 1);
-          setTimeLeft(3);
-          setTimeUp(false);
-          setGetStart(false); // 리셋 후 타이머 재시작 방지
+          setTimeLeft(3); // 카운트다운 시간 초기화
+          setTimeUp(false); // 타이머 종료 상태 리셋
+          setGetStart(false); // 운동 상태 리셋
           setTimerKey((prevKey) => prevKey + 1); // 타이머 리셋을 위한 키 변경
         }, parseInt(playConfig.restTime.split("초")[0], 10) * 1000);
       } else {
+        //목표 세트 수에 도달한 경우
         mutation.mutate({
+          //운동 결과 저장
           timer_sec: timeStringToSeconds(playConfig.playTime),
           set: Number(playConfig.goalSet.split("세트")[0]),
           count: playConfig.scoreArray.length,
@@ -86,11 +120,13 @@ const PlayPage = () => {
           perfect: playConfig.scoreArray.filter((score) => score === "Perfect")
             .length,
         });
+        //웹캠 종료
         setCameraEnd(true);
+        //결과 페이지로 이동
         navigate(`/${exercise}/result`);
       }
     }
-  }, [timeUp]);
+  }, [timeUp, currentSet, playConfig, mutation, navigate, exercise]);
 
   return (
     <div className="relative">
@@ -108,10 +144,11 @@ const PlayPage = () => {
 
       <PlayNavbar title={parsedPlay(exercise)} closed styles rest={rest} />
       <WebCam
-        start={timeLeft === 0}
-        setTimerStart={setGetStart}
-        exercise={exercise}
-        end={cameraEnd}
+        start={true} // 카운트다운이 끝난 후 운동 시작
+        setTimerStart={setGetStart} // 타이머 시작 상태 업데이트
+        exercise={exercise} // 현재 운동 유형
+        end={cameraEnd} // 웹캠 종료 상태
+        onReady={handleWebCamReady} // 웹캠이 준비된 후 상태 업데이트
       />
       <main className="relative flex flex-col items-center justify-center w-full h-screen">
         <section className="absolute top-0">

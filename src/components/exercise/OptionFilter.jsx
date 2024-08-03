@@ -25,14 +25,15 @@ const OptionFilter = ({ exercise }) => {
     const playTime = `${playMinutes} ${playSeconds}`;
     const restTime = `${restSeconds}`;
     dispatch(setPlay({ goalSet, playTime, restTime }));
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(() => {
-        navigate(`/play/${exercise}`);
-      })
-      .catch((error) => {
-        console.error("Error accessing webcam: ", error);
-      });
+    navigate(`/play/${exercise}`);
+    // navigator.mediaDevices
+    //   .getUserMedia({ video: true })
+    //   .then(() => {
+    //     navigate(`/play/${exercise}`);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error accessing webcam: ", error);
+    //   });
   };
 
   return (
