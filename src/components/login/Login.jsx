@@ -1,10 +1,22 @@
 import { useLogin } from "@hooks/useLogin";
 import logo from "@images/login/logo.svg";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
-  LoginContainer, LoginBox, LogoDiv, Form, InputDiv, Input, LoginButton, KeepLoggedIn, Checkbox, CheckboxLabel, Links, SnsLogin, SnsButtons, SnsButton
-} from './LoginStyles';
+  LoginContainer,
+  LoginBox,
+  LogoDiv,
+  Form,
+  InputDiv,
+  Input,
+  LoginButton,
+  KeepLoggedIn,
+  Checkbox,
+  CheckboxLabel,
+  Links,
+  Container,
+  div_id_pw,
+} from "./LoginStyles";
 
 const Login = () => {
   const [loginId, setloginId] = useState("");
@@ -21,16 +33,16 @@ const Login = () => {
   return (
     <LoginContainer>
       <LoginBox>
-       <LogoDiv>
+        <LogoDiv>
           <img src={logo} alt="logo" />
         </LogoDiv>
         <Form onSubmit={handleLogin}>
-        <InputDiv>
-          <Input
-            type="text"
-            placeholder="아이디"
-            value={loginId}
-            onChange={(e) => setloginId(e.target.value)}
+          <InputDiv>
+            <Input
+              type="text"
+              placeholder="아이디"
+              value={loginId}
+              onChange={(e) => setloginId(e.target.value)}
             />
             <Input
               type="password"
@@ -38,32 +50,31 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          <LoginButton type="submit">로그인</LoginButton>
+            <LoginButton type="submit">로그인</LoginButton>
           </InputDiv>
-
-          <KeepLoggedIn>
-            <Checkbox
-              type="checkbox"
-              id="keepLoggedIn"
-              checked={keepLoggedIn}
-              onChange={(e) => setKeepLoggedIn(e.target.checked)}
-            />
-            <CheckboxLabel htmlFor="keepLoggedIn" />
-            <span>로그인 상태 유지</span>
-          </KeepLoggedIn>
-          <Links>
-            <Link to="/auth/findpw">비밀번호 찾기</Link>
-            <span> | </span>
-            <Link to="/auth/signup">회원가입</Link>
-          </Links>
-          <SnsLogin>
-            <span>SNS로 로그인하기</span>
-            <SnsButtons>
-              <SnsButton className="snsButton1" />
-              <SnsButton className="snsButton2" />
-              <SnsButton className="snsButton3" />
-            </SnsButtons>
-          </SnsLogin>
+          <Container>
+            <KeepLoggedIn>
+              <Checkbox
+                type="checkbox"
+                id="keepLoggedIn"
+                checked={keepLoggedIn}
+                onChange={(e) => setKeepLoggedIn(e.target.checked)}
+              />{" "}
+              <CheckboxLabel htmlFor="keepLoggedIn" />
+              <span>로그인 상태 유지</span>{" "}
+            </KeepLoggedIn>
+            <Links>
+              <Link to="/auth/signup">회원가입</Link>
+            </Links>
+          </Container>
+          {/* 이부분 주석 해제해주기
+          <div_id_pw>
+            <span>심사위원용 id & pw</span>
+            <br></br>
+            <span>ID : likelion</span>
+            <br></br>
+            <span>PW : 1234</span>
+          </div_id_pw> */}
         </Form>
       </LoginBox>
     </LoginContainer>
