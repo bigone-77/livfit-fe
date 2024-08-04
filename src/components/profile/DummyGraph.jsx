@@ -74,9 +74,9 @@ const GraphComponent = ({ graph }) => {
       },
       y: {
         beginAtZero: true,
-        max: 100,
+        max: 30,
         ticks: {
-          stepSize: 50,
+          stepSize: 15,
           align: "end", // y축 레이블을 오른쪽으로 이동
         },
       },

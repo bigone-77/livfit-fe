@@ -50,7 +50,6 @@ const PlayPage = () => {
 
   // 웹캠이 준비되었을 때 호출되는 함수
   const handleWebCamReady = () => {
-    console.log("PlayPage: WebCam is ready");
     setWebcamReady(true); // 웹캠이 준비되었음을 설정
   };
 
@@ -58,17 +57,12 @@ const PlayPage = () => {
   useEffect(() => {
     // 웹캠이 준비되지 않으면 대기
     if (!webcamReady) {
-      console.log("PlayPage: Waiting for WebCam to be ready");
       return;
     }
-    console.log(`PlayPage: Starting countdown with timeLeft=${timeLeft}`); //////
 
     if (timeLeft > 0) {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => {
-          console.log(
-            `PlayPage: Countdown ticking. Time left: ${prevTime - 1}`
-          ); //////
           return prevTime - 1;
         }); // 매초마다 남은 시간을 1씩 감소
       }, 1000);
@@ -78,13 +72,11 @@ const PlayPage = () => {
     if (timeLeft === 0) {
       // 카운트다운이 끝난 경우 START문구 표시
       setShowStart(true);
-      console.log("PlayPage: Countdown finished, showing START"); ////
       setTimeout(() => {
         // 1초 후 'START' 문구 숨기기
         setShowStart(false);
         // 카운트다운 완료 후 운동 시작
         setGetStart(true);
-        console.log("PlayPage: Starting the exercise"); ////////
       }, 1000);
       return;
     }

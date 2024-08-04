@@ -51,7 +51,7 @@ const BreakEnding = ({ scoreArr, subject, currentCount, playTime }) => {
   }
   if (records) {
     content = (
-      <div className="w-full px-10 mt-10 overflow-y-auto h-52 text-text150">
+      <div className="w-full px-10 mt-10 overflow-y-auto h-52 text-text150 custom-scrollbar">
         <RecordTable records={records} />
       </div>
     );
