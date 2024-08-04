@@ -87,7 +87,7 @@ const OptionFilter = ({ exercise }) => {
 
           <button
             onClick={handleStartClick}
-            className="text-text50 text-xl bg-orange2 rounded-[74px] w-full py-4 mt-10 font-semibold"
+            className="text-text50 text-xl bg-orange2 rounded-[74px] w-full py-4 mt-10 font-semibold mb-2"
           >
             운동 시작하기
           </button>
