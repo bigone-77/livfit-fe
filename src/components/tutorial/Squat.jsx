@@ -33,7 +33,7 @@ export default function Squat() {
           title="기본 스쿼트"
           text1="Basic Squat"
           text2="3set 15min"
-          navigateTo="/tutorial/detail/1"
+          navigateTo="/tutorial/squat/1"
         />
       </BasicContainer>
       <AdvancedContainer>
@@ -43,14 +43,14 @@ export default function Squat() {
           title="하프 스쿼트"
           text1="Half Squat"
           text2="3set 10min"
-          navigateTo="/tutorial/detail/2"
+          navigateTo="/tutorial/squat/2"
         />
         <ExerciseCard
           img={wideSquat}
           title="와이드 스쿼트"
           text1="Wide Squat"
           text2="3set 12min"
-          navigateTo="/tutorial/detail/3"
+          navigateTo="/tutorial/squat/3"
         />
       </AdvancedContainer>
     </ExerciseContainer>

@@ -15,6 +15,10 @@ import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
 import LungePage from "@pages/tutorial/LungePage";
 import PushupPage from "@pages/tutorial/PushupPage";
 import SquatPage from "@pages/tutorial/SquatPage";
+
+import SquatDetailPage from "@pages/tutorial/SquatDetailPage";
+import LungeDetailPage from "@pages/tutorial/LungeDetailPage";
+import PushupDetailPage from "@pages/tutorial/PushupDetailPage";
 import TutorialPage from "@pages/tutorial/TutorialPage";
 
 import MyRankingPage from "@pages/turtle/MyRankingPage";
@@ -34,6 +38,7 @@ import PointPage from "@pages/profile/PointPage";
 import ProfilePage from "@pages/profile/ProfilePage";
 
 import StorePage from "@pages/store/StorePage";
+import ProductDetailPage from "@pages/store/ProductDetailPage"
 
 import Footer from "@layouts/footer";
 import Navbar from "@layouts/Navbar";
@@ -68,13 +73,21 @@ const Routes = () => {
         <Route path="/tutorial/squat" element={<SquatPage />} />
         <Route path="/tutorial/lunge" element={<LungePage />} />
         <Route path="/tutorial/pushup" element={<PushupPage />} />
-        <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
 
+        <Route path="/tutorial/squat/:id" element={<SquatDetailPage />}/>
+        <Route path="/tutorial/lunge/:id" element={<LungeDetailPage />}/>
+        <Route path="/tutorial/pushup/:id" element={<PushupDetailPage />}/>
+
+        <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
+        
+        {/* 거북목  페이지 */}
         <Route path="/turtle" element={<TurtlePage />} />
         <Route path="/turtle/ranking" element={<RankingPage />} />
         <Route path="/turtle/my-ranking" element={<MyRankingPage />} />
         {/* 스토어 페이지입니다. */}
         <Route path="/store" element={<StorePage />} />
+        <Route path="/store/:id" element={<ProductDetailPage />} />
+
         {/* 마이페이지입니다. */}
         <Route path="/profile" element={<Navbar closed mypage />}>
           <Route index element={<ProfilePage />} />

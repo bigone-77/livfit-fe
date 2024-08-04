@@ -78,7 +78,7 @@ const TestButton = styled.button`
   }
 `;
 
-const ExerciseDetail = () => {
+const SquatDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const exercise = ExerciseData.find((item) => item.id === parseInt(id));
@@ -88,7 +88,7 @@ const ExerciseDetail = () => {
   }
 
   const handleButtonClick = () => {
-    navigate('/exercise');
+    navigate('/exercise/squat');
   };
 
   return (
@@ -121,4 +121,4 @@ const ExerciseDetail = () => {
   );
 };
 
-export default ExerciseDetail;
+export default SquatDetail;

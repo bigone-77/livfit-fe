@@ -33,7 +33,7 @@ export default function Pushup() {
           title="기본 푸시업"
           text1="Basic Push-Up"
           text2="3set 8min"
-          navigateTo="/tutorial/detail/7"
+          navigateTo="/tutorial/pushup/7"
         />
       </BasicContainer>
       <AdvancedContainer>
@@ -43,14 +43,14 @@ export default function Pushup() {
           title="니 푸시업"
           text1="Knee Push-Up"
           text2="3set 8min"
-          navigateTo="/tutorial/detail/8"
+          navigateTo="/tutorial/pushup/8"
         />
         <ExerciseCard
           img={diamondPushup}
           title="다이아몬드 푸시업"
           text1="Diamond Push-Up"
           text2="3set 10min"
-          navigateTo="/tutorial/detail/9"
+          navigateTo="/tutorial/pushup/9"
         />
       </AdvancedContainer>
     </ExerciseContainer>
