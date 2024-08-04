@@ -21,9 +21,9 @@ const MyRecordsPage = () => {
     <div className="relative w-full h-full pb-20 bg-text90">
       <Navbar closed />
       <section className="p-6">
-        <p className="text-3xl">내 기록</p>
+        <p className="text-3xl">내 기록🏋️‍♂️</p>
         <h1 className="mt-2 text-xs text-text200">
-          현재까지 달성한 챌린지 모두를 확인할 수 있어요
+          지금까지 운동한 기록들을 볼 수 있어요.
         </h1>
       </section>
       <section className="grid w-full grid-cols-2 place-items-center">

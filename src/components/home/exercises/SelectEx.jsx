@@ -8,16 +8,16 @@ const SelectEx = () => {
   return (
     <div className="flex overflow-x-auto scroll-smooth custom-scrollbar">
       <img
-        src={lunge}
-        alt="lunge"
-        className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
-        onClick={() => navigate("/exercise/lunge")}
-      />
-      <img
         src={squat}
         alt="squat"
         className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
         onClick={() => navigate("/exercise/squat")}
+      />
+      <img
+        src={lunge}
+        alt="lunge"
+        className="w-40 h-48 mr-2 transition-all cursor-pointer shrink-0 hover:scale-95"
+        onClick={() => navigate("/exercise/lunge")}
       />
       <img
         src={pushup}
