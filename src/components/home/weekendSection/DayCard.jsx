@@ -24,7 +24,7 @@ const DayCard = ({ day, status }) => {
         )}
       </div>
       <p className="text-sm text-text150">
-        {status === 1 ? "완료" : status === 0 ? "예정" : "도전"}
+        {status === 1 ? "완료" : status === 0 ? "예정" : "실패"}
       </p>
     </div>
   );

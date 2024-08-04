@@ -6,7 +6,7 @@ const NameSection = ({ name, showOption, setShowOption }) => {
     squat: {
       displayName: "스쿼트",
       description:
-        "허벅지 근육과 엉덩이 근육을 탄탄하게 만들어 주며 전반적인 체형 개선",
+        "허벅지 근육과 엉덩이 근육을 탄탄하게 만들어 주며 전반적인 체형 개선에 도움을 줍니다.",
     },
     lunge: {
       displayName: "런지",
@@ -27,7 +27,9 @@ const NameSection = ({ name, showOption, setShowOption }) => {
   return (
     <div className="relative flex flex-col gap-2">
       <h1 className="text-2xl font-semibold text-text50">{parsedPlay(name)}</h1>
-      <h2 className="uppercase text-8xl font-English text-orange2">{name}</h2>
+      <h2 className="uppercase text-7xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-English text-orange2">
+        {name}
+      </h2>{" "}
       <h3 className="text-text100">{currentExercise.description} </h3>
       <button
         className={`${

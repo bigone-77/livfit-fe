@@ -139,6 +139,7 @@ const PlayPage = () => {
         <RestScreen
           restTime={playConfig.restTime.split("초")[0]}
           setRest={setRest}
+          exercise={exercise}
         />
       )}
 

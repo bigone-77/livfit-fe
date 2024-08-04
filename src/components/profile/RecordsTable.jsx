@@ -9,7 +9,7 @@ const RecordsTable = ({ records }) => {
       <div className="flex items-center w-full text-sm text-[#9C9C9C] mb-2">
         <p className="pl-[86px]">세트</p>
         <p className="pl-10">시간</p>
-        <p className="pl-12">갯수</p>
+        <p className="pl-12">개수</p>
         <p className="pl-[120px]">정확도</p>
       </div>
       <table className="min-w-full">

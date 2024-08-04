@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Input } from './LoginStyles';
-import BackButton from './BackButton';
+import { useState } from "react";
+import styled from "styled-components";
+import { Input } from "./LoginStyles";
+import BackButton from "./BackButton";
 
 const FindpwContainer = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const FindpwContainer = styled.div`
   height: 95vh;
   background-color: #f8f8f8;
   font-size: 12px;
-  color: #6A6A6A;
+  color: #6a6a6a;
 `;
 
 const Header = styled.div`
@@ -23,7 +23,7 @@ const Content = styled.div`
   padding: 40px;
   border-radius: 8px;
   align-items: center;
-`
+`;
 
 const Title = styled.h1`
   margin-left: 10px;
@@ -36,7 +36,7 @@ const SubmitButton = styled.button`
   width: 100%;
   height: 50px;
   margin-bottom: 10px;
-  background-color: #FB8500;
+  background-color: #fb8500;
   color: white;
   border: none;
   border-radius: 32px;
@@ -48,7 +48,7 @@ const SubmitButton = styled.button`
 `;
 
 const Findpw = () => {
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
 
   const handlePasswordRecovery = () => {
     // 서버에서 비밀번호 가져오는 로직
@@ -59,7 +59,7 @@ const Findpw = () => {
   return (
     <FindpwContainer>
       <Header>
-        <BackButton/>
+        <BackButton />
       </Header>
       <Content>
         <Title>비밀번호 찾기</Title>

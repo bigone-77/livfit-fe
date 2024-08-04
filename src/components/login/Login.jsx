@@ -15,7 +15,7 @@ import {
   CheckboxLabel,
   Links,
   Container,
-  div_id_pw,
+  // div_id_pw,
 } from "./LoginStyles";
 
 const Login = () => {
