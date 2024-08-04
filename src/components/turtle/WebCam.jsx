@@ -40,7 +40,6 @@ const WebCam = ({ start, end, onReady }) => {
         }
       } catch (error) {
         setShowModal(true);
-        console.log(showModal);
       }
     },
   });

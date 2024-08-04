@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import bulb from "@images/rest/bulb.png";
 
 const RestScreen = ({ restTime, setRest }) => {
-  console.log("날 화면에 보여줭");
   const [timeLeft, setTimeLeft] = useState(restTime);
 
   useEffect(() => {

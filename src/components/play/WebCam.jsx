@@ -21,13 +21,10 @@ const WebCam = ({ start, setTimerStart, exercise, end, onReady }) => {
   useEffect(() => {
     //카메라 먼저 시작 방지 코드 추가
     if (!start || isCameraReady) return;
-    console.log("WebCam: Attempting to initialize camera"); //////////
 
     const initializeCamera = () => {
       // 비디오가 준비된 경우
       if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-        console.log("WebCam: Video is ready, starting camera"); ///////////
-
         const camera = new window.Camera(webcamRef.current.video, {
           onFrame: async () => {
             frameInterval.current++;
@@ -44,10 +41,8 @@ const WebCam = ({ start, setTimerStart, exercise, end, onReady }) => {
         cameraRef.current = camera; // camera 객체를 참조 변수에 저장
         //카메라 상태 업데이트
         setIsCameraReady(true);
-        console.log("WebCam: Camera started"); /////////////
         onReady(); // 카메라가 준비된 후 콜백 호출
       } else {
-        console.log("WebCam: Video not ready, waiting for metadata"); //////////
         // 비디오가 준비 안되었을 경우 대기
         webcamRef.current.video.onloadedmetadata = () => {
           const camera = new window.Camera(webcamRef.current.video, {
@@ -64,7 +59,6 @@ const WebCam = ({ start, setTimerStart, exercise, end, onReady }) => {
           camera.start();
           cameraRef.current = camera;
           setIsCameraReady(true);
-          console.log("WebCam: Camera started after metadata loaded"); ///////
 
           onReady(); // 카메라가 준비된 후 콜백 호출
         };
