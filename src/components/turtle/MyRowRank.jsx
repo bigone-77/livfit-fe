@@ -16,7 +16,11 @@ const MyRowRank = ({ data, userNickname }) => {
     ) + 1;
 
   return (
-    <section className="flex items-center justify-between px-8 py-4 text-lg text-text400">
+    <section
+      className={`${
+        userRank === 0 && "hidden"
+      } flex items-center justify-between px-8 py-4 text-lg text-text400`}
+    >
       <div className="flex items-center gap-3">
         <p>{userRank}등</p>
         <img src={circleTurtle} alt="circle-turtle" className="ml-4" />

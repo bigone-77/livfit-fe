@@ -71,7 +71,7 @@ const RankingPage = () => {
             </p>
           </section>
 
-          <section className="flex flex-col pb-20 overflow-scroll bg-text75 h-96 custom-scrollbar">
+          <section className="relative flex flex-col pb-20 overflow-scroll bg-text75 h-96 custom-scrollbar">
             {clickAll
               ? allRecords.data
                   .sort((a, b) => b.score - a.score) // score 기준으로 내림차순 정렬
@@ -95,10 +95,9 @@ const RankingPage = () => {
                       userNickname={nickname.data}
                     />
                   ))}
-            <div className="absolute flex items-center justify-between px-8 py-4 text-text200"></div>
           </section>
           {nickname.data && (
-            <div className="absolute w-full bottom-16 bg-text50">
+            <div className="absolute z-[9999px] w-full bottom-20 bg-text50 shadow-xl">
               <MyRowRank
                 data={
                   clickAll
