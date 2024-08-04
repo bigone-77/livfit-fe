@@ -2,47 +2,47 @@ export const badgeArray = [
   {
     id: 0,
     name: "egg",
-    desc: "환영해요",
+    desc: "환영합니다",
   },
   {
     id: 1,
     name: "chick",
-    desc: "중수의 호흡",
+    desc: "꾸준한 그대",
   },
   {
     id: 2,
     name: "chicken",
-    desc: "헬창의 호흡",
+    desc: "SECOND",
   },
   {
     id: 3,
     name: "sun",
-    desc: "뜨거운 햇살",
+    desc: "아침형 인간",
   },
   {
     id: 4,
     name: "sun_smile",
-    desc: "즐길줄 아는",
+    desc: "오후형 인간",
   },
   {
     id: 5,
     name: "활동 배지",
-    desc: "활동 배지",
+    desc: "히든 배지",
   },
   {
     id: 6,
     name: "cat",
-    desc: "냥냥 펀치",
+    desc: "스쿼트 초보",
   },
   {
     id: 7,
     name: "tiger",
-    desc: "호랑이 기운",
+    desc: "SET",
   },
   {
     id: 8,
     name: "활동 배지",
-    desc: "활동 배지",
+    desc: "히든 배지",
   },
   {
     id: 9,
@@ -52,9 +52,12 @@ export const badgeArray = [
   {
     id: 10,
     name: "star_big",
-    desc: "대왕태양",
+    desc: "스토어 애용가",
   },
-  { id: 11, name: "활동 배지", desc: "활동 배지" },
+  { 
+    id: 11, 
+    name: "활동 배지", 
+    desc: "히든 배지" },
   {
     id: 12,
     name: "medal_bronze",
@@ -63,7 +66,7 @@ export const badgeArray = [
   {
     id: 13,
     name: "medal_silver",
-    desc: "금메달",
+    desc: "은메달",
   },
   {
     id: 14,
@@ -73,16 +76,16 @@ export const badgeArray = [
   {
     id: 15,
     name: "clover_three",
-    desc: "행운 살짝",
+    desc: "거북이 탈출",
   },
   {
     id: 16,
     name: "clover_four",
-    desc: "행운은 나의 것",
+    desc: "포인트 수집가",
   },
   {
     id: 17,
     name: "rainbow",
-    desc: "왕 무지개",
+    desc: "챌린지마스터",
   },
 ];
