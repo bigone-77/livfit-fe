@@ -11,6 +11,7 @@ const ExercisePage = () => {
         <ExerciseCard exercise="squat" />
         <ExerciseCard exercise="lunge" />
         <ExerciseCard exercise="pushup" />
+        <div className="pb-3"></div> 
       </section>
     </div>
   );
