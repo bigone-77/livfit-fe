@@ -37,7 +37,7 @@ const RankingPage = () => {
 
   if (allRecords && allRecords.data && allRecords.data.length > 3) {
     return (
-      <div className="w-full h-full overflow-y-auto">
+      <div className="w-full h-full overflow-y-auto custom-scrollbar">
         <header className="relative flex flex-col w-full gap-2 bg-[#FFCA68] bg-opacity-20">
           <Navbar />
           <img src={rankingText} alt="rank-text" className="h-28" />
@@ -71,7 +71,7 @@ const RankingPage = () => {
             </p>
           </section>
 
-          <section className="flex flex-col pb-20 overflow-scroll bg-text75 h-96">
+          <section className="flex flex-col pb-20 overflow-scroll bg-text75 h-96 custom-scrollbar">
             {clickAll
               ? allRecords.data
                   .sort((a, b) => b.score - a.score) // score 기준으로 내림차순 정렬

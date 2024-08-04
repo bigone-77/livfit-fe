@@ -105,7 +105,7 @@ const ProfilePage = () => {
               <img src={arrow} alt="arrow" />
             </div>
           </div>
-          <div className="flex w-full gap-4 overflow-x-auto scroll-smooth">
+          <div className="flex w-full gap-4 overflow-x-auto scroll-smooth custom-scrollbar">
             {challenges.data?.map((challenge, index) => (
               <RowCard
                 key={index}

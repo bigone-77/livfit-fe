@@ -13,7 +13,6 @@ const BadgeSelectModal = ({
   setSelected,
   submitHandler,
 }) => {
-  console.log(selected);
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {

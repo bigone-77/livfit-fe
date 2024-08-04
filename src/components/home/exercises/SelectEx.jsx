@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const SelectEx = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex overflow-x-auto scroll-smooth">
+    <div className="flex overflow-x-auto scroll-smooth custom-scrollbar">
       <img
         src={lunge}
         alt="lunge"

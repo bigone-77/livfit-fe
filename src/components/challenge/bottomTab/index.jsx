@@ -8,7 +8,7 @@ const BottomTab = ({ goup, upDownHandler, data }) => {
     <div
       className={`
     ${goup ? "h-[60%]" : "h-32"}
-    absolute bottom-0 left-0 right-0 z-10 w-full py-3 bg-text50 rounded-tl-[20px] rounded-tr-[20px] opacity-95 transition-all transform duration-1000 overflow-y-auto 
+    absolute bottom-0 left-0 right-0 z-10 w-full py-3 bg-text50 rounded-tl-[20px] rounded-tr-[20px] opacity-95 transition-all transform duration-1000 overflow-y-auto custom-scrollbar
   `}
     >
       <div className="flex flex-col items-center">
@@ -31,7 +31,7 @@ const BottomTab = ({ goup, upDownHandler, data }) => {
             totalStep={data.length}
             step={data.filter((d) => d.status === 1).length}
           />
-          <section className="flex w-full gap-4 overflow-x-auto scroll-smooth">
+          <section className="flex w-full gap-4 overflow-x-auto scroll-smooth custom-scrollbar">
             {data.map((d, index) => (
               <RowCard
                 key={index}

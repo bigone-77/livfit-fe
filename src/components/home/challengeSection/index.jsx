@@ -15,7 +15,7 @@ const ChallengeSection = ({ challenges }) => {
           전체 보기
         </p>
       </div>
-      <div className="flex w-full gap-4 overflow-x-auto scroll-smooth">
+      <div className="flex w-full gap-4 overflow-x-auto scroll-smooth custom-scrollbar">
         {challenges &&
           challenges.map((challenge, index) => (
             <RowCard

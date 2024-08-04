@@ -59,7 +59,7 @@ const MyRankingPage = () => {
       >
         <img src={dots} alt="dots" />
       </div>
-      <section className="overflow-y-scroll scroll-smooth h-80">
+      <section className="overflow-y-scroll scroll-smooth h-80 custom-scrollbar">
         {nickname.data && allRecords.data && allRecords.data.length > 0 && (
           <RecordsTable
             allRecords

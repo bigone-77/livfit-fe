@@ -5,7 +5,7 @@ import { timeFormat } from "@utils/timeFormat";
 
 const RecordsTable = ({ records }) => {
   return (
-    <section className="h-full overflow-x-auto">
+    <section className="h-full">
       <div className="flex items-center w-full text-sm text-[#9C9C9C] mb-2">
         <p className="pl-[86px]">세트</p>
         <p className="pl-10">시간</p>

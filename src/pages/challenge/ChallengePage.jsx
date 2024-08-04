@@ -30,7 +30,7 @@ const ChallengePage = () => {
     <div className="w-full h-screen overflow-y-hidden">
       <Header />
       <div className="flex-1 h-full p-6 overflow-y-auto border -translate-y-6 rounded-tl-[32px] rounded-tr-[32px] shadow-lg bg-text50 pb-20">
-        <div className="h-full overflow-y-scroll pb-60">
+        <div className="h-full overflow-y-scroll pb-60 custom-scrollbar">
           <section className="flex items-center justify-between px-4 mb-4">
             <img src={dots} alt="dots" />
             {isCurrentUser && (

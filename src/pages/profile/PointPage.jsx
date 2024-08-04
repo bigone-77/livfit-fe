@@ -18,7 +18,7 @@ const PointPage = () => {
 
   if (data) {
     content = (
-      <div className="h-screen mb-20 overflow-y-hidden">
+      <div className="h-screen mb-20 overflow-y-hidden custom-scrollbar">
         <GreetSection
           nickname={data[0].nickname}
           count={data.length || 0}
@@ -60,11 +60,11 @@ const PointPage = () => {
   }
 
   return (
-    <div className="w-full h-screen overflow-y-hidden">
+    <div className="w-full h-screen overflow-y-hidden custom-scrollbar">
       <header className="relative flex flex-col w-full gap-2">
         <Header />
       </header>
-      <div className="flex-1 h-full p-6 overflow-y-auto -translate-y-6 rounded-tl-[32px] rounded-tr-[32px] shadow-lg bg-text50 pb-20">
+      <div className="flex-1 h-full p-6 overflow-y-auto -translate-y-6 rounded-tl-[32px] rounded-tr-[32px] shadow-lg bg-text50 pb-20 custom-scrollbar">
         {content}
       </div>
     </div>

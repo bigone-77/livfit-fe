@@ -55,8 +55,8 @@ const BadgePage = () => {
           />
         </header>
         <div className="h-8 rounded-t-[32px] border-t w-full bg-[#F6F6F6] -translate-y-3" />
-        <div className="w-full h-full p-6 overflow-y-hidden bg-[#F6F6F6]">
-          <div className="h-full overflow-y-scroll">
+        <div className="w-full h-full p-6 overflow-y-hidden bg-[#F6F6F6] custom-scrollbar">
+          <div className="h-full overflow-y-scroll custom-scrollbar">
             <Contents
               selected={selectedBadge}
               setSelected={setSelectedBadge}
@@ -71,7 +71,7 @@ const BadgePage = () => {
   }
 
   return (
-    <div className="max-w-[500px] w-full h-screen overflow-y-hidden flex flex-col">
+    <div className="max-w-[500px] w-full h-screen overflow-y-hidden flex flex-col custom-scrollbar">
       {content}
     </div>
   );

@@ -42,7 +42,7 @@ const OptionFilter = ({ exercise }) => {
   };
 
   return (
-    <div className="w-full h-full overflow-y-scroll">
+    <div className="w-full h-full overflow-y-scroll custom-scrollbar">
       <div className="flex items-center justify-center">
         <img src={TabBar} alt="tab-bar" className="mt-6" />
       </div>
