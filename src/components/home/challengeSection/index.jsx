@@ -1,8 +1,22 @@
 import { useNavigate } from "react-router-dom";
 
-import RowCard from "@components/challenge/RowCard";
+import { privateApi, publicApi } from "@api/axios";
 
-const ChallengeSection = ({ challenges }) => {
+import RowCard from "@components/challenge/RowCard";
+import { useQuery } from "@tanstack/react-query";
+
+const ChallengeSection = () => {
+  const accessToken = localStorage.getItem("accessToken");
+  const queryKey = accessToken ? ["challenge", "user"] : ["challenge", "all"];
+  const queryFn = accessToken
+    ? () => privateApi.get("/challenge/user").then((res) => res.data)
+    : () => publicApi.get("/challenge/list").then((res) => res.data);
+
+  const { data: challenges } = useQuery({
+    queryKey,
+    queryFn,
+  });
+
   const navigate = useNavigate();
   return (
     <section className="px-8 my-10">
@@ -25,6 +39,7 @@ const ChallengeSection = ({ challenges }) => {
               desc={challenge.description}
               start={challenge.startDate}
               end={challenge.endDate}
+              status={challenge.status}
             />
           ))}
       </div>

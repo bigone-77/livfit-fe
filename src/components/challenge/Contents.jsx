@@ -10,8 +10,8 @@ const Contents = ({ data }) => {
           desc={d.description}
           start={d.startDate}
           end={d.endDate}
-          freq={d.frequency}
           id={d.id}
+          status={d.status}
         />
       ))}
     </section>

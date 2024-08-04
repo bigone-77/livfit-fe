@@ -3,20 +3,32 @@ import { useNavigate } from "react-router-dom";
 
 import dummy from "@images/challenge/dummy.png";
 
-const ColCard = ({ title, desc, start, end, freq, id }) => {
+const ColCard = ({ title, desc, start, end, id, status }) => {
   const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/challenge/${id}`, { state: { status } });
+  };
+
   return (
     <section
-      className="flex flex-col w-full gap-2 transition-all cursor-pointer hover:scale-95"
-      onClick={() => navigate(`/challenge/${id}`)}
+      className="relative flex flex-col w-full gap-2 transition-all cursor-pointer hover:scale-95"
+      onClick={handleNavigate}
     >
+      {status === 1 && (
+        <div className="absolute px-2 py-1 text-xs rounded-lg bg-text100 right-2 top-2">
+          진행중
+        </div>
+      )}
+      {status === 2 && (
+        <div className="absolute px-2 py-1 text-xs rounded-lg bg-text100 right-2 top-2">
+          완료
+        </div>
+      )}
       <img src={dummy} alt="dummy" />
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between w-full font-semibold">
           <p className="text-lg">{title}</p>
-          <p className="flex items-center justify-center px-4 py-1 text-xs rounded-md bg-text125 text-text400">
-            {freq}
-          </p>
         </div>
         <p className="text-text400">{desc}</p>
         <p className="text-text150 text-">

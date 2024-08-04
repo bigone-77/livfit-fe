@@ -12,8 +12,6 @@ import arrow from "@svgs/challenge/small-arrow.svg";
 const ChallengePage = () => {
   const navigate = useNavigate();
 
-  // localStorage에 토큰이 있으면 '/challenge/user'로 요청
-  // 없으면 밑에 있는 'challenge/list'로 요청
   const { data: challenges } = useQuery({
     queryKey: ["challenge", "all"],
     queryFn: () => publicApi.get("/challenge/list").then((res) => res.data),
@@ -25,7 +23,6 @@ const ChallengePage = () => {
       privateApi.get("/mainpage/getname").then((response) => response.data),
   });
 
-  console.log(challenges);
   return (
     <div className="w-full h-screen overflow-y-hidden">
       <Header />

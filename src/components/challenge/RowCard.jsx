@@ -15,7 +15,7 @@ const RowCard = ({ id, title, desc, start, end, status }) => {
 
   return (
     <div
-      className="relative w-[261px] h-36 rounded-[13px] shrink-0 hover:scale-95 transition-all cursor-pointer"
+      className="relative w-[261px] h-[136px] rounded-[13px] shrink-0 hover:scale-95 transition-all cursor-pointer"
       onClick={() => navigate(`/challenge/${id}`)}
     >
       <img src={dummy} alt="dummy" className="absolute inset-0" />
@@ -28,14 +28,12 @@ const RowCard = ({ id, title, desc, start, end, status }) => {
       {currentUser && (
         <>
           {status === 1 && (
-            <div className="absolute px-4 py-1 rounded-lg bg-text100 right-2 top-2">
+            <div className="absolute px-2 py-1 text-xs rounded-lg bg-text100 right-2 top-2">
               진행중
             </div>
           )}
           {status === 2 && (
-            <div className="absolute px-4 py-1 rounded-lg bg-text100 right-2 top-2">
-              완료
-            </div>
+            <div className="absolute inset-0 rounded-[13px] bg-gray-200 opacity-50" />
           )}
         </>
       )}
