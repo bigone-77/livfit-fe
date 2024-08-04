@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import BrandGroup from "@components/store/BrandGroup";
 import FilterSection from "@components/store/FilterSection";
-import SearchBar from "@components/store/SearchBar";
 import BackButton from "@components/store/BackButton";
 import BrandLogo from "@components/store/BrandLogo";
 
@@ -68,7 +67,6 @@ const Store = () => {
         <BackButton />
         <img className='mainImage' src={storeMain} alt="Store Main" />
       </HeroShot>
-        <SearchBar />
         <LogoContainer>
           <BrandLogo logo={AllLogo} brandName="전체" onClick={() => handleBrandClick('all')} isSelected={selectedBrand === 'all'} />
           <BrandLogo logo={LivfitLogo} brandName="자체제작" onClick={() => handleBrandClick('livfit')} isSelected={selectedBrand === 'livfit'} />
