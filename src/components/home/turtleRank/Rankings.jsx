@@ -1,33 +1,19 @@
 import { publicApi } from "@api/axios";
 import { useQuery } from "@tanstack/react-query";
 
-import Loader from "@components/commons/Loader";
-
 import turtleImage from "@images/turtle.png";
 import one from "@svgs/home/one.svg";
 import three from "@svgs/home/three.svg";
 import two from "@svgs/home/two.svg";
-import { truncate } from "../../../utils/truncate";
+import { truncate } from "@utils/truncate";
 
 const Rankings = () => {
-  const {
-    data: turtleRecords,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: turtleRecords } = useQuery({
     queryKey: ["turtle"],
     queryFn: () => publicApi("/turtle/all-records"),
   });
 
   let content;
-
-  if (isLoading) {
-    content = <Loader />;
-  }
-
-  if (isError) {
-    content = <p>Network Error...</p>;
-  }
 
   if (turtleRecords) {
     const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);
