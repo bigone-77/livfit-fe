@@ -92,7 +92,7 @@ const BadgeModal = ({
 
   // Get the instructions for the selected badge
   const instructions = badgeInstructions[badgeId] || [
-    "히든 미션!",
+    "히든 미션🔒",
     "어떻게 하면 얻을 수 있을까요?",
   ];
 
