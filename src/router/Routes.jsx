@@ -38,7 +38,7 @@ import PointPage from "@pages/profile/PointPage";
 import ProfilePage from "@pages/profile/ProfilePage";
 
 import StorePage from "@pages/store/StorePage";
-import ProductDetailPage from "@pages/store/ProductDetailPage"
+import ProductDetailPage from "@pages/store/ProductDetailPage";
 
 import Footer from "@layouts/footer";
 import Navbar from "@layouts/Navbar";
@@ -74,12 +74,12 @@ const Routes = () => {
         <Route path="/tutorial/lunge" element={<LungePage />} />
         <Route path="/tutorial/pushup" element={<PushupPage />} />
 
-        <Route path="/tutorial/squat/:id" element={<SquatDetailPage />}/>
-        <Route path="/tutorial/lunge/:id" element={<LungeDetailPage />}/>
-        <Route path="/tutorial/pushup/:id" element={<PushupDetailPage />}/>
+        <Route path="/tutorial/squat/:id" element={<SquatDetailPage />} />
+        <Route path="/tutorial/lunge/:id" element={<LungeDetailPage />} />
+        <Route path="/tutorial/pushup/:id" element={<PushupDetailPage />} />
 
         <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
-        
+
         {/* 거북목  페이지 */}
         <Route path="/turtle" element={<TurtlePage />} />
         <Route path="/turtle/ranking" element={<RankingPage />} />
