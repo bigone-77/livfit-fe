@@ -25,16 +25,6 @@ const TurtlePage = () => {
   const handleTrackHandler = async () => {
     navigate("/turtle/play"); // 페이지 이동
   };
-  // const handleTrackHandler = () => {
-  //   navigator.mediaDevices
-  //     .getUserMedia({ video: true })
-  //     .then(() => {
-  //       navigate("/turtle/play");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error accessing webcam: ", error);
-  //     });
-  // };
 
   let content;
 
