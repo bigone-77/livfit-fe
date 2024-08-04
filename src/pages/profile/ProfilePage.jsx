@@ -1,4 +1,6 @@
 import { useQueries } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { privateApi } from "@api/axios";
 
@@ -15,6 +17,16 @@ import vSrc from "@svgs/profile/v-hand.svg";
 import arrow from "@svgs/small-right-arrow.svg";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      alert("로그인이 필요합니다. 홈으로 이동합니다.");
+      navigate("/");
+    }
+  }, [navigate]);
+
   const results = useQueries({
     queries: [
       {
@@ -61,9 +73,21 @@ const ProfilePage = () => {
         <div className="px-8 pb-10">
           <Header nickname={nickname.data} badgeName={badge.data} />
           <section className="grid grid-cols-3 gap-2 mt-6 mb-4">
-            <RecordSection itemSrc={memoSrc} name="운동 기록" />
-            <RecordSection itemSrc={turtleSrc} name="거북목 측정 기록" />
-            <RecordSection itemSrc={chartSrc} name="미션 연속 달성 기록" />
+            <RecordSection
+              itemSrc={memoSrc}
+              name="운동 기록"
+              url="my-records"
+            />
+            <RecordSection
+              itemSrc={turtleSrc}
+              name="거북목 측정 기록"
+              url="/turtle/my-ranking"
+            />
+            <RecordSection
+              itemSrc={chartSrc}
+              name="미션 연속 달성 기록"
+              url="/profile/my-challenges"
+            />
           </section>
           <PerformanceSection point={points.data} badgeSum={badgeCount.data} />
         </div>
@@ -73,14 +97,25 @@ const ProfilePage = () => {
               <img src={vSrc} alt="v-hand" />
               <p>참여중인 챌린지</p>
             </div>
-            <div className="flex items-center gap-1">
+            <div
+              className="flex items-center gap-1 transition-all cursor-pointer hover:opacity-50"
+              onClick={() => navigate("/challenge")}
+            >
               <p className="text-xs text-text150">전체보기</p>
               <img src={arrow} alt="arrow" />
             </div>
           </div>
-          <div className="flex flex-col gap-4 overflow-scroll h-60 scroll-smooth">
+          <div className="flex w-full gap-4 overflow-x-auto scroll-smooth">
             {challenges.data?.map((challenge, index) => (
-              <RowCard key={index} />
+              <RowCard
+                key={index}
+                id={challenge.id}
+                title={challenge.title}
+                desc={challenge.description}
+                start={challenge.startDate}
+                end={challenge.endDate}
+                status={challenge.status}
+              />
             ))}
           </div>
         </section>

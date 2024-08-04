@@ -7,6 +7,7 @@ import { badgeModalStyle } from "@constants/badgeModalStyle";
 import tiger_gray from "@images/badge/tiger-badge-gray.png";
 import lockIcon from "@svgs/badge/dark-lock.svg";
 import nextArrow from "@svgs/right-arrow.svg";
+import ShowBadge from "../commons/ShowBadge";
 
 const BadgeModal = ({
   modalOpen,
@@ -45,7 +46,7 @@ const BadgeModal = ({
       <div className="flex flex-col items-center w-full h-full">
         <div className="absolute flex items-center justify-center w-32 h-32 border-[6px] rounded-full border-orange2 -translate-y-20 z-20 bg-text50">
           <div className="absolute w-[130%] h-full bg-top bg-no-repeat bg-contain bg-badge_effect -top-10" />
-          <img src={badgeImgSrc} alt="selected-badge" />
+          <ShowBadge name={badgeImgSrc} />
         </div>
         <div className="flex flex-col items-center h-full mt-12">
           <p className="text-sm font-semibold text-text200">챌린지 6회 달성</p>

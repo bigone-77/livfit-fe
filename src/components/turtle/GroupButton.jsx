@@ -8,7 +8,7 @@ const GroupButton = () => {
 
   const myHandler = () => {
     dispatch(resetAngle());
-    navigate("/");
+    navigate("/turtle/my-ranking");
   };
 
   const allHandler = () => {
@@ -16,11 +16,21 @@ const GroupButton = () => {
     navigate("/turtle/ranking");
   };
 
+  const handleClick = (handler) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      handler();
+    } else {
+      alert("나만의 기록을 위해 로그인해주세요!");
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="grid items-center w-full grid-cols-2 gap-4 px-10 text-sm text-center">
       <div
         className="py-3 cursor-pointer rounded-xl bg-text50 text-text400"
-        onClick={myHandler}
+        onClick={() => handleClick(myHandler)}
       >
         <p>내 결과 보러가기</p>
       </div>

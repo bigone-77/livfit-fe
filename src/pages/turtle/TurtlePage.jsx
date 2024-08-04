@@ -22,20 +22,23 @@ const TurtlePage = () => {
     queryFn: () => publicApi("/turtle/all-records"),
   });
 
-  const handleTrackHandler = () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(() => {
-        navigate("/turtle/play");
-      })
-      .catch((error) => {
-        console.error("Error accessing webcam: ", error);
-      });
+  const handleTrackHandler = async () => {
+    navigate("/turtle/play"); // 페이지 이동
   };
+  // const handleTrackHandler = () => {
+  //   navigator.mediaDevices
+  //     .getUserMedia({ video: true })
+  //     .then(() => {
+  //       navigate("/turtle/play");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error accessing webcam: ", error);
+  //     });
+  // };
 
   let content;
 
-  if (turtleRecords) {
+  if (turtleRecords && turtleRecords.data.length > 0) {
     const sortedRecords = turtleRecords.data.sort((a, b) => b.score - a.score);
     content = (
       <div className="flex flex-col items-center gap-2 mt-4">
@@ -82,12 +85,12 @@ const TurtlePage = () => {
               거북목 정도를 측정해보고 친구랑 비교해보세요! 바른 자세 습관
               기르는데 도움이 되요
             </h1>
-            <TipSection desc="거북목을 측정할때는 사진을 찍어야 해요!" />
+            <TipSection desc="거북목 측정은 3초간 진행돼요!" />
           </section>
           <div className="flex flex-col items-center justify-center gap-10 px-8 mt-10">
             <img src={trackBar} alt="trackBar" />
             <button
-              className="w-full h-[58px] rounded-[74px] bg-orange2 mb-10 text-text50 font-semibold"
+              className="w-full h-[58px] rounded-[74px] bg-orange2 mb-10 text-text50 font-semibold hover:opacity-80 transition-all"
               onClick={handleTrackHandler}
             >
               측정하러가기
@@ -103,7 +106,7 @@ const TurtlePage = () => {
             <p className="text-xl">랭킹</p>
           </div>
           <p
-            className="text-sm text-text200"
+            className="text-sm cursor-pointer text-text200 hover:opacity-50"
             onClick={() => navigate("ranking")}
           >
             전체 랭킹 확인하기

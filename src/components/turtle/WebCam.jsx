@@ -14,8 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
+import faceMask from "@images/turtle/face-mask.png";
+
 // WebCam 컴포넌트
-const WebCam = ({ start, end }) => {
+const WebCam = ({ start, end, onReady }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,8 +29,7 @@ const WebCam = ({ start, end }) => {
   const [nickname, setNickname] = useState(""); // 사용자 닉네임 상태
   const [showModal, setShowModal] = useState(false); // 모달 표시 여부 상태
   const [lastRecordedScore, setLastRecordedScore] = useState(null); // 마지막 기록된 점수 상태
-  // 카메라 준비 상태 추가
-  const [isCameraReady, setIsCameraReady] = useState(false);
+  const [isCameraReady, setIsCameraReady] = useState(false); // 카메라 준비 상태
 
   const mutation = useMutation({
     mutationFn: async (body) => {
@@ -51,7 +52,6 @@ const WebCam = ({ start, end }) => {
     try {
       await publicApi.post("/turtle/x/save_turtle_record", {
         nickname,
-
         score: Number(lastRecordedScore) * 10,
         localDate: format(new Date(), "yyyy-MM-dd"),
       });
@@ -65,86 +65,115 @@ const WebCam = ({ start, end }) => {
   const pose = config(); // MediaPipe 설정 초기화
   const drawLandmarks = useDrawLandmarks("all"); // 랜드마크 그리기 설정
 
+  // 이미지 로드
+  const image = new Image();
+  image.src = faceMask;
+
   // 카메라 및 포즈 감지
   useEffect(() => {
-    //카메라 먼저 시작 방지 추가
-    if (!start || isCameraReady) return;
-
-    // MediaPipe 결과 처리 함수
-    pose.onResults(onResults);
-
-    // 카메라 스트림을 사용하여 MediaPipe를 통해 포즈를 감지
-    // if (
-    //   typeof webcamRef.current !== "undefined" &&
-    //   webcamRef.current !== null
-    // ) {
-    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-      // 카메라 인스턴스 생성
-      const camera = new window.Camera(webcamRef.current.video, {
-        onFrame: async () => {
-          frameInterval.current++;
-          // 매 4프레임마다 포즈 데이터 전송
-          if (frameInterval.current % 4 === 0) {
-            await pose.send({ image: webcamRef.current.video });
-          }
-        },
-        width: 1280, // 비디오 너비 설정
-        height: 720, // 비디오 높이 설정
-      });
-
-      // if (start) {
-      camera.start(); // 측정 시작 시 카메라 시작
-      cameraRef.current = camera; // 카메라 객체를 참조 변수에 저장
-      setIsCameraReady(true); // 카메라 준비 상태 업데이트
-      // }
-
-      return () => {
-        // 컴포넌트가 언마운트될 때 스트림 정리
-        if (cameraRef.current) {
-          console.log("Stopping the camera...");
-          cameraRef.current.stop();
-        }
-      };
+    // 시작 상태 및 카메라 준비 상태 확인
+    if (!start || isCameraReady) {
+      return; // 시작 상태 및 카메라 준비 상태 확인
     }
+    const initializeCamera = async () => {
+      try {
+        // 비디오가 이미 준비된 경우
+        if (webcamRef.current && webcamRef.current.video.readyState === 4) {
+          const camera = new window.Camera(webcamRef.current.video, {
+            onFrame: async () => {
+              frameInterval.current++;
+              if (frameInterval.current % 4 === 0) {
+                await pose.send({ image: webcamRef.current.video });
+              }
+            },
+            width: 1280,
+            height: 720,
+          });
 
-    // 포즈 감지 결과 처리 함수
+          camera.start();
+          cameraRef.current = camera;
+          setIsCameraReady(true);
+          onReady(); // 카메라가 준비된 후 콜백 호출
+        } else {
+          // 비디오 준비가 안되었을 경우 대기
+          webcamRef.current.video.onloadedmetadata = () => {
+            const camera = new window.Camera(webcamRef.current.video, {
+              onFrame: async () => {
+                frameInterval.current++;
+                if (frameInterval.current % 4 === 0) {
+                  await pose.send({ image: webcamRef.current.video });
+                }
+              },
+              width: 1280,
+              height: 720,
+            });
+
+            camera.start();
+            cameraRef.current = camera;
+            setIsCameraReady(true);
+            onReady(); // 카메라가 준비된 후 콜백 호출
+          };
+        } //여기 추가
+      } catch (error) {
+        alert("카메라 권한을 허용해주세요!");
+        console.error("카메라 초기화 오류:", error);
+        navigate(-1);
+      }
+    };
+
+    pose.onResults(onResults); // MediaPipe 결과 처리 함수
+
+    initializeCamera();
+
+    return () => {
+      if (cameraRef.current) {
+        console.log("Stopping the camera...");
+        cameraRef.current.stop();
+      }
+    };
+
     function onResults(results) {
       const canvas = canvasRef.current;
       const canvasCtx = canvas.getContext("2d");
       canvas.width = 1280;
       canvas.height = 720;
-      canvasCtx.save(); // canvas 드로잉 상태 저장
-      canvasCtx.clearRect(
-        0,
-        0,
-        canvasRef.current.width,
-        canvasRef.current.height
-      );
-      canvasCtx.drawImage(
-        // results.image는 미디어파이프가 제공해주는 이미지
-        results.image,
-        0,
-        0,
-        canvasRef.current.width,
-        canvasRef.current.height
-      );
+      canvasCtx.save();
+      canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+      canvasCtx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+
       if (results.poseLandmarks) {
         drawLandmarks(
           canvasCtx,
           results.poseLandmarks,
           window.POSE_CONNECTIONS
         );
-        // TODO: 아래 기능은 거북목 판단
         const simplifiedLandmarks = simplifyPoseLandmarks(results);
         const angle = detectTurtleNeck(simplifiedLandmarks);
-        setAngles((prevAngles) => {
-          const newAngles = [...prevAngles, angle];
-          return newAngles;
-        });
+        setAngles((prevAngles) => [...prevAngles, angle]);
+
+        //얼굴 위치에 이미지 덮어 씌우기 여기부터
+        const noseLandmark = results.poseLandmarks[1]; // 코 끝부분의 랜드마크 인덱스는 1번입니다.
+        if (noseLandmark) {
+          const noseX = noseLandmark.x * canvas.width;
+          const noseY = noseLandmark.y * canvas.height;
+          //화면 이미지 크기 줄이려면 여기서 크기 조정 하면 됨 !
+          const imageSize = 900; // 이미지 크기 설정
+          // const imageSize = Math.min(canvas.width, canvas.height) * 0.3; // 화면 크기에 비례하여 이미지 크기 설정
+
+          // 이미지 그리기
+          canvasCtx.drawImage(
+            image,
+            noseX - imageSize / 2,
+            noseY - imageSize / 2,
+            imageSize,
+            imageSize
+          );
+        }
+        //여기까지 완료 검증된거임
       }
-      canvasCtx.restore(); // save했던 드로잉 상태를 복원
+      canvasCtx.restore();
     }
-  }, [start]);
+  }, [start, isCameraReady, onReady]);
 
   useEffect(() => {
     if (end && cameraRef.current) {
@@ -174,15 +203,14 @@ const WebCam = ({ start, end }) => {
       <Webcam
         ref={webcamRef}
         videoConstraints={{
-          //ideal 의 의미 : '선호' 한다 하지만 필수는 아니다.
-          width: { ideal: 1280 }, //해상도
-          height: { ideal: 720 }, //해상도
-          facingMode: "user", // 전면 카메라 사용
+          width: { ideal: 1280 },
+          height: { ideal: 720 },
+          facingMode: "user",
           frameRate: { ideal: 30, max: 60 },
         }}
         style={{ display: "none" }}
-        // 모바일에서 인라인 재생 허용
         playsInline={true}
+        autoPlay
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
       {showModal && (

@@ -5,7 +5,6 @@ import PlayNavbar from "@layouts/PlayNavbar";
 
 import BreakEnding from "@components/ending/BreakEnding";
 import EndingGroupButton from "@components/ending/GroupButton";
-// import GoalEnding from '@components/ending/GoalEnding';
 
 import { parsedPlay } from "@constants/parsedPlay";
 
@@ -16,11 +15,8 @@ const ResultPage = () => {
 
   return (
     <>
-      {/* <div className="fixed inset-0 z-10 flex flex-col items-center justify-center bg-black"> */}
       <div className="flex flex-col items-center justify-center w-full h-full overflow-auto bg-black">
         <PlayNavbar title={parsedPlay(exercise)} styles notPrev />
-        {/* goal이라는 변수가 넘어오면 GoalEnding으로 보내기 */}
-        {/* <GoalEnding scoreLength={scoreArr.length} /> */}
         <BreakEnding
           scoreArr={scoreArr}
           subject={exercise}

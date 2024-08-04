@@ -1,9 +1,12 @@
 import circleTurtle from "@svgs/turtle/circle-turtle.svg";
 
-const RowRank = ({ data, seq }) => {
-  console.log(seq);
+const RowRank = ({ data, seq, userNickname }) => {
   return (
-    <section className="flex items-center justify-between px-8 py-4 text-text200">
+    <section
+      className={`${
+        data.nickname === userNickname && "bg-[#FFEDAF]"
+      } flex items-center justify-between px-8 py-4 text-text200`}
+    >
       <div className="flex items-center gap-3">
         <p>{seq}</p>
         <img src={circleTurtle} alt="circle-turtle" className="ml-4" />

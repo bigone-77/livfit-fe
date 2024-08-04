@@ -1,11 +1,22 @@
 import { useNavigate } from "react-router-dom";
 
-import alarm from "@svgs/alarm.svg";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+
 import badge from "@svgs/badge.svg";
-import login from "@svgs/login.svg";
 import logo from "@svgs/logo.svg";
 
-const Header = () => {
+const Header = ({ isCurrentUser }) => {
+  const logoutHandler = () => {
+    if (
+      localStorage.getItem("accessToken") ||
+      localStorage.getItem("refreshToken")
+    ) {
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      window.location.href = "/";
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <header className="relative flex items-center justify-between w-full px-8 h-52 bg-gradient-triple">
@@ -14,18 +25,33 @@ const Header = () => {
         onClick={() => navigate("/badge")}
         src={badge}
         alt="Badge"
-        className="z-10"
+        className="z-10 transition-all cursor-pointer hover:opacity-50"
       />
       <img src={logo} alt="Logo" className="pl-7" />
-      <section className="flex items-center gap-4">
-        <img src={alarm} alt="Alarm" />
-        <img
-          src={login}
-          alt="login"
-          onClick={() => navigate("/login")}
-          className="z-10"
-        />
-      </section>
+
+      <div className="flex flex-col items-center">
+        {isCurrentUser ? (
+          <>
+            <BiLogOut
+              color="white"
+              size={35}
+              onClick={logoutHandler}
+              className="z-10 cursor-pointer"
+            />
+            <span className="mt-0 text-xs text-white">LOGOUT</span>
+          </>
+        ) : (
+          <>
+            <BiLogIn
+              color="white"
+              size={35}
+              onClick={() => navigate("/login")}
+              className="z-10 cursor-pointer"
+            />
+            <span className="mt-0 text-xs text-white">LOGIN</span>
+          </>
+        )}
+      </div>
     </header>
   );
 };

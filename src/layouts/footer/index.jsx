@@ -38,7 +38,7 @@ const Footer = () => {
         <CategoryBox
           imageSrc={turtle}
           selectedImageSrc={selectedTurtle}
-          title="거북목 측정"
+          title="거북목<br>측정"
           selected={pathname.includes("/turtle")}
           url="/turtle"
         />
@@ -53,7 +53,7 @@ const Footer = () => {
           imageSrc={profile}
           selectedImageSrc={selectedProfile}
           title="마이"
-          selected={pathname === "/profile"}
+          selected={pathname.includes("/profile")}
           url="/profile"
         />
       </footer>

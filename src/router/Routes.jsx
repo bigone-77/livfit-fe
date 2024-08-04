@@ -11,14 +11,17 @@ import ExercisePage from "@pages/exercise/ExercisePage";
 import PlayPage from "@pages/exercise/PlayPage";
 import ResultPage from "@pages/exercise/ResultPage";
 
-import TutorialPage from "@pages/tutorial/TutorialPage";
-import SquatPage from "@pages/tutorial/SquatPage";
+import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
 import LungePage from "@pages/tutorial/LungePage";
 import PushupPage from "@pages/tutorial/PushupPage";
+import SquatPage from "@pages/tutorial/SquatPage";
+
 import SquatDetailPage from "@pages/tutorial/SquatDetailPage";
 import LungeDetailPage from "@pages/tutorial/LungeDetailPage";
 import PushupDetailPage from "@pages/tutorial/PushupDetailPage";
+import TutorialPage from "@pages/tutorial/TutorialPage";
 
+import MyRankingPage from "@pages/turtle/MyRankingPage";
 import RankingPage from "@pages/turtle/RankingPage";
 import TurtleResultPage from "@pages/turtle/ResultPage";
 import TurtlePage from "@pages/turtle/TurtlePage";
@@ -29,7 +32,11 @@ import FindpwPage from "@pages/login/FindpwPage";
 import LoginPage from "@pages/login/LoginPage";
 import SignupPage from "@pages/login/SignupPage";
 
-import ProfilePage from "@pages/ProfilePage";
+import MyChallengePage from "@pages/profile/MyChallengePage";
+import MyRecordsPage from "@pages/profile/MyRecordsPage";
+import PointPage from "@pages/profile/PointPage";
+import ProfilePage from "@pages/profile/ProfilePage";
+
 import StorePage from "@pages/store/StorePage";
 import ProductDetailPage from "@pages/store/ProductDetailPage"
 
@@ -66,12 +73,17 @@ const Routes = () => {
         <Route path="/tutorial/squat" element={<SquatPage />} />
         <Route path="/tutorial/lunge" element={<LungePage />} />
         <Route path="/tutorial/pushup" element={<PushupPage />} />
+
         <Route path="/tutorial/squat/:id" element={<SquatDetailPage />}/>
         <Route path="/tutorial/lunge/:id" element={<LungeDetailPage />}/>
         <Route path="/tutorial/pushup/:id" element={<PushupDetailPage />}/>
 
+        <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
+        
+        {/* 거북목  페이지 */}
         <Route path="/turtle" element={<TurtlePage />} />
         <Route path="/turtle/ranking" element={<RankingPage />} />
+        <Route path="/turtle/my-ranking" element={<MyRankingPage />} />
         {/* 스토어 페이지입니다. */}
         <Route path="/store" element={<StorePage />} />
         <Route path="/store/:id" element={<ProductDetailPage />} />
@@ -80,7 +92,10 @@ const Routes = () => {
         <Route path="/profile" element={<Navbar closed mypage />}>
           <Route index element={<ProfilePage />} />
         </Route>
+        <Route path="/profile/my-records" element={<MyRecordsPage />} />
+        <Route path="/profile/myPoint" element={<PointPage />} />
       </Route>
+      <Route path="/profile/my-challenges" element={<MyChallengePage />} />
       {/* 운동 옵션 선택 페이지 */}
       <Route path="/exercise/:name" element={<DetailExercisePage />} />
 
@@ -96,7 +111,6 @@ const Routes = () => {
       <Route path="/badge" element={<BadgePage />} />
       {/* 챌린지 페이지 */}
       <Route path="/challenge" element={<ChallengePage />} />
-      {/* <Route path="/challenge/:id" element={<DetailChallengePage />} /> */}
       <Route
         path="/challenge/:id"
         element={<Navbar closed bgColor={"#F6F6F6"} />}

@@ -32,7 +32,7 @@ privateApi.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 401) {
+    if (status === 403) {
       if (error.response.data.message === "Unauthorized") {
         const originRequest = config;
         try {
@@ -51,7 +51,7 @@ privateApi.interceptors.response.use(
         } catch (error) {
           if (axios.isAxiosError(error)) {
             if (
-              error.response?.status === 404 ||
+              error.response?.status === 403 ||
               error.response?.status === 422
             )
               window.location.replace("/login");

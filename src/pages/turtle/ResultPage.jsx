@@ -23,7 +23,7 @@ const ResultPage = () => {
           <TipSection
             tipColor="#00D26A"
             bgColor="#FFFFFF"
-            desc="거북목 측정할때는 사진을 찍어야 해요!"
+            desc="거북목을 예방하기 위해서는 바른 자세와 스트레칭 필수!"
           />
         </div>
         <div className="w-full pb-10 mt-20">

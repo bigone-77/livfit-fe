@@ -4,40 +4,47 @@ import CountTime from "@components/play/CountTime";
 import WebCam from "@components/turtle/WebCam";
 import Navbar from "@layouts/Navbar";
 
-import trackingBar from "@images/turtle/track-bar.png";
+import trackingBar from "@images/turtle/bar.png";
 
 const TurtlePlayPage = () => {
   const [timeLeft, setTimeLeft] = useState(3); // 카운트다운을 위해 3초로 설정
   const [showStart, setShowStart] = useState(false); // START 문구 보여주기용
-  const [trackingLeft, setTrackingLeft] = useState(5); // 측정하는 시간을 3초로 설정
+  const [trackingLeft, setTrackingLeft] = useState(5); // 측정하는 시간을 5초로 설정
   const [timesUp, setTimesUp] = useState(false); // 측정 완료 상태
+  const [webCamReady, setWebCamReady] = useState(false); // 웹캠 시작 상태
 
+  const handleWebCamReady = () => {
+    setWebCamReady(true); // 웹캠이 준비되었음을 설정
+  };
+
+  // 321카운트다운 타이머
   useEffect(() => {
-    if (timeLeft > 0) {
+    if (webCamReady && timeLeft > 0) {
       const startTimer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
-
       return () => clearInterval(startTimer);
-    } else {
+    } else if (webCamReady && timeLeft === 0 && !showStart) {
       setShowStart(true);
-      setTimeout(() => {
+      const showStartTimer = setTimeout(() => {
         setShowStart(false);
       }, 1000);
-    }
-  }, [timeLeft]);
 
+      return () => clearTimeout(showStartTimer);
+    }
+  }, [webCamReady, timeLeft, showStart]);
+
+  // 거북목 측정 측정 타이머 (웹캠이 준비되고 카운트다운이 끝난 후 시작)
   useEffect(() => {
-    if (timeLeft === 0 && trackingLeft > 0) {
+    if (webCamReady && timeLeft === 0 && trackingLeft > 0) {
       const trackingTimer = setInterval(() => {
         setTrackingLeft((prevTime) => prevTime - 1);
       }, 1000);
-
       return () => clearInterval(trackingTimer);
     } else if (trackingLeft === 0) {
       setTimesUp(true);
     }
-  }, [timeLeft, trackingLeft]);
+  }, [webCamReady, timeLeft, trackingLeft]); // 웹캠 시작 상태와 측정 타이머의 종속성
 
   return (
     <div className="relative">
@@ -55,9 +62,9 @@ const TurtlePlayPage = () => {
             START
           </p>
         )}
-        <WebCam start={timeLeft === 0} end={timesUp} />
+        <WebCam start={true} end={timesUp} onReady={handleWebCamReady} />{" "}
       </main>
-      {timeLeft === 0 && trackingLeft > 0 && (
+      {webCamReady && trackingLeft > 0 && (
         <div className="absolute inset-0">
           <img
             src={trackingBar}
