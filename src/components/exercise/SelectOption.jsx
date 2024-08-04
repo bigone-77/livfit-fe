@@ -41,7 +41,7 @@ const SelectOption = ({
   } else {
     content = (
       <select
-        className="block w-full py-4 pl-48 border border-gray-300 rounded-lg outline-none bg-text50"
+        className="block w-full py-4 px-6 border border-gray-300 rounded-lg outline-none bg-text50 text-center"
         onChange={onChange}
       >
         <option value="" disabled>
