@@ -70,12 +70,12 @@ const Store = () => {
       </HeroShot>
         <SearchBar />
         <LogoContainer>
-          <BrandLogo logo={AllLogo} onClick={() => handleBrandClick('all')} isSelected={selectedBrand === 'all'} />
-          <BrandLogo logo={LivfitLogo} onClick={() => handleBrandClick('livfit')} isSelected={selectedBrand === 'livfit'} />
-          <BrandLogo logo={NikeLogo} onClick={() => handleBrandClick('nike')} isSelected={selectedBrand === 'nike'} />
-          <BrandLogo logo={AdidasLogo} onClick={() => handleBrandClick('adidas')} isSelected={selectedBrand === 'adidas'} />
-          <BrandLogo logo={PumaLogo} onClick={() => handleBrandClick('puma')} isSelected={selectedBrand === 'puma'} />
-          <BrandLogo logo={UnderarmourLogo} onClick={() => handleBrandClick('underarmour')} isSelected={selectedBrand === 'underarmour'} />
+          <BrandLogo logo={AllLogo} brandName="전체" onClick={() => handleBrandClick('all')} isSelected={selectedBrand === 'all'} />
+          <BrandLogo logo={LivfitLogo} brandName="자체제작" onClick={() => handleBrandClick('livfit')} isSelected={selectedBrand === 'livfit'} />
+          <BrandLogo logo={NikeLogo} brandName="나이키" onClick={() => handleBrandClick('nike')} isSelected={selectedBrand === 'nike'} />
+          <BrandLogo logo={AdidasLogo} brandName="아디다스" onClick={() => handleBrandClick('adidas')} isSelected={selectedBrand === 'adidas'} />
+          <BrandLogo logo={PumaLogo} brandName="푸마" onClick={() => handleBrandClick('puma')} isSelected={selectedBrand === 'puma'} />
+          <BrandLogo logo={UnderarmourLogo} brandName="언더아머" onClick={() => handleBrandClick('underarmour')} isSelected={selectedBrand === 'underarmour'} />
         </LogoContainer>
         <BrandGroup selectedBrand={selectedBrand} />
     </StoreContainer>
