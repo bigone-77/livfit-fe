@@ -12,6 +12,8 @@ import TurtleRank from "@components/home/turtleRank";
 import WeekendSection from "@components/home/weekendSection";
 
 export default function HomePage() {
+  const accessToken = localStorage.getItem("accessToken");
+
   const results = useQueries({
     queries: [
       {
@@ -20,11 +22,13 @@ export default function HomePage() {
           privateApi
             .get("/mainpage/week-status")
             .then((response) => response.data),
+        enabled: !!accessToken, // Enable this query only if the access token exists
       },
       {
         queryKey: ["nickname"],
         queryFn: () =>
           privateApi.get("/mainpage/getname").then((response) => response.data),
+        enabled: !!accessToken, // Enable this query only if the access token exists
       },
       {
         queryKey: ["challenge", "all"],
