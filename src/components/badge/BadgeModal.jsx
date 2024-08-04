@@ -9,6 +9,36 @@ import lockIcon from "@svgs/badge/dark-lock.svg";
 import nextArrow from "@svgs/right-arrow.svg";
 import ShowBadge from "../commons/ShowBadge";
 
+const badgeInstructions = {
+  cat: ["고양이처럼 유연하게 5일 연속 운동하기", "매일 물 충분히 마시기"],
+  chick: ["연속 3일 아침 운동 참여하기", "신선한 과일과 채소 섭취하기"],
+  chicken: ["닭처럼 부지런히 10일 연속 조깅하기", "단백질 충분히 섭취하기"],
+  clover_four: ["네잎 클로버 찾기 챌린지 완료하기", "행운의 상징 4개 모으기"],
+  clover_three: ["세잎 클로버 찾기 챌린지 완료하기", "행운의 상징 3개 모으기"],
+  egg: ["에그 요리 7가지 도전하기", "영양가 높은 식단 유지하기"],
+  medal_bronze: ["브론즈 레벨 달성하기", "초급 과제 3개 완료하기"],
+  medal_silver: ["실버 레벨 달성하기", "중급 과제 5개 완료하기"],
+  medal_gold: ["골드 레벨 달성하기", "고급 과제 10개 완료하기"],
+  rainbow: [
+    "무지개 배지 얻기 위해 다양한 활동 참여하기",
+    "7가지 색깔 아이템 모으기",
+  ],
+  star: [
+    "스타 배지 얻기 위해 5가지 특수 활동 참여하기",
+    "특별한 이벤트 참여하기",
+  ],
+  star_big: [
+    "대스타 배지 얻기 위해 10가지 특수 활동 참여하기",
+    "특별한 성취 달성하기",
+  ],
+  sun: ["태양 배지 얻기 위해 30일 동안 긍정적 활동하기", "매일 일출 보기"],
+  sun_smile: [
+    "웃는 태양 배지 얻기 위해 15일 연속 미소 짓기",
+    "긍정적인 태도 유지하기",
+  ],
+  tiger: ["호랑이 배지 얻기 위해 6개월 연속 운동하기", "정신적 강인함 기르기"],
+};
+
 const BadgeModal = ({
   modalOpen,
   setModalOpen,
@@ -26,6 +56,12 @@ const BadgeModal = ({
       setIsClosing(false);
     }, 750); // 닫힘 애니메이션 시간과 일치시킵니다.
   };
+
+  // Get the instructions for the selected badge
+  const instructions = badgeInstructions[badgeId] || [
+    "히든 미션!",
+    "어떻게 하면 얻을 수 있을까요?",
+  ];
 
   return (
     <Modal
@@ -70,8 +106,9 @@ const BadgeModal = ({
               <p> 를 획득하세요!</p>
             </span>
             <ul className="mt-2 text-sm text-left list-disc list-inside text-text200">
-              <li>챌린지 10회 달성하기</li>
-              <li>오늘의 미션 연속 7일 달성하기</li>
+              {instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
             </ul>
           </section>
           <p className="mt-2 text-xs text-text150">

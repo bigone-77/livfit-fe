@@ -6,6 +6,8 @@ import GroupButton from "./GroupButton";
 
 const Contents = ({ badges, selected, setSelected }) => {
   const [showBadgeName, setShowBadgeName] = useState("");
+  const [badgeId, setBadgeId] = useState(""); // Track the id of the badge
+
   let content;
 
   if (selected === "전체 배지") {
@@ -17,7 +19,10 @@ const Contents = ({ badges, selected, setSelected }) => {
         <div className="text-center">
           <ShowBadge
             name={badge.name}
-            handler={() => setShowBadgeName(badge.name)}
+            handler={() => {
+              setShowBadgeName(badge.name);
+              setBadgeId(badge.name); // Assuming name is the ID
+            }}
           />
           <p className="text-sm text-text400">{badge.desc}</p>
         </div>
@@ -52,7 +57,10 @@ const Contents = ({ badges, selected, setSelected }) => {
           <div className="text-center">
             <ShowBadge
               name={badge.name}
-              handler={() => setShowBadgeName(badge.name)}
+              handler={() => {
+                setShowBadgeName(badge.name);
+                setBadgeId(badge.name); // Assuming name is the ID
+              }}
             />
             <p className="text-sm text-text400">{badge.desc}</p>
           </div>
@@ -66,9 +74,10 @@ const Contents = ({ badges, selected, setSelected }) => {
       <div className="grid grid-cols-3 gap-6 mt-10">{content}</div>
       {showBadgeName && (
         <BadgeModal
-          modalOpen={showBadgeName}
+          modalOpen={!!showBadgeName}
           setModalOpen={setShowBadgeName}
           badgeImgSrc={showBadgeName}
+          badgeId={badgeId}
         />
       )}
     </section>
