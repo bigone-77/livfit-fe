@@ -11,7 +11,6 @@ import ExercisePage from "@pages/exercise/ExercisePage";
 import PlayPage from "@pages/exercise/PlayPage";
 import ResultPage from "@pages/exercise/ResultPage";
 
-import ExerciseDetailPage from "@pages/tutorial/ExerciseDetailPage";
 import LungePage from "@pages/tutorial/LungePage";
 import PushupPage from "@pages/tutorial/PushupPage";
 import SquatPage from "@pages/tutorial/SquatPage";
@@ -77,8 +76,6 @@ const Routes = () => {
         <Route path="/tutorial/squat/:id" element={<SquatDetailPage />} />
         <Route path="/tutorial/lunge/:id" element={<LungeDetailPage />} />
         <Route path="/tutorial/pushup/:id" element={<PushupDetailPage />} />
-
-        <Route path="/tutorial/detail/:id" element={<ExerciseDetailPage />} />
 
         {/* 거북목  페이지 */}
         <Route path="/turtle" element={<TurtlePage />} />
