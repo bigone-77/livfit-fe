@@ -41,7 +41,7 @@ const BadgeSelectModal = ({
     >
       <div className="flex flex-col items-center w-full h-full">
         <p className="text-2xl">메인 배지 수정</p>
-        <section className="flex items-center justify-center w-2/3 gap-6 py-3 mt-6 border-2 rounded-lg border-orange2">
+        <section className="flex items-center justify-center w-5/6 gap-11 py-3 mt-7 rounded-lg border-orange2">
           {badgeArray
             .filter((badge) => badges.includes(badge.name))
             .map((badge, index) => (
@@ -51,10 +51,9 @@ const BadgeSelectModal = ({
               >
                 <div
                   onClick={() => setSelected(badge.name)}
-                  className={`text-center cursor-pointer ${
-                    selected === badge.name &&
-                    "border border-text200 rounded-2xl"
-                  }`}
+                  className={`text-center cursor-pointer transform transition-transform ${
+                    selected === badge.name ? "scale-125" : ""
+                  } hover:scale-105`}
                 >
                   <ShowBadge name={badge.name} />
                   <p className="text-sm text-text400">{badge.desc}</p>
@@ -65,7 +64,7 @@ const BadgeSelectModal = ({
         <button
           onClick={submitHandler}
           disabled={!selected}
-          className="w-2/3 py-1 mt-4 rounded-lg disabled:bg-gray-500 text-text50 bg-orange2"
+          className="w-1/4 py-1 mt-9 rounded-lg disabled:bg-gray-500 text-text50 bg-orange2"
         >
           수정하기
         </button>
