@@ -1,5 +1,4 @@
 import React from "react";
-import emojiImage from "../assets/images/login/emoji.png";
 
 const LoginModalNoToken = ({ isOpen, onClose, onLogin }) => {
   if (!isOpen) return null;
@@ -19,20 +18,19 @@ const LoginModalNoToken = ({ isOpen, onClose, onLogin }) => {
         <div className="absolute top-[-4rem] left-1/2 transform -translate-x-1/2">
           <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
             <img
-              src={emojiImage}
+              src="../src/assets/images/login/emoji.png"
               alt="emoji"
               className="w-36 h-28 relative left-4 top-[-10px]"
             />
           </div>
         </div>
         <h2 className="text-xl font-bold mb-1 mt-10 text-black">
-          기록을 원하시면 <span className="text-orange2">로그인</span>이
-          필요해요!
+          <span className="text-orange2">로그인</span>이 필요해요!
         </h2>
         <p className="text-gray-500 mb-5 mt-3">
           로그인을 하면 LIVFIT의 더 많은 기능을
           <br />
-          사용할 수 있어요
+          사용 할 수 있어요
         </p>
         <div className="flex justify-around mt-4">
           <button

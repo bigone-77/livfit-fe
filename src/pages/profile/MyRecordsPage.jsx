@@ -65,7 +65,9 @@ const MyRecordsPage = () => {
       <div
         className="flex items-center justify-end w-full py-6 pr-6 cursor-pointer"
         onClick={() => setShowFilter(true)}
-      ></div>
+      >
+        <img src={dots} alt="dots" />
+      </div>
       {!showGraph ? (
         <ShowAllRecords
           exercise={selectedExercise}
