@@ -1,5 +1,5 @@
 import { useQueries } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { privateApi } from "@api/axios";
@@ -7,8 +7,9 @@ import { privateApi } from "@api/axios";
 import Header from "@components/profile/Header";
 import PerformanceSection from "@components/profile/PerformanceSection";
 import RecordSection from "@components/profile/RecordSection";
-
 import RowCard from "@components/challenge/RowCard";
+
+import LoginModalNoToken from "../../constants/loginModalNoToken";
 
 import chartSrc from "@svgs/profile/chart.svg";
 import memoSrc from "@svgs/profile/memo.svg";
@@ -18,14 +19,24 @@ import arrow from "@svgs/small-right-arrow.svg";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
-      alert("로그인이 필요합니다. 홈으로 이동합니다.");
-      navigate("/");
+      setIsModalOpen(true);
     }
   }, [navigate]);
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    navigate("/");
+  };
+
+  const handleLogin = () => {
+    setIsModalOpen(false);
+    navigate("/login");
+  };
 
   const results = useQueries({
     queries: [
@@ -67,7 +78,13 @@ const ProfilePage = () => {
 
   let content;
 
-  if (nickname && points && challenges && badge && badgeCount) {
+  if (
+    nickname.isSuccess &&
+    points.isSuccess &&
+    challenges.isSuccess &&
+    badge.isSuccess &&
+    badgeCount.isSuccess
+  ) {
     content = (
       <>
         <div className="px-8 pb-10">
@@ -121,9 +138,27 @@ const ProfilePage = () => {
         </section>
       </>
     );
+  } else if (
+    nickname.isLoading ||
+    points.isLoading ||
+    challenges.isLoading ||
+    badge.isLoading ||
+    badgeCount.isLoading
+  ) {
+    content = <div>Loading...</div>;
+  } else {
   }
 
-  return <div className="relative w-full h-full bg-text90">{content}</div>;
+  return (
+    <div className="relative w-full h-full bg-text90">
+      {content}
+      <LoginModalNoToken
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        onLogin={handleLogin}
+      />
+    </div>
+  );
 };
 
 export default ProfilePage;
