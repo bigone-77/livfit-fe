@@ -18,6 +18,8 @@ import vSrc from "@svgs/profile/v-hand.svg";
 import arrow from "@svgs/small-right-arrow.svg";
 
 const ProfilePage = () => {
+  const accessToken = localStorage.getItem("accessToken");
+
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -44,11 +46,13 @@ const ProfilePage = () => {
         queryKey: ["nickname"],
         queryFn: () =>
           privateApi.get("/mainpage/getname").then((response) => response.data),
+        enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "points"],
         queryFn: () =>
           privateApi.get("/mypage/points").then((response) => response.data),
+        enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "challenges"],
@@ -56,6 +60,7 @@ const ProfilePage = () => {
           privateApi
             .get("/mypage/challenges")
             .then((response) => response.data),
+        enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "badge"],
@@ -63,6 +68,7 @@ const ProfilePage = () => {
           privateApi
             .get("/mypage/badges/main")
             .then((response) => response.data),
+        enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "badge", "count"],
@@ -70,6 +76,7 @@ const ProfilePage = () => {
           privateApi
             .get("/mypage/badges/count")
             .then((response) => response.data),
+        enabled: !!accessToken,
       },
     ],
   });
@@ -146,8 +153,7 @@ const ProfilePage = () => {
     badgeCount.isLoading
   ) {
     content = <div>Loading...</div>;
-  } else {
-  }
+  } // 안쓰는 else문구 제거 eslint
 
   return (
     <div className="relative w-full h-full bg-text90">
