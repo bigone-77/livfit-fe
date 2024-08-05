@@ -1,4 +1,3 @@
-import dummy2 from "@images/challenge/dummy2.png";
 import { getImageById } from "../../utils/challengeImage";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
@@ -19,7 +18,7 @@ const RowCard = ({ id, title, desc, start, end, status }) => {
       className="relative w-[261px] h-[136px] rounded-[13px] shrink-0 hover:scale-95 transition-all cursor-pointer"
       onClick={() => navigate(`/challenge/${id}`)}
     >
-      <img src={getImageById(id)} alt="dummy" className="absolute inset-0" />
+      <img src={getImageById(id)} alt="dummy" className="absolute inset-0 w-full h-full object-cover rounded-[13px]" />
       <section className="absolute top-2 left-2">
         <p className="text-xs text-text50">
           {format(new Date(start), "yyyy.MM.dd")}~
