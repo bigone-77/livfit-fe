@@ -11,7 +11,7 @@ export const LoginContainer = styled.div`
   background-color: #f6f8f8;
   color: #6a6a6a;
   font-size: 12px;
-  margin: 0 auto; 
+  margin: 0 auto;
   align-items: center;
 `;
 
@@ -126,4 +126,12 @@ export const Links = styled.div`
 `;
 export const div_id_pw = styled.div`
 display.flex; 
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
 `;

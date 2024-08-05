@@ -3,10 +3,22 @@ import logo from "@images/login/logo.svg";
 import BackButton from "./BackButton";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { LoginContainer, LoginBox, Header, LogoDiv, Form, InputDiv, 
-    Input, LoginButton, KeepLoggedIn, Checkbox, CheckboxLabel,
-    Links, Container,
+import {
+  LoginContainer,
+  LoginBox,
+  Header,
+  LogoDiv,
+  Form,
+  InputDiv,
+  Input,
+  LoginButton,
+  KeepLoggedIn,
+  Checkbox,
+  CheckboxLabel,
+  Links,
+  Container,
   // div_id_pw,
+  ErrorMessage,
 } from "./LoginStyles";
 
 const Login = () => {
@@ -14,10 +26,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
-  const { signIn } = useLogin();
+  const { signIn, errorMessage, setErrorMessage } = useLogin();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setErrorMessage(""); // 이전 오류 메시지 초기화
     signIn({ loginId, password });
   };
 
@@ -44,6 +57,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             <LoginButton type="submit">로그인</LoginButton>
           </InputDiv>
           <Container>
@@ -61,14 +75,13 @@ const Login = () => {
               <Link to="/auth/signup">회원가입</Link>
             </Links>
           </Container>
-          {/* 이부분 주석 해제해주기
-          <div_id_pw>
+          {/* <div>
             <span>심사위원용 id & pw</span>
             <br></br>
             <span>ID : likelion</span>
             <br></br>
             <span>PW : 1234</span>
-          </div_id_pw> */}
+          </div> */}
         </Form>
       </LoginBox>
     </LoginContainer>
