@@ -7,11 +7,14 @@ import BackButton from "./BackButton";
 
 const SignupContainer = styled.div`
   display: flex;
+  max-width: 500px;
   flex-direction: column;
-  height: 95vh;
+  height: 100vh;
+  width: 100%;
   background-color: #f6f8f8;
   color: #6a6a6a;
   font-size: 12px;
+  margin: 0 auto; 
 `;
 
 const Header = styled.div`
@@ -19,13 +22,14 @@ const Header = styled.div`
   width: 100%;
   height: 100px;
   padding: 10px;
+  position: relative;
 `;
 
 const Content = styled.div`
   padding: 40px;
   border-radius: 8px;
   align-items: center;
-  position: relative; /* Ensure absolute positioning is relative to this container */
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -79,7 +83,7 @@ const CheckButton = styled.button`
 `;
 
 const Row = styled.div`
-  position: relative; /* Ensure absolute positioning of CheckButton is relative to this container */
+  position: relative;
   display: flex;
   align-items: center;
 `;

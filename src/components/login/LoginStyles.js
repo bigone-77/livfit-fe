@@ -4,13 +4,15 @@ import checkedImg from "/src/assets/images/login/checked.svg";
 
 export const LoginContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   max-width: 500px;
-  background-color: #f8f8f8;
-  font-size: 12px;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #f6f8f8;
   color: #6a6a6a;
+  font-size: 12px;
+  margin: 0 auto; 
+  align-items: center;
 `;
 
 export const LoginBox = styled.div`
@@ -18,6 +20,15 @@ export const LoginBox = styled.div`
   border-radius: 8px;
   align-items: center;
   width: 400px;
+  margin-top: 40px;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  position: relative;
 `;
 
 export const LogoDiv = styled.div`
