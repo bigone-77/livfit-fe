@@ -6,7 +6,7 @@ import SelectEx from "./SelectEx";
 const Exercises = () => {
   const navigate = useNavigate();
   return (
-    <div className="px-8 mt-10">
+    <div className="px-8 mt-5">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <img src={camera} alt="camera" className="mb-2" />
