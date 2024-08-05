@@ -15,7 +15,7 @@ export const badgeModalStyle = {
     display: "flex",
     flexDirection: "column",
     maxWidth: "400px",
-    maxHeight: "480px",
+    maxHeight: "530px",
     width: "100%",
     height: "100%",
     zIndex: 20,
@@ -26,5 +26,6 @@ export const badgeModalStyle = {
     overflow: "visible",
     animation: "slideIn 0.75s forwards",
     inset: 0,
+    padding: "20px", // 추가: 컨텐츠에 패딩 추가
   },
 };

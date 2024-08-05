@@ -20,7 +20,7 @@ const BadgeSelectModal = ({
     setTimeout(() => {
       setModalOpen(false);
       setIsClosing(false);
-    }, 750); // 닫힘 애니메이션 시간과 일치시킵니다.
+    }, 750);
   };
 
   return (
@@ -34,29 +34,31 @@ const BadgeSelectModal = ({
           animation: isClosing
             ? "slideOut 0.75s forwards"
             : "slideIn 0.75s forwards",
+          height: "auto",
+          maxHeight: '1000px',
         },
       }}
       ariaHideApp={false}
       contentLabel="Pop up Message"
     >
       <div className="flex flex-col items-center w-full h-full">
-        <p className="text-2xl">메인 배지 수정</p>
-        <section className="flex items-center justify-center w-5/6 gap-11 py-3 mt-7 rounded-lg border-orange2">
+        <p className="text-2xl mb-4">메인 배지 변경</p>
+        <section className="flex flex-wrap items-center justify-center w-5/6 gap-8 py-3 mt-3">
           {badgeArray
             .filter((badge) => badges.includes(badge.name))
             .map((badge, index) => (
               <div
-                className="flex flex-col items-center justify-center gap-3 max-w-64 overscroll-x-auto scroll-smooth"
+                className="flex flex-col items-center justify-center w-20"
                 key={index}
               >
                 <div
                   onClick={() => setSelected(badge.name)}
                   className={`text-center cursor-pointer transform transition-transform ${
-                    selected === badge.name ? "scale-125" : ""
+                    selected === badge.name ? "scale-110" : ""
                   } hover:scale-105`}
                 >
                   <ShowBadge name={badge.name} />
-                  <p className="text-sm text-text400">{badge.desc}</p>
+                  <p className="text-sm text-text400 mt-2">{badge.desc}</p>
                 </div>
               </div>
             ))}
@@ -66,7 +68,7 @@ const BadgeSelectModal = ({
           disabled={!selected}
           className="w-1/4 py-1 mt-9 rounded-lg disabled:bg-gray-500 text-text50 bg-orange2"
         >
-          수정하기
+          변경하기
         </button>
       </div>
     </Modal>

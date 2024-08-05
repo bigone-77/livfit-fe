@@ -47,7 +47,7 @@ export const badgeArray = [
   {
     id: 9,
     name: "star",
-    desc: "별빛찬란",
+    desc: "오늘의 미션",
   },
   {
     id: 10,

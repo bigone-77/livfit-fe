@@ -18,6 +18,7 @@ export default defineConfig({
       { find: "@constants", replacement: "/src/constants" },
       { find: "@svgs", replacement: "/src/assets/svgs" },
       { find: "@images", replacement: "/src/assets/images" },
+      { find: "@badges", replacement: "/src/assets/images/badge" },
     ],
   },
 });
