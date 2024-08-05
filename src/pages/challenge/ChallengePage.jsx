@@ -10,6 +10,7 @@ import dots from "@svgs/challenge/dots.svg";
 import arrow from "@svgs/challenge/small-arrow.svg";
 
 const ChallengePage = () => {
+  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
 
   const { data: challenges } = useQuery({
@@ -21,6 +22,7 @@ const ChallengePage = () => {
     queryKey: ["nickname"],
     queryFn: () =>
       privateApi.get("/mainpage/getname").then((response) => response.data),
+    enabled: !!accessToken,
   });
 
   return (
