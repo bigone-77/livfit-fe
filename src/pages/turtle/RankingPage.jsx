@@ -14,6 +14,7 @@ import MyRowRank from "../../components/turtle/MyRowRank";
 const RankingPage = () => {
   const [clickAll, setClickAll] = useState(false);
   const currentDateFormat = format(new Date(), "yyyy-MM-dd");
+  const accessToken = localStorage.getItem("accessToken");
 
   const results = useQueries({
     // TODO: 전체 거북목 기록과 접속한 회원의 닉네임을 얻자 queries로
@@ -29,6 +30,7 @@ const RankingPage = () => {
         queryKey: ["nickname"],
         queryFn: () =>
           privateApi.get("/mainpage/getname").then((response) => response.data),
+        enabled: !!accessToken,
       },
     ],
   });
