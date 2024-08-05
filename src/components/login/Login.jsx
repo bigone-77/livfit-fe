@@ -18,7 +18,6 @@ import {
   Links,
   Container,
   // div_id_pw,
-  ErrorMessage,
 } from "./LoginStyles";
 
 const Login = () => {
@@ -26,11 +25,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [keepLoggedIn, setKeepLoggedIn] = useState(false);
 
-  const { signIn, errorMessage, setErrorMessage } = useLogin();
+  const { signIn } = useLogin();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // 이전 오류 메시지 초기화
     signIn({ loginId, password });
   };
 
@@ -57,7 +55,6 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
             <LoginButton type="submit">로그인</LoginButton>
           </InputDiv>
           <Container>
