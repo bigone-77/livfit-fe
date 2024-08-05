@@ -9,7 +9,7 @@ const DayCard = ({ day, status }) => {
         <span className="text-text200">{day}</span>
       </div>
       <div
-        className={`relative w-12 h-12 rounded-full ${
+        className={`relative w-11 h-11 rounded-full ${
           status === 1
             ? "bg-orange2"
             : status === 0

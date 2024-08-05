@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
 import { privateApi, publicApi } from "@api/axios";
-
 import RowCard from "@components/challenge/RowCard";
 import { useQuery } from "@tanstack/react-query";
 
@@ -29,7 +27,7 @@ const ChallengeSection = () => {
           전체 보기
         </p>
       </div>
-      <div className="flex w-full gap-4 overflow-x-auto scroll-smooth custom-scrollbar">
+      <div className="flex w-full gap-4 overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth custom-scrollbar pb-0.5">
         {challenges &&
           challenges.map((challenge, index) => (
             <RowCard

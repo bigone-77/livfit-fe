@@ -55,7 +55,7 @@ const TodayMission = () => {
   return (
     <section className="flex flex-col gap-2 px-6 pt-6 transition-all shadow-xl cursor-pointer rounded-2xl hover:scale-105">
       {content}
-      <img src={progress} alt="dummy-progress" className="mb-8" />
+      <img src={progress} alt="dummy-progress" className="mb-5" />
       <div className="flex items-center justify-center w-full gap-1 text-3xl font-bold mini:text-4xl tablet:text-5xl font-English">
         <p className="text-outline-black">TODAY</p>
         <p className="text-text500">MISSION</p>
