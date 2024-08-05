@@ -1,6 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import AllLogo from '@images/store/logo/all.svg';
+import LivfitLogo from '@images/store/logo/livfit.svg'; 
+import NikeLogo from '@images/store/logo/nike.svg'; 
+import AdidasLogo from '@images/store/logo/adidas.svg';
+import GoalstudioLogo from '@images/store/logo/goalstudio.svg';
+import UnderarmourLogo from '@images/store/logo/underarmour.svg';
+
+
+const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin-top: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > div {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+`;
+
 const LogoDiv = styled.div`
   width: 60px;
   height: 100%;
@@ -9,8 +35,8 @@ const LogoDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0 15px;
-`
+  margin: 10px;
+`;
 
 const Logo = styled.div`
   width: 60px;
@@ -22,8 +48,8 @@ const Logo = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin: 10px;
   padding: 5px;
+  margin-bottom: 5px;
 `;
 
 const LogoImage = styled.img`
@@ -37,15 +63,27 @@ const BrandName = styled.div`
   color: #949494;
 `;
 
-const BrandLogo = ({ logo, brandName, onClick, isSelected }) => {
+const BrandLogo = ({ selectedBrand, onBrandClick }) => {
+  const brands = [
+    { logo: AllLogo, brandName: '전체', key: 'all' },
+    { logo: LivfitLogo, brandName: '자체제작', key: 'livfit' },
+    { logo: NikeLogo, brandName: '나이키', key: 'nike' },
+    { logo: AdidasLogo, brandName: '아디다스', key: 'adidas' },
+    { logo: GoalstudioLogo, brandName: '골스튜디오', key: 'goalstudio' },
+    { logo: UnderarmourLogo, brandName: '언더아머', key: 'underarmour' },
+  ];
+
   return (
-    <LogoDiv>
-      <Logo onClick={onClick} isSelected={isSelected}>
-        <LogoImage src={logo} alt="Brand Logo" />
-      </Logo>
-      <BrandName>{brandName}</BrandName>
-    </LogoDiv>
-    
+    <LogoContainer>
+      {brands.map(brand => (
+        <LogoDiv key={brand.key}>
+          <Logo onClick={() => onBrandClick(brand.key)} isSelected={selectedBrand === brand.key}>
+            <LogoImage src={brand.logo} alt="Brand Logo" />
+          </Logo>
+          <BrandName>{brand.brandName}</BrandName>
+        </LogoDiv>
+      ))}
+    </LogoContainer>
   );
 };
 

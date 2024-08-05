@@ -128,6 +128,10 @@ const ProductDetail = () => {
     return <p>Product not found!</p>;
   }
 
+  const showPointsAlert = () => {
+    alert("포인트가 부족해요.");
+  };
+
   return (
     <DetailContainer>
       <ProductImage>
@@ -144,8 +148,8 @@ const ProductDetail = () => {
         <StyledHr />
         <MoreInfo>
           <ExtraWrapper>
-            <ExtraLabel>구매 가능 포인트</ExtraLabel> 
-            <ExtraText><strong>556,000P</strong></ExtraText>
+            <ExtraLabel>사용 가능 포인트</ExtraLabel> 
+            <ExtraText><strong>60,000P</strong></ExtraText>
           </ExtraWrapper>
           <StyledHr />
           <ExtraWrapper>
@@ -166,7 +170,7 @@ const ProductDetail = () => {
         </MoreInfo>
         <ButtonWrapper>
           <Button backgroundColor="#D0D0D0">장바구니</Button>
-          <Button backgroundColor="#023047">구매하기</Button>
+          <Button backgroundColor="#023047" onClick={showPointsAlert}>구매하기</Button>
         </ButtonWrapper>
       </ProductDetails>
     </DetailContainer>

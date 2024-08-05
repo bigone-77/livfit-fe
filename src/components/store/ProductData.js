@@ -10,10 +10,10 @@ import adidasCap from '/src/assets/images/store/product/adidas_cap.png';
 import adidasSocks from '/src/assets/images/store/product/adidas_socks.png';
 import adidasDuffelbag from '/src/assets/images/store/product/adidas_duffelbag.png';
 import adidasDuffelbag2 from '/src/assets/images/store/product/adidas_duffelbag2.png';
-import pumaCap from '/src/assets/images/store/product/puma_cap.png';
-import pumaShorts from '/src/assets/images/store/product/puma_shorts.png';
-import pumaSack from '/src/assets/images/store/product/puma_sack.png';
-import pumaTshirt from '/src/assets/images/store/product/puma_tshirt.png';
+import goalstudioTshirt from '/src/assets/images/store/product/goalstudio_tshirt.png';
+import goalstudioSlippers from '/src/assets/images/store/product/goalstudio_slippers.png';
+import goalstudioJacket from '/src/assets/images/store/product/goalstudio_jacket.png';
+import goalstudioSocks from '/src/assets/images/store/product/goalstudio_socks.png';
 import underarmourCap from '/src/assets/images/store/product/underarmour_cap.png';
 import underarmourWristband from '/src/assets/images/store/product/underarmour_wristband.png';
 import underarmourDuffelbag from '/src/assets/images/store/product/underarmour_duffelbag.png';
@@ -129,45 +129,45 @@ export const productData = [
         navigateTo: "/store/adidas-essential-duffelbag"
     },
     {
-        brand: "puma",
-        img: pumaCap,
-        text1: "Puma Adjustable Cap",
-        text2: "푸마 유니섹스 러닝 캡 III",
-        text3: "290,000 P",
-        text4: "29,000원",
-        navigateTo: "/store/puma-adjustable-cap"
+        brand: "goalstudio",
+        img: goalstudioTshirt, 
+        text1: "Essential Air Dry Tee-Black",
+        text2: "골스튜디오 에센셜 에어 드라이 티 블랙",
+        text3: "520,000 P",
+        text4: "52,000원", 
+        navigateTo: "/store/goalstudio-air-dry-tee" 
     },
     {
-        brand: "puma",
-        img: pumaShorts,
-        text1: "Puma Bias Cut KNT 4\" Shorts",
-        text2: "푸마 바이어스 컷 니트 4\" 반바지",
-        text3: "490,000 P",
-        text4: "49,000원",
-        navigateTo: "/store/puma-shorts"
+        brand: "goalstudio",
+        img: goalstudioSlippers,
+        text1: "GB Pro Slide Yonex-White",
+        text2: "골스튜디오 GB 프로 슬라이드 요넥스 화이트", 
+        text3: "590,000 P",
+        text4: "59,000원", 
+        navigateTo: "/store/goalstudio-pro-slide-shorts" 
     },
     {
-        brand: "puma",
-        img: pumaSack,
-        text1: "Puma MCFC Gym Sack",
-        text2: "푸마 맨체스터시티 FC 짐색",
-        text3: "240,000 P",
-        text4: "24,000원",
-        navigateTo: "/store/puma-training-tshirt"
+        brand: "goalstudio",
+        img: goalstudioJacket, 
+        text1: "2024 T1 Uniform Jacket-Black",
+        text2: "골스튜디오 2024 T1 유니폼 자켓 블랙", 
+        text3: "1,490,000 P",
+        text4: "149,000원",
+        navigateTo: "/store/goalstudio-uniform-jacket" 
     },
     {
-        brand: "puma",
-        img: pumaTshirt,
-        text1: "Puma MCFC Home Jersey Replica",
-        text2: "푸마 MCFC 홈 레플리카 져지",
-        text3: "1,290,000 P",
-        text4: "129,000원",
-        navigateTo: "/store/puma-tshirt"
+        brand: "goalstudio",
+        img: goalstudioSocks, 
+        text1: "Essential Crew Socks-Black",
+        text2: "골스튜디오 에센셜 크루 삭스 블랙", 
+        text3: "89,000 P",
+        text4: "8,900원", 
+        navigateTo: "/store/goalstudio-crew-socks" 
     },
     {
         brand: "underarmour",
         img: underarmourCap,
-        text1: "Under Armour Cap",
+        text1: "UA Branded Cap",
         text2: "언더아머 UA 브랜디드 캡",
         text3: "250,000 P",
         text4: "25,000원",
@@ -176,7 +176,7 @@ export const productData = [
     {
         brand: "underarmour",
         img: underarmourWristband,
-        text1: "Under Armour Performance Wristband",
+        text1: "UA Performance Wristband",
         text2: "언더아머 UA 3인치 퍼포먼스 손목 밴드",
         text3: "100,000 P",
         text4: "10,000원",
@@ -185,7 +185,7 @@ export const productData = [
     {
         brand: "underarmour",
         img: underarmourDuffelbag,
-        text1: "Under Armour Duffel Bag",
+        text1: "UA Undeniable 5.0 Medium Duffel Bag",
         text2: "언더아머 UA 언디나이어블 5.0 미디엄 더플 백",
         text3: "690,000 P",
         text4: "69,000원",
@@ -194,7 +194,7 @@ export const productData = [
     {
         brand: "underarmour",
         img: underarmourSack,
-        text1: "Under Armour Sack Pack",
+        text1: "UA Ozsee Sack Pack",
         text2: "언더아머 UA 오즈씨 색팩",
         text3: "250,000 P",
         text4: "25,000원",
