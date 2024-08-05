@@ -8,6 +8,8 @@ import Contents from "@components/badge/Contents";
 import Header from "@components/badge/Header";
 
 const BadgePage = () => {
+  const accessToken = localStorage.getItem("accessToken");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +29,7 @@ const BadgePage = () => {
           privateApi
             .get("/mypage/badges/main")
             .then((response) => response.data),
+        enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "myBadge"],
@@ -34,6 +37,7 @@ const BadgePage = () => {
           privateApi
             .get("/userbadges/mybadge")
             .then((response) => response.data),
+        enabled: !!accessToken,
       },
     ],
   });
