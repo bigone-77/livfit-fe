@@ -7,12 +7,6 @@ import BackButton from "@components/store/BackButton";
 import BrandLogo from "@components/store/BrandLogo";
 
 import storeMain from '@images/store/storemain.png';
-import AllLogo from '@images/store/logo/all.svg';
-import LivfitLogo from '@images/store/logo/livfit.svg'; 
-import NikeLogo from '@images/store/logo/nike.svg'; 
-import AdidasLogo from '@images/store/logo/adidas.svg';
-import PumaLogo from '@images/store/logo/puma.svg';
-import UnderarmourLogo from '@images/store/logo/underarmour.svg';
 
 const StoreContainer = styled.div`
   display: flex;
@@ -35,24 +29,6 @@ const HeroShot = styled.div`
   }
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  & > div {
-    flex: 0 0 auto;
-    margin-right: 10px;
-  }
-`;
-
 
 const Store = () => {
   const [selectedBrand, setSelectedBrand] = useState('all');
@@ -67,15 +43,8 @@ const Store = () => {
         <BackButton />
         <img className='mainImage' src={storeMain} alt="Store Main" />
       </HeroShot>
-        <LogoContainer>
-          <BrandLogo logo={AllLogo} brandName="전체" onClick={() => handleBrandClick('all')} isSelected={selectedBrand === 'all'} />
-          <BrandLogo logo={LivfitLogo} brandName="자체제작" onClick={() => handleBrandClick('livfit')} isSelected={selectedBrand === 'livfit'} />
-          <BrandLogo logo={NikeLogo} brandName="나이키" onClick={() => handleBrandClick('nike')} isSelected={selectedBrand === 'nike'} />
-          <BrandLogo logo={AdidasLogo} brandName="아디다스" onClick={() => handleBrandClick('adidas')} isSelected={selectedBrand === 'adidas'} />
-          <BrandLogo logo={PumaLogo} brandName="푸마" onClick={() => handleBrandClick('puma')} isSelected={selectedBrand === 'puma'} />
-          <BrandLogo logo={UnderarmourLogo} brandName="언더아머" onClick={() => handleBrandClick('underarmour')} isSelected={selectedBrand === 'underarmour'} />
-        </LogoContainer>
-        <BrandGroup selectedBrand={selectedBrand} />
+      <BrandLogo selectedBrand={selectedBrand} onBrandClick={handleBrandClick} />
+      <BrandGroup selectedBrand={selectedBrand} />
     </StoreContainer>
   );
 };

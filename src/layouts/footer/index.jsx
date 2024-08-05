@@ -25,7 +25,7 @@ const Footer = () => {
           imageSrc={home}
           selectedImageSrc={selectedHome}
           title="홈"
-          selected={pathname === "/"}
+          selected={pathname === "/" || pathname.includes("/tutorial")}
           url="/"
         />
         <CategoryBox
@@ -46,7 +46,7 @@ const Footer = () => {
           imageSrc={store}
           selectedImageSrc={selectedStore}
           title="스토어"
-          selected={pathname === "/store"}
+          selected={pathname.includes("/store")}
           url="/store"
         />
         <CategoryBox
