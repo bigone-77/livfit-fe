@@ -125,11 +125,11 @@ const ProfilePage = () => {
       </>
     );
   } else {
-    content = <div>ㅤ</div>;
+    content = <div></div>;
   }
 
   return (
-    <div className="relative w-full h-full bg-text90">
+    <div className="max-w-[500px] w-full h-screen overflow-y-hidden flex flex-col custom-scrollbar">
       {content}
       <LoginModalNoToken
         isOpen={isModalOpen}
