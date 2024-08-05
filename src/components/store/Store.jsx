@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import BrandGroup from "@components/store/BrandGroup";
-import FilterSection from "@components/store/FilterSection";
 import BackButton from "@components/store/BackButton";
 import BrandLogo from "@components/store/BrandLogo";
 
@@ -26,22 +26,32 @@ const HeroShot = styled.div`
   & .mainImage {
     width: 100%;
     height: auto;
+    cursor: pointer; /* 포인터 커서를 추가하여 클릭 가능성을 시각적으로 표시 */
   }
 `;
 
-
 const Store = () => {
   const [selectedBrand, setSelectedBrand] = useState('all');
+  const navigate = useNavigate();
 
   const handleBrandClick = (brand) => {
     setSelectedBrand(brand);
+  };
+
+  const handleImageClick = () => {
+    navigate('/store/goalstudio-heartball-graphic-tee');
   };
 
   return (
     <StoreContainer>
       <HeroShot>
         <BackButton />
-        <img className='mainImage' src={storeMain} alt="Store Main" />
+        <img
+          className='mainImage'
+          src={storeMain}
+          alt="Store Main"
+          onClick={handleImageClick}
+        />
       </HeroShot>
       <BrandLogo selectedBrand={selectedBrand} onBrandClick={handleBrandClick} />
       <BrandGroup selectedBrand={selectedBrand} />

@@ -131,11 +131,11 @@ export const productData = [
     {
         brand: "goalstudio",
         img: goalstudioTshirt, 
-        text1: "Essential Air Dry Tee-Black",
-        text2: "골스튜디오 에센셜 에어 드라이 티 블랙",
+        text1: "HEART BALL GRAPHIC TEE - BLACK",
+        text2: "골스튜디오 하트 볼 그래픽 티 블랙",
         text3: "520,000 P",
         text4: "52,000원", 
-        navigateTo: "/store/goalstudio-air-dry-tee" 
+        navigateTo: "/store/goalstudio-heartball-graphic-tee" 
     },
     {
         brand: "goalstudio",
