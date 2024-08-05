@@ -20,8 +20,8 @@ const DetailSection = ({
 
   return (
     <div className="w-full h-full">
-      <img src={getImageById(id)} alt="big-dummy" className="w-full h-72" />
-      <section className="flex flex-col items-center gap-2 mt-3 font-semibold">
+      <img src={getImageById(id)} alt="big-dummy" className="w-full h-50" />
+      <section className="flex flex-col items-center gap-2 mt-9 font-semibold">
         <p className="text-[#8F8F8F] text-sm">{title}</p>
         <p className="text-xl text-text400">{desc}</p>
         <div className="flex items-center justify-center">
