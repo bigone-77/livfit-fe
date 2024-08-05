@@ -1,4 +1,5 @@
 import React from "react";
+import emojiImage from "../assets/images/login/emoji.png";
 
 const MyPageLoginModal = ({ isOpen, onClose, onLogin }) => {
   if (!isOpen) return null;
@@ -18,7 +19,7 @@ const MyPageLoginModal = ({ isOpen, onClose, onLogin }) => {
         <div className="absolute top-[-4rem] left-1/2 transform -translate-x-1/2">
           <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
             <img
-              src="../src/assets/images/login/emoji.png"
+              src={emojiImage}
               alt="emoji"
               className="w-36 h-28 relative left-4 top-[-10px]"
             />
