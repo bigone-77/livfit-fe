@@ -24,9 +24,16 @@ import { timeStringToSeconds } from "@utils/timeFormat";
 // 즉슨, 제일 중요한 건 타이머는 세트 수에 맞게 그 수 만큼 동작
 
 const PlayPage = () => {
+  const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도
+  const navigate = useNavigate();
+
   const mutation = useMutation({
-    mutationFn: (body) => {
-      privateApi.post(`/${exercise}/save_record`, body);
+    mutationFn: (body) => privateApi.post(`/${exercise}/save_record`, body),
+    onSuccess: (data) => {
+      console.log("Mutation successful:", data);
+    },
+    onError: (error) => {
+      console.error("Mutation failed:", error);
     },
   });
 
@@ -42,15 +49,28 @@ const PlayPage = () => {
   const [timerKey, setTimerKey] = useState(0); // 타이머를 리셋하기 위한 키
 
   const [cameraEnd, setCameraEnd] = useState(false); // 웹캠 카메라 end 시키기 위한 값
-  //WebCam 컴포넌트의 상태저장
-  const [webcamReady, setWebcamReady] = useState(false);
-
-  const exercise = useParams().exercise; // 어떤 운동인지 ? parameter값 가져오기 용도
-  const navigate = useNavigate();
+  const [webcamReady, setWebcamReady] = useState(false); // WebCam 컴포넌트의 상태저장
 
   // 웹캠이 준비되었을 때 호출되는 함수
   const handleWebCamReady = () => {
     setWebcamReady(true); // 웹캠이 준비되었음을 설정
+  };
+
+  // 데이터 저장 함수
+  const saveData = () => {
+    const dataToSend = {
+      timer_sec: timeStringToSeconds(playConfig.playTime),
+      exercise_set: Number(playConfig.goalSet.split("세트")[0]),
+      count: playConfig.scoreArray.length,
+      good: playConfig.scoreArray.filter((score) => score === "Good").length,
+      great: playConfig.scoreArray.filter((score) => score === "Great").length,
+      perfect: playConfig.scoreArray.filter((score) => score === "Perfect")
+        .length,
+    };
+
+    console.log("Mutation data:", dataToSend); // 로그 추가
+
+    mutation.mutate(dataToSend);
   };
 
   // 카메라 준비 상태에 따른 3, 2, 1 카운트다운 시작
@@ -62,9 +82,7 @@ const PlayPage = () => {
 
     if (timeLeft > 0) {
       const timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          return prevTime - 1;
-        }); // 매초마다 남은 시간을 1씩 감소
+        setTimeLeft((prevTime) => prevTime - 1); // 매초마다 남은 시간을 1씩 감소
       }, 1000);
       return () => clearInterval(timer);
     }
@@ -78,18 +96,18 @@ const PlayPage = () => {
         // 카운트다운 완료 후 운동 시작
         setGetStart(true);
       }, 1000);
-      return;
     }
   }, [webcamReady, timeLeft]);
 
   // 세트가 끝났을 때 로직
   useEffect(() => {
     if (timeUp) {
-      if (currentSet < parseInt(playConfig.goalSet.split("세트")[0], 10)) {
+      const goalSets = parseInt(playConfig.goalSet.split("세트")[0], 10);
+      if (currentSet < goalSets) {
         // 목표 세트 수에 도달하지 못한 경우 휴식 화면 표시
         setRest(true);
         setTimeout(() => {
-          //휴식 화면 숨기기
+          // 휴식 화면 숨기기
           setRest(false);
           // 현재 세트 수 증가
           setCurrentSet((prevSet) => prevSet + 1);
@@ -98,23 +116,12 @@ const PlayPage = () => {
           setGetStart(false); // 운동 상태 리셋
           setTimerKey((prevKey) => prevKey + 1); // 타이머 리셋을 위한 키 변경
         }, parseInt(playConfig.restTime.split("초")[0], 10) * 1000);
-      } else {
-        //목표 세트 수에 도달한 경우
-        mutation.mutate({
-          //운동 결과 저장
-          timer_sec: timeStringToSeconds(playConfig.playTime),
-          set: Number(playConfig.goalSet.split("세트")[0]),
-          count: playConfig.scoreArray.length,
-          good: playConfig.scoreArray.filter((score) => score === "Good")
-            .length,
-          great: playConfig.scoreArray.filter((score) => score === "Great")
-            .length,
-          perfect: playConfig.scoreArray.filter((score) => score === "Perfect")
-            .length,
-        });
-        //웹캠 종료
+      } else if (currentSet === goalSets) {
+        // 목표 세트 수에 도달한 경우
+        saveData(); // 데이터 저장
+        // 웹캠 종료
         setCameraEnd(true);
-        //결과 페이지로 이동
+        // 결과 페이지로 이동
         navigate(`/${exercise}/result`);
       }
     }

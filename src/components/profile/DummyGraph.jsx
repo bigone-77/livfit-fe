@@ -21,18 +21,26 @@ ChartJS.register(
 );
 
 const GraphComponent = ({ graph }) => {
-  const graphData = [...graph].reverse();
+  // 데이터 그룹화 및 합산
+  const aggregatedData = graph.reduce((acc, item) => {
+    const date = format(new Date(item.createdAt), "yyyy-MM-dd"); // 날짜 형식 통일
+    if (!acc[date]) {
+      acc[date] = 0;
+    }
+    acc[date] += item.today_counts;
+    return acc;
+  }, {});
 
-  const labels = graphData.map((item) =>
-    format(new Date(item.createdAt), "MM.dd")
-  );
-  const dataValues = graphData.map((item) => item.today_counts);
+  // 날짜 순으로 정렬된 라벨과 데이터 생성
+  const sortedDates = Object.keys(aggregatedData).sort();
+  const labels = sortedDates.map((date) => format(new Date(date), "MM.dd"));
+  const dataValues = sortedDates.map((date) => aggregatedData[date]);
 
   const data = {
     labels,
     datasets: [
       {
-        label: "갯수",
+        label: "개수",
         data: dataValues,
         backgroundColor: dataValues.map((_, index) =>
           index === dataValues.length - 1
@@ -59,12 +67,15 @@ const GraphComponent = ({ graph }) => {
         callbacks: {
           title: (tooltipItems) => {
             const index = tooltipItems[0].dataIndex;
-            const createdAt = graphData[index].createdAt;
+            const createdAt = sortedDates[index];
             return format(new Date(createdAt), "MM월 dd일 (eee)", {
               locale: ko,
             });
           },
-          label: (tooltipItem) => `${tooltipItem.raw}개`,
+          label: (tooltipItem) => {
+            const count = tooltipItem.raw;
+            return ` ${count}개`;
+          },
         },
       },
     },
