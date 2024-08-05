@@ -56,10 +56,8 @@ const MyRankingPage = () => {
       <div
         className="flex items-center justify-end w-full pb-3 pr-6 cursor-pointer"
         onClick={() => setShowFilter(true)}
-      >
-        <img src={dots} alt="dots" />
-      </div>
-      <section className="overflow-y-scroll scroll-smooth h-80 custom-scrollbar">
+      ></div>
+      <section className="overflow-y-scroll scroll-smooth h-90 custom-scrollbar">
         {nickname.data && allRecords.data && allRecords.data.length > 0 && (
           <RecordsTable
             allRecords

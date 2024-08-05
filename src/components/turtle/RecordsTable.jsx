@@ -12,20 +12,20 @@ const RecordsTable = ({ records }) => {
   return (
     <section className="h-full">
       <div className="flex items-center w-full text-sm text-[#9C9C9C] mb-2">
-        <p className="pl-28">랭킹</p>
+        <p className="pl-36">랭킹</p>
         <p className="pl-32">각도</p>
-        <p className="pl-16">점수</p>
+        <p className="pl-14">점수</p>
       </div>
       <table className="min-w-full">
         <tbody>
           {sortedRecords.map((record, index) => (
             <Fragment key={index}>
               <tr className="bg-white">
-                <td className="text-center py-6 text-[#9C9C9C] text-xs">
+                <td className="text-center py-6 text-[#9C9C9C] text-xs pl-4">
                   {format(new Date(record.localDate), "MM.dd")}
                 </td>
                 {/* <td className="py-6 pl-4 pr-8 text-center">{index + 1}</td> */}
-                <td className="py-6 pl-4 pr-8 text-center place-content-center">
+                <td className="py-6 pl-4 pr-8 text-center place-content-center flex justify-center items-center">
                   {index + 1 === 1 ? (
                     <img src={one} alt="one" />
                   ) : index + 1 === 2 ? (

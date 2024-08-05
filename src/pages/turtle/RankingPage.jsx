@@ -97,7 +97,7 @@ const RankingPage = () => {
                   ))}
           </section>
           {nickname.data && (
-            <div className="absolute z-[9999px] w-full bottom-2 bg-text50 shadow-xl">
+            <div className="absolute z-[9999px] w-full bottom-20 bg-text50 shadow-xl">
               <MyRowRank
                 data={
                   clickAll
