@@ -76,7 +76,7 @@ const ShowBadge = ({ name, edit, handler }) => {
   if (edit) {
     return (
       <div
-        className="relative flex items-center justify-center w-32 h-32 rounded-full cursor-pointer bg-white bg-opacity-45 border-4 border-white-100"
+        className="relative flex items-center justify-center w-32 h-32 p-4 rounded-full cursor-pointer bg-white bg-opacity-45 border-4 border-white"
         onClick={handler}
       >
         <img src={badgeSrc} alt={name} />
