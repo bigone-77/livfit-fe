@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { resetAngle } from "@redux/slices/turtleSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import MyPageLoginModal from "../../constants/loginModal.jsx";
 
 const GroupButton = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [handler, setHandler] = useState(null);
 
   const myHandler = () => {
     dispatch(resetAngle());
@@ -16,14 +20,23 @@ const GroupButton = () => {
     navigate("/turtle/ranking");
   };
 
-  const handleClick = (handler) => {
+  const handleClick = (selectedHandler, requiresAuth = true) => {
     const token = localStorage.getItem("accessToken");
-    if (token) {
-      handler();
+    if (token || !requiresAuth) {
+      selectedHandler();
     } else {
-      alert("나만의 기록을 위해 로그인해주세요!");
-      navigate("/login");
+      setHandler(() => selectedHandler);
+      setIsModalOpen(true);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLogin = () => {
+    setIsModalOpen(false);
+    navigate("/login");
   };
 
   return (
@@ -36,10 +49,15 @@ const GroupButton = () => {
       </div>
       <div
         className="py-3 cursor-pointer rounded-xl bg-orange2 text-text50"
-        onClick={allHandler}
+        onClick={() => handleClick(allHandler, false)}
       >
         <p>전체 랭킹 보러가기</p>
       </div>
+      <MyPageLoginModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onLogin={handleLogin}
+      />
     </div>
   );
 };
