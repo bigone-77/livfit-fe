@@ -26,7 +26,7 @@ const ShowAllRecords = ({ exercise, sort, term }) => {
     return <p>측정된 운동 기록이 없습니다.</p>;
   } else {
     return (
-      <section className="overflow-y-scroll scroll-smooth h-80 custom-scrollbar">
+      <section className="overflow-y-hidden scroll-smooth h-100 custom-scrollbar">
         <RecordsTable records={recordsData} />
       </section>
     );

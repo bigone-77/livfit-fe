@@ -18,7 +18,7 @@ const MyRecordsPage = () => {
   const [selectedTerm, setSelectedTerm] = useState("");
 
   return (
-    <div className="relative w-full h-full pb-20 bg-text90">
+    <div className="relative w-full h-full pb-4 bg-text90">
       <Navbar closed />
       <section className="p-6">
         <p className="text-3xl">내 기록🏋️‍♂️</p>
