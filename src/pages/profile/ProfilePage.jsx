@@ -1,16 +1,12 @@
+import { useState, useEffect } from "react";
 import { useQueries } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { privateApi } from "@api/axios";
-
 import Header from "@components/profile/Header";
 import PerformanceSection from "@components/profile/PerformanceSection";
 import RecordSection from "@components/profile/RecordSection";
 import RowCard from "@components/challenge/RowCard";
-
 import LoginModalNoToken from "../../constants/loginModalNoToken";
-
 import chartSrc from "@svgs/profile/chart.svg";
 import memoSrc from "@svgs/profile/memo.svg";
 import turtleSrc from "@svgs/profile/turtle.svg";
@@ -19,16 +15,14 @@ import arrow from "@svgs/small-right-arrow.svg";
 
 const ProfilePage = () => {
   const accessToken = localStorage.getItem("accessToken");
-
+  const [isModalOpen, setIsModalOpen] = useState(!accessToken);
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       setIsModalOpen(true);
     }
-  }, [navigate]);
+  }, [accessToken]);
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -44,38 +38,27 @@ const ProfilePage = () => {
     queries: [
       {
         queryKey: ["nickname"],
-        queryFn: () =>
-          privateApi.get("/mainpage/getname").then((response) => response.data),
+        queryFn: () => privateApi.get("/mainpage/getname").then((response) => response.data),
         enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "points"],
-        queryFn: () =>
-          privateApi.get("/mypage/points").then((response) => response.data),
+        queryFn: () => privateApi.get("/mypage/points").then((response) => response.data),
         enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "challenges"],
-        queryFn: () =>
-          privateApi
-            .get("/mypage/challenges")
-            .then((response) => response.data),
+        queryFn: () => privateApi.get("/mypage/challenges").then((response) => response.data),
         enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "badge"],
-        queryFn: () =>
-          privateApi
-            .get("/mypage/badges/main")
-            .then((response) => response.data),
+        queryFn: () => privateApi.get("/mypage/badges/main").then((response) => response.data),
         enabled: !!accessToken,
       },
       {
         queryKey: ["profile", "badge", "count"],
-        queryFn: () =>
-          privateApi
-            .get("/mypage/badges/count")
-            .then((response) => response.data),
+        queryFn: () => privateApi.get("/mypage/badges/count").then((response) => response.data),
         enabled: !!accessToken,
       },
     ],
@@ -86,6 +69,14 @@ const ProfilePage = () => {
   let content;
 
   if (
+    nickname.isLoading ||
+    points.isLoading ||
+    challenges.isLoading ||
+    badge.isLoading ||
+    badgeCount.isLoading
+  ) {
+    content = <div>Loading...</div>;
+  } else if (
     nickname.isSuccess &&
     points.isSuccess &&
     challenges.isSuccess &&
@@ -97,21 +88,9 @@ const ProfilePage = () => {
         <div className="px-8 pb-10">
           <Header nickname={nickname.data} badgeName={badge.data} />
           <section className="grid grid-cols-3 gap-2 mt-6 mb-4">
-            <RecordSection
-              itemSrc={memoSrc}
-              name="운동 기록"
-              url="my-records"
-            />
-            <RecordSection
-              itemSrc={turtleSrc}
-              name="거북목 측정 기록"
-              url="/turtle/my-ranking"
-            />
-            <RecordSection
-              itemSrc={chartSrc}
-              name="미션 연속 달성 기록"
-              url="/profile/my-challenges"
-            />
+            <RecordSection itemSrc={memoSrc} name="운동 기록" url="my-records" />
+            <RecordSection itemSrc={turtleSrc} name="거북목 측정 기록" url="/turtle/my-ranking" />
+            <RecordSection itemSrc={chartSrc} name="미션 연속 달성 기록" url="/profile/my-challenges" />
           </section>
           <PerformanceSection point={points.data} badgeSum={badgeCount.data} />
         </div>
@@ -145,15 +124,9 @@ const ProfilePage = () => {
         </section>
       </>
     );
-  } else if (
-    nickname.isLoading ||
-    points.isLoading ||
-    challenges.isLoading ||
-    badge.isLoading ||
-    badgeCount.isLoading
-  ) {
-    content = <div>Loading...</div>;
-  } // 안쓰는 else문구 제거 eslint
+  } else {
+    content = <div>ㅤ</div>;
+  }
 
   return (
     <div className="relative w-full h-full bg-text90">

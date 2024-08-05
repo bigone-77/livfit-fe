@@ -1,4 +1,3 @@
-import React from "react";
 import emojiImage from "../assets/images/login/emoji.png";
 
 const MyPageLoginModal = ({ isOpen, onClose, onLogin }) => {
