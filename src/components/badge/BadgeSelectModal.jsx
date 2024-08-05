@@ -58,7 +58,15 @@ const BadgeSelectModal = ({
                   } hover:scale-105`}
                 >
                   <ShowBadge name={badge.name} />
-                  <p className="text-sm text-text400 mt-2">{badge.desc}</p>
+                  <p
+                    className={`text-sm mt-2 ${
+                      selected === badge.name
+                        ? "text-orange2" // 선택된 뱃지의 텍스트 색상 변경
+                        : "text-text400"
+                    }`}
+                  >
+                    {badge.desc}
+                  </p>
                 </div>
               </div>
             ))}
