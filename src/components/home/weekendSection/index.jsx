@@ -8,15 +8,17 @@ const WeekendSection = ({ exercises }) => {
   return (
     <section className="relative px-6 mt-10">
       {!exercises ? (
-        <>
+        <div className="relative">
           <img src={guestWeekend} alt="guestWeekend" className="blur-sm" />
-          <button
-            className="absolute px-8 py-1 mt-2 transition-all border-2 top-1/3 left-1/3 border-orange2 text-text400 bg-text50 rounded-xl hover:opacity-50"
-            onClick={() => navigate("/auth/login")}
-          >
-            로그인 하러가기
-          </button>
-        </>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button
+              className="px-8 py-1 transition-all border-2 border-orange2 text-text400 bg-text50 rounded-xl hover:opacity-50"
+              onClick={() => navigate("/auth/login")}
+            >
+              로그인 하러가기
+            </button>
+          </div>
+        </div>
       ) : (
         <div
           onClick={() => navigate("/profile/my-challenges")}
