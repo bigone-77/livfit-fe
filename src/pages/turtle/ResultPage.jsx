@@ -6,7 +6,11 @@ import axios from "axios";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
 
-import TipSection from "@commons/TipSection";
+//AI의 분석 결과 알려주는 div
+import AISection from "./AISection";
+import Loader from "./Loader";
+
+//import TipSection from "@commons/TipSection";
 import EffectText from "@components/commons/EffectText";
 import GroupButton from "@components/turtle/GroupButton";
 import Navbar from "@layouts/Navbar";
@@ -16,6 +20,12 @@ import clover_three from "@images/badge/clover_three.png";
 const ResultPage = () => {
   const score = useSelector((state) => state.turtle.angle);
   const [showModal, setShowModal] = useState(false);
+  //AI 분석 결과 상태 추가
+  const [aiTip, setAiTip] = useState("");
+  // 애니메이션용 텍스트(타이핑 애니메이션)
+  const [displayedTip, setDisplayedTip] = useState("");
+  //로더 상태
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,7 +64,89 @@ const ResultPage = () => {
     };
 
     checkBadgeCondition();
+
+    //AI 분석 결과 알려주는 div 로직 추가
+    const fetchAiTip = async () => {
+      try {
+        // 로딩 시작
+        setLoading(true);
+
+        // 점수에 따라 프롬프트 설정
+        let prompt;
+        if (score < 200) {
+          prompt =
+            "당신의 점수는 낮습니다. 거북목 예방을 위한 조언을 제공합니다.";
+        } else if (score < 500) {
+          prompt =
+            "당신의 점수는 평균입니다. 거북목 개선을 위한 팁을 드리겠습니다.";
+        } else if (score < 800) {
+          prompt =
+            "당신의 점수는 양호합니다. 바른 자세를 유지하기 위한 조언을 드립니다.";
+        } else {
+          prompt =
+            "당신의 점수는 매우 좋습니다! 지속적으로 좋은 자세를 유지하세요.";
+        }
+        const response = await axios.post(
+          // .env 파일에서 엔드포인트 가져오기
+          import.meta.env.VITE_GENIEAI_API_ENDPOINT,
+          {
+            model: import.meta.env.VITE_LLAMA,
+            messages: [
+              {
+                role: "user",
+                content: prompt,
+              },
+            ],
+            max_tokens: 150,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              // .env 파일에서 API 키 가져오기
+              Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
+            },
+          }
+        );
+
+        if (response.data.choices && response.data.choices[0].message.content) {
+          setAiTip(response.data.choices[0].message.content.trim()); // 받아온 데이터를 aiTip 상태에 저장
+        } else {
+          setAiTip("거북목을 예방하기 위해서는 바른 자세와 스트레칭 필수!"); // 기본 TIP 메시지
+        }
+      } catch (error) {
+        console.error(
+          "Error fetching tip:",
+          error.response ? error.response.data : error.message
+        );
+        setAiTip("거북목을 예방하기 위해서는 바른 자세와 스트레칭 필수!"); // 에러 시 기본 메시지
+      } finally {
+        // 로딩 끝
+        setLoading(false);
+      }
+    };
+    // TIP 데이터 가져오기
+    fetchAiTip();
   }, []); //userEffect 딱 한번만 실행
+
+  // 타이핑 애니메이션
+  useEffect(() => {
+    // 인덱스 상태 변수
+    let index = 0;
+
+    // 타이핑 효과를 위한 setInterval
+    const typingInterval = setInterval(() => {
+      // 인덱스가 전체 텍스트 길이보다 작으면 글자 추가
+      if (index < aiTip.length) {
+        setDisplayedTip((prev) => prev + aiTip[index]);
+        index++;
+      } else {
+        clearInterval(typingInterval); // 모든 글자가 표시되면 타이머 중지
+      }
+    }, 50); // 각 글자가 표시되는 간격 (밀리초)
+
+    // 컴포넌트가 언마운트될 때 타이머를 정리
+    return () => clearInterval(typingInterval);
+  }, [aiTip]); // aiTip이 변경될 때마다 애니메이션 시작
 
   // 모달
   const renderModal = () => (
@@ -99,11 +191,15 @@ const ResultPage = () => {
           <p className="mb-12 font-semibold">
             수시로 측정하여 바른 자세를 유지해보세요!
           </p>
-          <TipSection
-            tipColor="#00D26A"
-            bgColor="#FFFFFF"
-            desc="거북목을 예방하기 위해서는 바른 자세와 스트레칭 필수!"
-          />
+          {loading ? ( // 로딩 중일 때 Loader 표시
+            <Loader />
+          ) : (
+            <AISection
+              tipColor="#00D26A"
+              bgColor="#FFFFFF"
+              prompt={displayedTip}
+            />
+          )}
         </div>
         <div className="w-full pb-10 mt-20">
           <GroupButton />
