@@ -129,7 +129,7 @@ const ProductDetail = () => {
   }
 
   const showPointsAlert = () => {
-    alert("포인트가 부족해요.");
+    alert("포인트가 부족합니다.");
   };
 
   return (

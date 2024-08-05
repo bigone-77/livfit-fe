@@ -1,20 +1,11 @@
 import { useLogin } from "@hooks/useLogin";
 import logo from "@images/login/logo.svg";
+import BackButton from "./BackButton";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import {
-  LoginContainer,
-  LoginBox,
-  LogoDiv,
-  Form,
-  InputDiv,
-  Input,
-  LoginButton,
-  KeepLoggedIn,
-  Checkbox,
-  CheckboxLabel,
-  Links,
-  Container,
+import { LoginContainer, LoginBox, Header, LogoDiv, Form, InputDiv, 
+    Input, LoginButton, KeepLoggedIn, Checkbox, CheckboxLabel,
+    Links, Container,
   // div_id_pw,
 } from "./LoginStyles";
 
@@ -32,6 +23,9 @@ const Login = () => {
 
   return (
     <LoginContainer>
+      <Header>
+        <BackButton />
+      </Header>
       <LoginBox>
         <LogoDiv>
           <img src={logo} alt="logo" />

@@ -59,7 +59,7 @@ export const productData = [
     {
         brand: "nike",
         img: nikeCap,
-        text1: "Nike Sports Cap",
+        text1: "Nike Dri-FIT Swoosh Cap",
         text2: "나이키 드라이-핏 스우시 캡",
         text3: "350,000 P",
         text4: "35,000원",
@@ -86,7 +86,7 @@ export const productData = [
     {
         brand: "nike",
         img: nikeDuffelbag,
-        text1: "Nike Duffel Bag",
+        text1: "Nike Academy Team Duffel Bag",
         text2: "나이키 아카데미 팀 더플백",
         text3: "450,000 P",
         text4: "45,000원",
@@ -95,8 +95,8 @@ export const productData = [
     {
         brand: "adidas",
         img: adidasCap,
-        text1: "Adidas Performance Cap",
-        text2: "아디다스 야구 캡 코튼",
+        text1: "Adidas Cotton Twill Baseball Cap",
+        text2: "아디다스 코튼 트윌 베이스볼 캡",
         text3: "290,000 P",
         text4: "29,000원",
         navigateTo: "/store/adidas-performance-cap"
