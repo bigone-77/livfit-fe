@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
-
-import dummy from "@images/challenge/dummy.png";
+import { getImageById } from "../../utils/challengeImage";
 
 const ColCard = ({ title, desc, start, end, id, status }) => {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const ColCard = ({ title, desc, start, end, id, status }) => {
           완료
         </div>
       )}
-      <img src={dummy} alt="dummy" />
+      <img src={getImageById(id)} alt="dummy" />
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between w-full font-semibold">
           <p className="text-lg">{title}</p>

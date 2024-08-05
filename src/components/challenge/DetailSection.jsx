@@ -1,8 +1,8 @@
 import { format } from "date-fns";
+import { useParams } from "react-router-dom";
 
 import RenderStar from "./RenderStar";
-
-import bigDummy from "@images/challenge/big-dummy.png";
+import { getImageById } from "../../utils/challengeImage";
 import calendar from "@svgs/challenge/calendar.svg";
 import certiSrc from "@svgs/challenge/certificate.svg";
 import crown from "@svgs/challenge/crown.svg";
@@ -16,9 +16,11 @@ const DetailSection = ({
   end,
   certificate,
 }) => {
+  const { id } = useParams(); // URL에서 ID를 추출
+
   return (
     <div className="w-full h-full">
-      <img src={bigDummy} alt="big-dummy" className="w-full h-72" />
+      <img src={getImageById(id)} alt="big-dummy" className="w-full h-72" />
       <section className="flex flex-col items-center gap-2 mt-3 font-semibold">
         <p className="text-[#8F8F8F] text-sm">{title}</p>
         <p className="text-xl text-text400">{desc}</p>
