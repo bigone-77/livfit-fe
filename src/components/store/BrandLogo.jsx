@@ -11,7 +11,6 @@ import UnderarmourLogo from '@images/store/logo/underarmour.svg';
 
 const LogoContainer = styled.div`
   display: flex;
-  justify-content: center;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
@@ -36,6 +35,7 @@ const LogoDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 0 20px;
 `;
 
 const Logo = styled.div`
