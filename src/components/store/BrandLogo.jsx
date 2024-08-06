@@ -16,6 +16,7 @@ const LogoContainer = styled.div`
   -webkit-overflow-scrolling: touch;
   width: 100%;
   margin-top: 10px;
+  padding: 0px 10px;
 
   &::-webkit-scrollbar {
     display: none;

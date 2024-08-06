@@ -133,8 +133,8 @@ export const productData = [
         img: goalstudioTshirt, 
         text1: "HEART BALL GRAPHIC TEE - BLACK",
         text2: "골스튜디오 하트 볼 그래픽 티 블랙",
-        text3: "520,000 P",
-        text4: "52,000원", 
+        text3: "590,000 P",
+        text4: "59,000원", 
         navigateTo: "/store/goalstudio-heartball-graphic-tee" 
     },
     {
