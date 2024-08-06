@@ -9,7 +9,10 @@ const images = {
   11: running,
   12: squat,
   13: lunge,
-  14: exe
+  14: exe,
+  16: running,
+  17: squat,
+  18:exe
   // 필요한 만큼 추가
 };
 
