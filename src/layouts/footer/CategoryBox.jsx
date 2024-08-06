@@ -10,7 +10,7 @@ export default function CategoryBox({
   const navigate = useNavigate();
 
   // 텍스트에 "거북목"이 포함되어 있는지 확인
-  const isSpecialTitle = title.includes("거북목");
+  const isSpecialTitle = title.includes("거북목")|| title.includes("스토어");
 
   const titleLines = title.split("<br>").map((line, index) => (
     <span key={index} className={isSpecialTitle ? "block leading-tight" : ""}>
