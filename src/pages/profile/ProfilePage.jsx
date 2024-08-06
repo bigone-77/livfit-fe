@@ -118,6 +118,7 @@ const ProfilePage = () => {
                 start={challenge.startDate}
                 end={challenge.endDate}
                 status={challenge.status}
+                className="mb-4" 
               />
             ))}
           </div>
@@ -129,7 +130,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-[500px] w-full h-screen overflow-y-hidden flex flex-col custom-scrollbar">
+    <div className="max-w-[500px] w-full min-h-screen overflow-y-auto flex flex-col custom-scrollbar">
       {content}
       <LoginModalNoToken
         isOpen={isModalOpen}

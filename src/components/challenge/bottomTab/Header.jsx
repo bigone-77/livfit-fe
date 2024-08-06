@@ -1,8 +1,6 @@
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 
-import pencil from "@svgs/challenge/pencil.svg";
-
 const Header = ({ count }) => {
   return (
     <header className="flex items-center justify-between w-full">
@@ -13,9 +11,6 @@ const Header = ({ count }) => {
         <p className="text-sm text-text200">
           현재 {count}개의 챌린지도 진행중이세요!
         </p>
-      </div>
-      <div className="flex items-center justify-center bg-[#C8C8C8] p-2 rounded-full">
-        <img src={pencil} alt="pencil" />
       </div>
     </header>
   );
