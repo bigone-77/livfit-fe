@@ -24,7 +24,7 @@ const LogoContainer = styled.div`
 
   & > div {
     flex: 0 0 auto;
-    margin-right: 10px;
+    margin: 10px;
   }
 `;
 
@@ -36,7 +36,6 @@ const LogoDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 10px;
 `;
 
 const Logo = styled.div`
