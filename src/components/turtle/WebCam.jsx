@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { setAngle } from "../../app/redux/slices/turtleSlice";
 import SendNicknameModal from "./SendNicknameModal";
 
-import faceMask from "@images/turtle/face-mask.png";
+// import faceMask from "@images/turtle/face-mask.png";
+import faceMask from "@images/turtle.png";
 
 // WebCam 컴포넌트
 const WebCam = ({ start, end, onReady }) => {
@@ -156,7 +157,7 @@ const WebCam = ({ start, end, onReady }) => {
           const noseX = noseLandmark.x * canvas.width;
           const noseY = noseLandmark.y * canvas.height;
           //화면 이미지 크기 줄이려면 여기서 크기 조정 하면 됨 !
-          const imageSize = 900; // 이미지 크기 설정
+          const imageSize = 500; // 이미지 크기 설정
           // const imageSize = Math.min(canvas.width, canvas.height) * 0.3; // 화면 크기에 비례하여 이미지 크기 설정
 
           // 이미지 그리기
