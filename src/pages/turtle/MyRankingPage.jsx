@@ -7,7 +7,7 @@ import FilterModal from "@components/profile/FilterModal";
 import RecordsTable from "@components/turtle/RecordsTable";
 import Navbar from "@layouts/Navbar";
 
-import dots from "@svgs/profile/color-dots.svg";
+//import dots from "@svgs/profile/color-dots.svg";
 
 const MyRankingPage = () => {
   const [showFilter, setShowFilter] = useState(false);
