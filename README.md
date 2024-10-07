@@ -1,3 +1,71 @@
+# LIVFIT
+
+![프로젝트 로고](./src/main/resources/img/logo.png)
+
+
+## 🤝 LITFIT
+
+> Media Pipe 기반 사용자 운동 자세 측정 서비스</br>
+> 거북목 측정 서비스 </br>
+> 거북목 점수에 대한 랭킹 제공
+
+## 🎯 프로젝트의 목적(Purpose)
+
+> 멋쟁이자사처럼 12기 중앙해커톤 주제 </br>
+> "IT 기술을 활용하여 현대인의 건강 (wellness) 문제를 해결할 수 있는 웹 서비스를 개발하시오."</br>
+> 운동을 단순히 기록 하는게 아닌 측정을 할 수 있으면 어떨까? 에서 시작된 프로젝트</br>
+>
+> 프로젝트 기간 : 2024/07/26 ~ 2024/08/07
+
+## 🤩 팀원들(Team Members)
+
+|                                      Lead                                       |                                     Design                                      |                                    Developer                                    |                                    Developer                                    |                                    Developer                                     |
+|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|
+|                        [황현진](https://github.com/nowjiin)                        |                       [김민지]()                        |                       [하경림](https://github.com/april0114)                       |                         [서현은](https://github.com/hyuneu-n)                          |                        [박태경](https://github.com/tgyeongt)                        |
+| <img src="https://avatars.githubusercontent.com/u/110535324?v=4" width="400" /> | <img src="https://avatars.githubusercontent.com/u/134909318?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/119941414?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/126397025?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/141022131?v=4!" width="300" /> |
+
+## 🛠️ 기술 스택(Tech)
+
+### FE
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+
+### BE
+![Spring](https://img.shields.io/badge/Spring-6DB33F.svg?&style=for-the-badge&logo=Spring&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+
+### Infra
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+### 협업 툴 (Tools)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+
+### 디자인 
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Adobe Illustrator](https://img.shields.io/badge/adobe%20illustrator-%23FF9A00.svg?style=for-the-badge&logo=adobe%20illustrator&logoColor=white)
+![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white)
+
+## ERD 설계
+> 작성중
+> <img width="1240" alt="이미지" src="">
+
+## API 설계 문서
+> 작성중
+
+## Git Flow
+![git-flow](./src/main/resources/img/gitFlow.png)
+
 # 🎯 Branch Convention & Git Convention
 
 ## 🎯 Git Convention
@@ -21,7 +89,7 @@
 
 - `main`: 배포 가능한 브랜치, 항상 배포 가능한 상태를 유지
 - `feature/{description}`: 새로운 기능을 개발하는 브랜치
-  - 예: `feature/add-login-page`
+    - 예: `feature/add-login-page`
 
 ### Flow
 
@@ -44,65 +112,20 @@ git merge feature/add-login-page
 git push origin main
 ```
 
-# 디렉토리/파일명
+## 🐋 로컬에서 Docker 로 빌드하기 🐋
 
-- 기본 파일명은 **PascalCase**로 작명.
-  - 확장자가 jsx인 파일은 **PascalCase(index.jsx는 예외사항)**
-  - 확장자가 js인 파일은 **camelCase**
-- 모든 파일 시작은 **rafce 스니핏**으로 작성.
-  - 물론 한 파일에 여러 훅을 저장하는게 효율적이라면 꼭 default로 안내보내도 됨!
+1. Docker Desktop 실행
+2. Build 하기 전 spotless 적용 ```./gradlew spotlessApply```
+3. 정해진 컨벤션을 지키고 있는지 검사 (spotelesscheck) ```./gradlew spotlessCheck```
+4. spring boot build ```./gradlew build```
+5. Docker Desktop 실행중 인지 확인 ```docker info```
+6. Docker로 빌드하기 ```docker build -t "본인 dockerhub repo 이름"/livfit . ```
+7. Docker Hub login(IDE terminal에서 실행) ```docker login```
+8. Docker Image Tag ```docker tag "본인 dockerhub repo 이름"/livfit "본인 dockerhub repo 이름"/livfit:latest```
+9. Docker Image Push ```docker push "본인 dockerhub repo 이름"/livfit:latest```
 
-## 폴더 구조
-
-- components
-  - common → 공통 컴포넌트
-  - [domain] → 기능별로 묶기 (예 user, domain1, domain2, …)
-- hooks → use로 시작하는 리액트 훅 모음
-- layouts → header, sidebar, footer 같은 레이아웃 모음
-- pages → 말 그대로 페이지들 모음
-- router → 라우팅 담당(페이지 및 레이아웃 들어갑니다)
-- utils → truncate, dayjs 같은 유용한 기능 파일 모음
-
-### Main.jsx
-
-- 전역상태, 라우터, cookie-provider처럼 전역으로 감싸는 최상위 집합
-- 예시
-
-  ```tsx
-  import React from "react";
-  import ReactDOM from "react-dom/client";
-  import App from "./App.jsx";
-  import "./index.css";
-  import { BrowserRouter } from "react-router-dom";
-
-  ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  );
-  ```
-
-## 별칭 관리
-
-→ `vite.config.js`에서 관리하기 resolve 이하 참고
-
-### Routes.jsx
-
-```tsx
-import { Route, Routes as ReactRouters } from "react-router-dom";
-import HomePage from "@pages/HomePage";
-
-const Routes = () => {
-  return (
-    <ReactRouters>
-      <Route path="/" element={<HomePage />} />
-    </ReactRouters>
-  );
-};
-
-export default Routes;
-```
-
-→ App.jsx에서 라우팅을 구성하지 않은건 최대한 깔끔하게 가져가기 위함(물론 다르게 하자고 제안주셔도 됩니당 ㅎㅎ)
+### 🐋 Docker 실행중인 컨테이너 중지하기 🐋
+1. 실행 중인 컨테이너 목록 확인 ```docker ps```
+2. 컨테이너 중지 실행 중인 컨테이너의 CONTAINER ID를 찾아서 중지. ```docker stop <CONTAINER ID>```
+3. 컨테이너의 삭제가 필요할 경우 ```docker rm <CONTAINER ID>```
+4. 이미지 삭제가 필요할 경우 ```docker rmi <IMAGE ID or IMAGE NAME>```
