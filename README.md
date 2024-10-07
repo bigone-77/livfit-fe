@@ -1,6 +1,7 @@
 # LIVFIT
 
-![프로젝트 로고](./src/main/resources/img/logo.png)
+![프로젝트 로고](./src/assets/images/logo.png)
+
 
 
 ## 🤝 LITFIT
@@ -19,10 +20,10 @@
 
 ## 🤩 팀원들(Team Members)
 
-|                                      Lead                                       |                                     Design                                      |                                    Developer                                    |                                    Developer                                    |                                    Developer                                     |
-|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|
-|                        [황현진](https://github.com/nowjiin)                        |                       [김민지]()                        |                       [하경림](https://github.com/april0114)                       |                         [서현은](https://github.com/hyuneu-n)                          |                        [박태경](https://github.com/tgyeongt)                        |
-| <img src="https://avatars.githubusercontent.com/u/110535324?v=4" width="400" /> | <img src="https://avatars.githubusercontent.com/u/134909318?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/119941414?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/126397025?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/141022131?v=4!" width="300" /> |
+|                                      Lead                                       |                                     Design                                      |                                    Developer                                    |                                    Developer                                    |                                    Developer                                     |                                     Developer                                    |
+|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
+|                        [황현진](https://github.com/nowjiin)                        |                       [김민지]()                        |                       [하경림](https://github.com/april0114)                       |                         [서현은](https://github.com/hyuneu-n)                          |                        [박태경](https://github.com/tgyeongt)                        |                       [신태일](https://github.com/bigone-77)                   |
+| <img src="https://avatars.githubusercontent.com/u/110535324?v=4" width="400" /> | <img src="https://avatars.githubusercontent.com/u/134909318?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/119941414?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/126397025?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/141022131?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/106367655?v=4" width="300" /> |
 
 ## 🛠️ 기술 스택(Tech)
 
@@ -56,15 +57,12 @@
 ![Adobe Illustrator](https://img.shields.io/badge/adobe%20illustrator-%23FF9A00.svg?style=for-the-badge&logo=adobe%20illustrator&logoColor=white)
 ![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white)
 
-## ERD 설계
-> 작성중
-> <img width="1240" alt="이미지" src="">
-
 ## API 설계 문서
-> 작성중
+> [📑API 명세서](https://bustling-gondola-823.notion.site/API-118ba946abd880af9625f9d338e63c1f)
+
 
 ## Git Flow
-![git-flow](./src/main/resources/img/gitFlow.png)
+![git-flow](https://raw.githubusercontent.com/nowjiin/livfit-be/refs/heads/main/src/main/resources/img/gitFlow.png)
 
 # 🎯 Branch Convention & Git Convention
 
