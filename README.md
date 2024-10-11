@@ -1,6 +1,6 @@
 # LIVFIT
 
-![프로젝트 로고](./src/assets/images/logo.png)
+![프로젝트 로고](https://raw.githubusercontent.com/bigone-77/livfit-fe/main/src/assets/images/logo.png?token=GHSAT0AAAAAACSTUJJTZWOG27MZWSKLJOY4ZYIYAYA)
 
 
 
@@ -23,7 +23,7 @@
 |                                      Lead                                       |                                     Design                                      |                                    Developer                                    |                                    Developer                                    |                                    Developer                                     |                                     Developer                                    |
 |:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
 |                        [황현진](https://github.com/nowjiin)                        |                       [김민지]()                        |                       [하경림](https://github.com/april0114)                       |                         [서현은](https://github.com/hyuneu-n)                          |                        [박태경](https://github.com/tgyeongt)                        |                       [신태일](https://github.com/bigone-77)                   |
-| <img src="https://avatars.githubusercontent.com/u/110535324?v=4" width="400" /> | <img src="https://avatars.githubusercontent.com/u/134909318?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/119941414?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/126397025?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/141022131?v=4" width="300" /> | <img src="https://avatars.githubusercontent.com/u/106367655?v=4" width="300" /> |
+| <img src="https://avatars.githubusercontent.com/u/110535324?v=4" alt="profile" width="400" /> | <img src="https://avatars.githubusercontent.com/u/134909318?v=4"  alt="profile" width="300" /> | <img src="https://avatars.githubusercontent.com/u/119941414?v=4"  alt="profile" width="300" /> | <img src="https://avatars.githubusercontent.com/u/126397025?v=4"  alt="profile" width="300" /> | <img src="https://avatars.githubusercontent.com/u/141022131?v=4" alt="profile" width="300" /> | <img src="https://avatars.githubusercontent.com/u/106367655?v=4" alt="profile" width="300" /> |
 
 ## 🛠️ 기술 스택(Tech)
 
